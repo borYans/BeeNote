@@ -67,9 +67,7 @@ class AddStingFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        if(isNetworkEnabled()) {
             getTotalStingsFromFirebaseFirestore()
-        }
     }
 
 
@@ -109,11 +107,6 @@ class AddStingFragment : Fragment() {
         Navigation.findNavController(v).navigate(action)
     }
 
-    private fun isNetworkEnabled(): Boolean {
-        val service = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo? = service.activeNetworkInfo
-        return activeNetwork?.isConnectedOrConnecting == true
-    }
 }
 
 
