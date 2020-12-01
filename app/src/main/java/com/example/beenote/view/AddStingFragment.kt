@@ -25,7 +25,7 @@ class AddStingFragment : Fragment() {
 
     private val db = FirebaseFirestore.getInstance()
     private var stingCounter = 0
-    private var returnedStings = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +46,7 @@ class AddStingFragment : Fragment() {
         addSting.setOnClickListener {
             if (stingCounter != 0) {
 
-                updateStingsToFirebaseFirestore(returnedStings)
+                updateStingsToFirebaseFirestore(totalNumberOfStings.text.toString().toInt())
                 navigateBackToHome(it)
 
                 Toast.makeText(
@@ -81,8 +81,7 @@ class AddStingFragment : Fragment() {
                 .get()
                 .addOnSuccessListener { document ->
                     document?.let {
-                        returnedStings = document.data?.get("count").toString().toInt()
-                        totalNumberOfStings.text = returnedStings.toString()
+                        totalNumberOfStings.text = document.data?.get("count").toString()
                     }
                 }
 
@@ -95,7 +94,7 @@ class AddStingFragment : Fragment() {
                     .document(it1)
                     .set(
                         mapOf(
-                            "count" to FieldValue.increment((stingCounter + newSting).toLong())
+                            "count" to (stingCounter+newSting)
                         )
                     )
                     .addOnSuccessListener {
