@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "686584203394",
+    "firebase_url": "https://beenotes-27908.firebaseio.com",
+    "project_id": "beenotes-27908",
+    "storage_bucket": "beenotes-27908.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686584203394:android:4533f836a8211f764f8c9b",
+        "android_client_info": {
+          "package_name": "com.example.beenote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686584203394-0l28tpg8gocv7qh2nvni714ib7td4q72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrfnINRjqq4nju-Wup7pzcTkT00g_fiyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686584203394-0l28tpg8gocv7qh2nvni714ib7td4q72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

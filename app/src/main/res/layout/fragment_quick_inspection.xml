@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darkerBackgroundColor"
+            android:padding="20dp"
+            tools:context=".view.QuickInspectionFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/quickInspectionRelative"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/curved_layouts_background"
+                android:padding="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/calmRadioButton20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:checked="false"
+                    android:clickable="true"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Eggs"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/population5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calmRadioButton18" />
+
+                <TextView
+                    android:id="@+id/population4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="What you see?"
+                    android:textColor="@color/yellowText"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layingPatternRadioGroup" />
+
+                <TextView
+                    android:id="@+id/population5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Notes?"
+                    android:textColor="@color/yellowText"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calmRadioButton20" />
+
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/calmRadioButton17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:checked="false"
+                    android:clickable="true"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Capped brood"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/calmRadioButton18"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calmRadioButton16" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/calmRadioButton18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:checked="false"
+                    android:clickable="true"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Uncapped brood"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/calmRadioButton20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calmRadioButton17" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/calmRadioButton16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:checked="true"
+                    android:clickable="true"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Queen"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/calmRadioButton17"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/population4" />
+
+                <TextView
+                    android:id="@+id/population3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Laying pattern?"
+                    android:textColor="@color/yellowText"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/honeyStoresRadioGroup" />
+
+                <TextView
+                    android:id="@+id/population2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Honey stores?"
+                    android:textColor="@color/yellowText"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/populationRadioGroup" />
+
+                <TextView
+                    android:id="@+id/population"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="How is the population?"
+                    android:textColor="@color/yellowText"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/temperRadioGroup" />
+
+                <TextView
+                    android:id="@+id/temper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="What is the temper?"
+                    android:textColor="@color/yellowText"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/white"
+                    android:ems="10"
+                    android:hint="Add note"
+                    android:inputType="text"
+                    android:textColorHint="@color/yellowText"
+                    app:barrierMargin="@dimen/cardview_default_elevation"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/population5" />
+
+
+                <RadioGroup
+                    android:id="@+id/temperRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/temper"
+                    app:layout_constraintStart_toStartOf="@+id/temper"
+                    app:layout_constraintTop_toBottomOf="@+id/temper">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/calmRadioBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Calm"
+                        android:textColor="@color/white" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/nervousRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Nervous"
+                        android:textColor="@color/white" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/angryRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Angry"
+                        android:textColor="@color/white" />
+
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/populationRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/population"
+                    app:layout_constraintStart_toStartOf="@+id/population"
+                    app:layout_constraintTop_toBottomOf="@+id/population">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/lowPopulationRadioButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Low"
+                        android:textColor="@color/white" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/moderatePopulationRadioButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Moderate"
+                        android:textColor="@color/white" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/heavyPopulationRadioButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Heavy"
+                        android:textColor="@color/white" />
+
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/honeyStoresRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/population2"
+                    app:layout_constraintStart_toStartOf="@+id/population2"
+                    app:layout_constraintTop_toBottomOf="@+id/population2">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/lowHoneyRadioButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Low"
+                        android:textColor="@color/white" />
+
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/averageHoneyRadioButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Average"
+                        android:textColor="@color/white" />
+
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/highHoneyRadioButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:text="High"
+                        android:textColor="@color/white" />
+
+                </RadioGroup>
+
+
+                <RadioGroup
+                    android:id="@+id/layingPatternRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/population3"
+                    tools:layout_editor_absoluteX="15dp">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/poorPattern"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Poor"
+                        android:textColor="@color/white" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/fairPattern"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Fair"
+                        android:textColor="@color/white" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/perfectPattern"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Perfect"
+                        android:textColor="@color/white" />
+
+                </RadioGroup>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addCoordinatesBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/buttons"
+                    android:text="Finish inspection"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_question_mark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
