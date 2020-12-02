@@ -51,7 +51,7 @@ class AddStingFragment : Fragment() {
 
                 Toast.makeText(
                     requireContext(),
-                    "$stingCounter stings added successfully.",
+                    "$stingCounter stings added.",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {

@@ -38,7 +38,11 @@
     <fragment
         android:id="@+id/quickInspectionFragment"
         android:name="com.example.beenote.view.QuickInspectionFragment"
-        android:label="QuickInspectionFragment" />
+        android:label="QuickInspectionFragment" >
+        <action
+            android:id="@+id/action_quickInspectionFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/inspectionRatingInfoFragment"
         android:name="com.example.beenote.view.InspectionRatingInfoFragment"
