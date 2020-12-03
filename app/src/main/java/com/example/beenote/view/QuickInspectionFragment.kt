@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.navigation.Navigation
@@ -21,6 +22,7 @@ class QuickInspectionFragment : Fragment() {
 
 
     private val db = FirebaseFirestore.getInstance()
+
 
 
     override fun onCreateView(
@@ -54,7 +56,7 @@ class QuickInspectionFragment : Fragment() {
                     "laying pattern" to getTextFromRadioButton(layingPatternRadioGroup),
                     "population" to getTextFromRadioButton(populationRadioGroup),
                     "temperament" to getTextFromRadioButton(temperRadioGroup),
-                    "observed" to listOf<String>("Queen", "Eggs", "Uncapped brood", "Capped brood")
+                    "observed" to listOf(onCheckBoxClicked(queenCheckBox), onCheckBoxClicked(uncappedBroodCheckBox), onCheckBoxClicked(cappedBroodCheckBox), onCheckBoxClicked(eggsCheckBox))
 
                 ))
         }
@@ -65,6 +67,7 @@ class QuickInspectionFragment : Fragment() {
         Navigation.findNavController(v).navigate(action)
     }
 
+
     private fun getTextFromRadioButton(rdGroup: RadioGroup): String {
         val radioBtnID = rdGroup.checkedRadioButtonId
         val radioBtn = view?.findViewById<RadioButton>(radioBtnID)
@@ -72,5 +75,5 @@ class QuickInspectionFragment : Fragment() {
     }
 
 
-
+    private fun onCheckBoxClicked(checkBox: CheckBox) = if (checkBox.isChecked) checkBox.text.toString() else " "
 }
