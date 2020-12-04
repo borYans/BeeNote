@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.example.beenote.R
+import kotlinx.android.synthetic.main.fragment_add_sting.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -28,6 +29,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         relativeLayout.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToAddNewHiveFragment()
@@ -51,6 +53,12 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setTotalStings() {
 
+    }
 
+    override fun onStart() {
+        super.onStart()
+        setTotalStings()
+    }
 }

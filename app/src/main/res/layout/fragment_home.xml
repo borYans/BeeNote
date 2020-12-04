@@ -74,13 +74,13 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/textView10"
+                    app:layout_constraintEnd_toStartOf="@+id/totalStingsHome"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/totalStingsHome"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -102,10 +102,10 @@
                     android:textColor="@color/white"
                     android:textSize="25sp"
                     android:textStyle="bold"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textView10"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/totalStingsHome"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView10" />
+                    app:layout_constraintStart_toEndOf="@+id/totalStingsHome" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -219,11 +219,11 @@
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
-                    app:layout_constraintEnd_toEndOf="@+id/textView10"
+                    app:layout_constraintEnd_toEndOf="@+id/totalStingsHome"
                     app:layout_constraintEnd_toStartOf="@+id/textView13"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textView4"
-                    app:layout_constraintStart_toStartOf="@+id/textView10" />
+                    app:layout_constraintStart_toStartOf="@+id/totalStingsHome" />
 
                 <TextView
                     android:id="@+id/textView13"
