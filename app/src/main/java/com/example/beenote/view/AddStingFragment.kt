@@ -64,14 +64,6 @@ class AddStingFragment : Fragment() {
         }
     }
 
-
-    override fun onStart() {
-        super.onStart()
-            getTotalStingsFromFirebaseFirestore()
-    }
-
-
-
     private fun getTotalStingsFromFirebaseFirestore() {
         Firebase.auth.currentUser?.uid?.let {
             db.collection("stings")
@@ -87,18 +79,18 @@ class AddStingFragment : Fragment() {
     }
 
     private fun updateStingsToFirebaseFirestore(newSting: Int) {
-            Firebase.auth.currentUser?.uid?.let { it1 ->
-                db.collection("stings")
-                    .document(it1)
-                    .set(
-                        mapOf(
-                            "count" to (stingCounter+newSting)
-                        )
+        Firebase.auth.currentUser?.uid?.let { it1 ->
+            db.collection("stings")
+                .document(it1)
+                .set(
+                    mapOf(
+                        "count" to (stingCounter + newSting)
                     )
-                    .addOnSuccessListener {
-                        Log.d("@@@", "Stings added successfully.")
-                    }
-            }
+                )
+                .addOnSuccessListener {
+                    Log.d("@@@", "Stings added successfully.")
+                }
+        }
 
     }
 
@@ -106,6 +98,12 @@ class AddStingFragment : Fragment() {
         val action = AddStingFragmentDirections.actionAddStingFragmentToHomeFragment()
         Navigation.findNavController(v).navigate(action)
     }
+
+    override fun onStart() {
+        super.onStart()
+        getTotalStingsFromFirebaseFirestore()
+    }
+
 
 }
 

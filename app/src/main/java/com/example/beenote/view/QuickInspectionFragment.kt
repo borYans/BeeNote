@@ -10,20 +10,20 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.navigation.Navigation
 import com.example.beenote.R
-import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_quick_inspection.*
-import javax.security.auth.callback.UnsupportedCallbackException
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
 
 
 class QuickInspectionFragment : Fragment() {
 
 
     private val db = FirebaseFirestore.getInstance()
-    private val arrayOfBoxes =
-        arrayOf(queenCheckBox, uncappedBroodCheckBox, cappedBroodCheckBox, eggsCheckBox)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,32 +37,31 @@ class QuickInspectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        val quickInspectionData = mapOf(
-            "Notes" to noteTxt.text.toString(),
-            "honey stores" to getTextFromRadioButton(honeyStoresRadioGroup),
-            "laying pattern" to getTextFromRadioButton(layingPatternRadioGroup),
-            "population" to getTextFromRadioButton(populationRadioGroup),
-            "temperament" to getTextFromRadioButton(temperRadioGroup),
-            "observed" to listOf(
-                onCheckBoxClicked(queenCheckBox),
-                onCheckBoxClicked(uncappedBroodCheckBox),
-                onCheckBoxClicked(cappedBroodCheckBox),
-                onCheckBoxClicked(eggsCheckBox)
-            )
-        )
-
         finishInspectionBtn.setOnClickListener {
-            updateInspectionDataToFirebaseFirestore(quickInspectionData)
+            updateInspectionDataToFirebaseFirestore()
             navigateBacktoHomeFragment(it)
         }
-
     }
 
-    private fun updateInspectionDataToFirebaseFirestore(inspectionData: Map<String, Any>) {
+    private fun updateInspectionDataToFirebaseFirestore() {
         Firebase.auth.currentUser?.uid?.let {
             db.collection("inspection")
-                .add(inspectionData)
+                .add(
+                    mapOf(
+                        "notes" to getTextFromNotes(),
+                        "honey stores" to getTextFromRadioButton(honeyStoresRadioGroup),
+                        "laying pattern" to getTextFromRadioButton(layingPatternRadioGroup),
+                        "population" to getTextFromRadioButton(populationRadioGroup),
+                        "temperament" to getTextFromRadioButton(temperRadioGroup),
+                        "observed" to listOf(
+                            onCheckBoxClicked(queenCheckBox),
+                            onCheckBoxClicked(uncappedBroodCheckBox),
+                            onCheckBoxClicked(cappedBroodCheckBox),
+                            onCheckBoxClicked(eggsCheckBox)
+                        ),
+                        "timestamp" to getDateAndTime()
+                    )
+                )
         }
     }
 
@@ -78,7 +77,17 @@ class QuickInspectionFragment : Fragment() {
         return radioBtn?.text.toString()
     }
 
-    private fun onCheckBoxClicked(checkBox: CheckBox) =
-        if (checkBox.isChecked) checkBox.text.toString() else null
-
+    private fun getDateAndTime(): Date {
+        val calendar = Calendar.getInstance()
+        calendar.get(Calendar.DAY_OF_YEAR)
+        return calendar.time
     }
+
+    private fun getTextFromNotes(): String =
+        if (noteTxt.text.equals("")) "Empty notes" else noteTxt.text.toString()
+
+
+    private fun onCheckBoxClicked(checkBox: CheckBox) =
+        if (checkBox.isChecked) checkBox.text.toString() else "Not seen"
+
+}
