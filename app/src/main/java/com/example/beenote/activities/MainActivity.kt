@@ -1,14 +1,10 @@
-package com.example.beenote.view
+package com.example.beenote.activities
 
 import android.Manifest
-import android.content.Intent
-import android.content.ServiceConnection
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.CheckBox
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
@@ -16,11 +12,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.example.beenote.R
 import com.example.beenote.constants.Constants
-import com.example.beenote.model.WeatherApiService
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 private lateinit var navController: NavController

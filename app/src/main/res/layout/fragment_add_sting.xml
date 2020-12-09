@@ -10,7 +10,7 @@
         android:background="@color/darkerBackgroundColor"
         android:gravity="center"
         android:padding="20dp"
-        tools:context=".view.AddStingFragment">
+        tools:context=".fragments.AddStingFragment">
 
 
         <TextView

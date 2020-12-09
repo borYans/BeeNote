@@ -3,29 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp"
         android:background="@color/darkerBackgroundColor"
-        tools:context=".fragments.InspectionRatingInfoFragment">
+        tools:context=".fragments.HivesListFragment">
 
 
-        <TextView
-            android:id="@+id/textView15"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listOfHivesRecycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/dummyText"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="normal"
-            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

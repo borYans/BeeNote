@@ -1,9 +1,5 @@
-package com.example.beenote.view
+package com.example.beenote.fragments
 
-import android.app.usage.NetworkStatsManager
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,11 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.Navigation
 import com.example.beenote.R
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_add_sting.*
@@ -74,7 +68,6 @@ class AddStingFragment : Fragment() {
                         totalNumberOfStings.text = document.data?.get("count").toString()
                     }
                 }
-
         }
     }
 

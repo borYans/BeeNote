@@ -1,4 +1,4 @@
-package com.example.beenote.view
+package com.example.beenote.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.beenote.R
 
 
-class AddNewHiveFragment : Fragment() {
+class InspectionRatingInfoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class AddNewHiveFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_new_hive, container, false)
+        return inflater.inflate(R.layout.fragment_inspection_rating_info, container, false)
     }
 
 }

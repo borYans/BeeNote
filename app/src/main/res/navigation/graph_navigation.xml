@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.beenote.view.HomeFragment"
+        android:name="com.example.beenote.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -22,14 +22,21 @@
         <action
             android:id="@+id/action_homeFragment_to_weatherFragment"
             app:destination="@id/weatherFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_hivesListFragment"
+            app:destination="@id/hivesListFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewHiveFragment"
-        android:name="com.example.beenote.view.AddNewHiveFragment"
-        android:label="AddNewHiveFragment" />
+        android:name="com.example.beenote.fragments.AddNewHiveFragment"
+        android:label="AddNewHiveFragment" >
+        <action
+            android:id="@+id/action_addNewHiveFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addStingFragment"
-        android:name="com.example.beenote.view.AddStingFragment"
+        android:name="com.example.beenote.fragments.AddStingFragment"
         android:label="AddStingFragment" >
         <action
             android:id="@+id/action_addStingFragment_to_homeFragment"
@@ -37,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/quickInspectionFragment"
-        android:name="com.example.beenote.view.QuickInspectionFragment"
+        android:name="com.example.beenote.fragments.QuickInspectionFragment"
         android:label="QuickInspectionFragment" >
         <action
             android:id="@+id/action_quickInspectionFragment_to_homeFragment"
@@ -45,14 +52,18 @@
     </fragment>
     <fragment
         android:id="@+id/inspectionRatingInfoFragment"
-        android:name="com.example.beenote.view.InspectionRatingInfoFragment"
+        android:name="com.example.beenote.fragments.InspectionRatingInfoFragment"
         android:label="InspectionRatingInfoFragment" />
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="com.example.beenote.view.WeatherFragment"
+        android:name="com.example.beenote.fragments.WeatherFragment"
         android:label="WeatherFragment" >
         <action
             android:id="@+id/action_weatherFragment_to_inspectionRatingInfoFragment"
             app:destination="@id/inspectionRatingInfoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/hivesListFragment"
+        android:name="com.example.beenote.fragments.HivesListFragment"
+        android:label="HivesListFragment" />
 </navigation>

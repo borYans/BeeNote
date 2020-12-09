@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:background="@color/darkerBackgroundColor"
         android:padding="10dp"
-        tools:context=".view.AddCoordFragment">
+        tools:context=".activities.AddCoordFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
@@ -62,6 +62,7 @@
                 app:layout_constraintTop_toBottomOf="@id/queenAgeEditText" />
 
             <RadioGroup
+                android:id="@+id/statusRadioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/hiveStatus"
@@ -108,7 +109,7 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/addCoordinatesBtn"
+                android:id="@+id/addNewHiveBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttons"

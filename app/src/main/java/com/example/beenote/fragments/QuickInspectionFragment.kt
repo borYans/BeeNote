@@ -1,6 +1,7 @@
-package com.example.beenote.view
+package com.example.beenote.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +40,7 @@ class QuickInspectionFragment : Fragment() {
 
         finishInspectionBtn.setOnClickListener {
             updateInspectionDataToFirebaseFirestore()
+            setLastInspectionDate()
             navigateBacktoHomeFragment(it)
         }
     }
@@ -63,6 +65,26 @@ class QuickInspectionFragment : Fragment() {
                     )
                 )
         }
+    }
+
+    private fun setLastInspectionDate() {
+        Firebase.auth.currentUser?.uid?.let {
+            db.collection("last inspection")
+                .document(it)
+                .set(
+                    mapOf(
+                        "last inspection timestamp" to getCurrentDate()
+                    )
+                )
+                .addOnSuccessListener {
+                    Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
+                }
+        }
+    }
+
+    private fun getCurrentDate(): String {
+        val date = LocalDateTime.now()
+        return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))
     }
 
     private fun navigateBacktoHomeFragment(v: View) {

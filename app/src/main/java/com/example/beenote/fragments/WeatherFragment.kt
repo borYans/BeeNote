@@ -1,4 +1,4 @@
-package com.example.beenote.view
+package com.example.beenote.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.beenote.R
 import com.example.beenote.model.WeatherApiService
-import com.example.beenote.viewmodel.WeatherViewModel
 import kotlinx.android.synthetic.main.fragment_weather.*
 
 
