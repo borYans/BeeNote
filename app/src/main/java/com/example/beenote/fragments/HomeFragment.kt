@@ -34,8 +34,6 @@ class HomeFragment : Fragment() {
 
 
 
-
-
         addNewHiveLayout.setOnClickListener {
             navigateToAddNewHiveFragment(it)
         }
@@ -77,7 +75,6 @@ class HomeFragment : Fragment() {
 
         Firebase.auth.currentUser?.uid.let {
             db.collection("inspection")
-                .whereLessThan("timestamp", getCurrentDate())
                 .whereGreaterThan("timestamp", getDateSevenDaysAgo())
                 .get()
                 .addOnSuccessListener { documents ->

@@ -20,6 +20,7 @@ class HivesRecyclerAdapter(private val hivesList: ArrayList<QueryDocumentSnapsho
 
     class HivesViewHolder(view:View): RecyclerView.ViewHolder(view)
 
+
     //Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HivesViewHolder {
 
@@ -35,6 +36,8 @@ class HivesRecyclerAdapter(private val hivesList: ArrayList<QueryDocumentSnapsho
         //here I got an element from my dataset and replace the contents of the view with that element.
         // viewHolder.textView.text = dataSet[position]
 
+
+
         val docs = hivesList[position]
         holder.itemView.hiveNameTxt.text = docs.get("hive name").toString()
         holder.itemView.hiveStatusTxt.text = "Status: " + docs.get("hive_status").toString()
@@ -42,6 +45,8 @@ class HivesRecyclerAdapter(private val hivesList: ArrayList<QueryDocumentSnapsho
        // holder.itemView.dateCreatedTxt.text = docs.get("hive_created").toString()
 
     }
+
+
 
     //Return datasize of my dataset.
     override fun getItemCount() = hivesList.size

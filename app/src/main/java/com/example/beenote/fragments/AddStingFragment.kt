@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.beenote.R
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_add_sting.*
@@ -40,7 +41,7 @@ class AddStingFragment : Fragment() {
         addSting.setOnClickListener {
             if (stingCounter != 0) {
 
-                updateStingsToFirebaseFirestore(totalNumberOfStings.text.toString().toInt())
+                updateStingsToFirebaseFirestore(totalNumberOfStings.text.toString().toDouble())
                 navigateBackToHome(it)
 
                 Toast.makeText(
@@ -65,19 +66,24 @@ class AddStingFragment : Fragment() {
                 .get()
                 .addOnSuccessListener { document ->
                     document?.let {
-                        totalNumberOfStings.text = document.data?.get("count").toString()
+                        if (document.data?.get("count") != null) {
+                            totalNumberOfStings.text = document.data?.get("count").toString()
+                        } else {
+                            Log.d("ERROR DATA", "Something is not working. ")
+                        }
+
                     }
                 }
         }
     }
 
-    private fun updateStingsToFirebaseFirestore(newSting: Int) {
+    private fun updateStingsToFirebaseFirestore(newSting: Double) {
         Firebase.auth.currentUser?.uid?.let { it1 ->
             db.collection("stings")
                 .document(it1)
                 .set(
                     mapOf(
-                        "count" to (stingCounter + newSting)
+                        "count" to FieldValue.increment(stingCounter.toDouble())
                     )
                 )
                 .addOnSuccessListener {
