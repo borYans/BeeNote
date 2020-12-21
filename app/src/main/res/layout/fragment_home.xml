@@ -89,12 +89,12 @@
                     android:textSize="25sp"
                     android:textStyle="bold"
                     app:layout_constraintBaseline_toBaselineOf="@+id/lastInspectionDate"
-                    app:layout_constraintEnd_toStartOf="@+id/textView12"
+                    app:layout_constraintEnd_toStartOf="@+id/totalNumberOfHives"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/lastInspectionDate" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/totalNumberOfHives"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -238,7 +238,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textView11"
-                    app:layout_constraintStart_toStartOf="@+id/textView12" />
+                    app:layout_constraintStart_toStartOf="@+id/totalNumberOfHives" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import com.example.beenote.R
-import com.example.beenote.model.WeatherApiService
 import kotlinx.android.synthetic.main.fragment_weather.*
 
 

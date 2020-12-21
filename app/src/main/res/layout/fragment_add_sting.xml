@@ -85,7 +85,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addSting"
-            android:layout_width="371dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/buttons"
             android:text="Add sting"

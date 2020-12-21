@@ -6,18 +6,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.beenote.R
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_add_sting.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
 
 class HomeFragment : Fragment() {
 
+
+    private val authUser = Firebase.auth.currentUser?.uid
+    private var stingsListenerRegistration: ListenerRegistration? = null
+    private var hivesListenerRegistration: ListenerRegistration? = null
+    private var inspectedHivesListenerRegistration: ListenerRegistration? = null
+    private var dateListenerRegistration: ListenerRegistration? = null
+
     private val db = FirebaseFirestore.getInstance()
-    private var numberOfInspections: Int = 0 // counter for inspected hives documents in past 7 days
+
     private val calendar = Calendar.getInstance()
 
 
@@ -56,68 +66,21 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun getTotalStingsFromFirebaseFirestore() {
-        Firebase.auth.currentUser?.uid?.let {
-            db.collection("stings")
-                .document(it)
-                .get()
-                .addOnSuccessListener { document ->
-                    document?.let {
-                        totalStingsHome.text = document.data?.get("count").toString()
-                    }
-                }
-        }
-
-    }
-
-    private fun getInspectedHivesThisWeek() {
-        Log.d("INSPECTED HIVES", "getInspectedHivesThisWeek() is calling")
-
-        Firebase.auth.currentUser?.uid.let {
-            db.collection("inspection")
-                .whereGreaterThan("timestamp", getDateSevenDaysAgo())
-                .get()
-                .addOnSuccessListener { documents ->
-                    documents.let {
-                        for (document in documents) {
-                            Log.d("DOCUMENT", "Document id: ${document.data}")
-
-                            numberOfInspections++ // get the number of docs from the query
-                            Log.d("INSPECTED HIVES", "Number of inspected hives is: $numberOfInspections")
-                            inspectedHiveTxt.text = numberOfInspections.toString()
-
-                        }
-
-                    }
-
-                }
-                .addOnFailureListener {
-                    Log.d("ERROR", "Exception: $it")
-                }
-        }
-        // numberOfInspections = 0 //reset counter
-    }
-
-
     private fun getLastInspectionDate() {
         Firebase.auth.currentUser?.uid?.let {
-            db.collection("last inspection")
+            db.collection("last_inspection")
                 .document(it)
                 .get()
                 .addOnSuccessListener { document ->
                     document?.let {
                         lastInspectionDate.text =
-                            document.data?.get("last inspection timestamp").toString()
+                            document.data?.get("lastInspection").toString()
                     }
 
                 }
         }
     }
 
-    private fun getCurrentDate(): Date {
-        calendar.get(Calendar.DAY_OF_YEAR)
-        return calendar.time
-    }
 
     private fun getDateSevenDaysAgo(): Date {
         calendar.add(Calendar.DAY_OF_YEAR, -7)
@@ -150,16 +113,79 @@ class HomeFragment : Fragment() {
         Navigation.findNavController(v).navigate(action)
     }
 
-    private fun displayAllDataForHomeScreen() {
-        getInspectedHivesThisWeek()
-        getTotalStingsFromFirebaseFirestore()
+    override fun onStart() {
+        super.onStart()
         getLastInspectionDate()
     }
 
     override fun onResume() {
         super.onResume()
-        displayAllDataForHomeScreen()
+
+        stingsListenerRegistration =
+            authUser.let {
+                db.collection("stings")
+                    .document(it!!)
+                    .addSnapshotListener { document, error ->
+                        error?.let {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error occured: $error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        document?.let {
+                            totalStingsHome.text = document.data?.get("stings").toString()
+                        }
+                    }
+            }
+
+        hivesListenerRegistration =
+            authUser.let {
+                db.collection("new_hive")
+                    .addSnapshotListener { documents, error ->
+                        error?.let {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error occured: $error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        documents?.let {
+                            totalNumberOfHives.text = it.size().toString()
+                        }
+                    }
+            }
+
+        inspectedHivesListenerRegistration =
+            authUser.let {
+                db.collection("inspection")
+                    .whereGreaterThan("date", getDateSevenDaysAgo())
+                    .addSnapshotListener { documents, error ->
+                        error?.let {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error occured: $error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        documents?.let {
+                            inspectedHiveTxt.text = documents.size().toString()
+                        }
+
+                    }
+            }
+
+
     }
+
+    override fun onPause() {
+        super.onPause()
+        stingsListenerRegistration?.remove()
+        hivesListenerRegistration?.remove()
+        inspectedHivesListenerRegistration?.remove()
+    }
+
 
 
 }

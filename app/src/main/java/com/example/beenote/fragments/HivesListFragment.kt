@@ -5,19 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beenote.R
 import com.example.beenote.adapters.HivesRecyclerAdapter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_hives_list.*
 
 class HivesListFragment : Fragment() {
 
-
+    private val authUser = Firebase.auth.currentUser?.uid
+    private var hivesListenerRegistration: ListenerRegistration? = null
     private val db = FirebaseFirestore.getInstance()
+
     private val hivesListAdapter = HivesRecyclerAdapter(arrayListOf())
 
     override fun onCreateView(
@@ -39,25 +43,28 @@ class HivesListFragment : Fragment() {
 
     }
 
-    private fun getAllHivesFromFirebaseFirestore() {
-        Firebase.auth.currentUser?.uid?.let {
-            db.collection("new_hive")
-                .get()
-                .addOnSuccessListener { documents ->
-                    documents.let {
-                        val arrayList = ArrayList<QueryDocumentSnapshot>()
-                        for (document in documents) {
-                            arrayList.add(document)
+    override fun onResume() {
+        super.onResume()
+        hivesListenerRegistration =
+            authUser.let {
+                db.collection("new_hive")
+                    .addSnapshotListener { documents, error ->
+                        error?.let {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error occured: $error",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                        hivesListAdapter.updateHivesList(arrayList)
+                        documents?.let {
+                            val arrayList = ArrayList<QueryDocumentSnapshot>()
+                            for (document in documents) {
+                                arrayList.add(document)
+                            }
+                            hivesListAdapter.updateHivesList(arrayList)
+                        }
                     }
+            }
 
-                }
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        getAllHivesFromFirebaseFirestore()
     }
 }

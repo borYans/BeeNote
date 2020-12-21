@@ -37,16 +37,13 @@ class HivesRecyclerAdapter(private val hivesList: ArrayList<QueryDocumentSnapsho
         // viewHolder.textView.text = dataSet[position]
 
 
-
         val docs = hivesList[position]
-        holder.itemView.hiveNameTxt.text = docs.get("hive name").toString()
-        holder.itemView.hiveStatusTxt.text = "Status: " + docs.get("hive_status").toString()
-        holder.itemView.queenBeeAgeTxt.text = "Queen age: " + docs.get("queen_age").toString()
+        holder.itemView.hiveNameTxt.text = docs.get("hiveName").toString()
+        holder.itemView.hiveStatusTxt.text = "Status: " + docs.get("hiveStatus").toString()
+        holder.itemView.queenBeeAgeTxt.text = "Queen age: " + docs.get("queenAge").toString()
        // holder.itemView.dateCreatedTxt.text = docs.get("hive_created").toString()
 
     }
-
-
 
     //Return datasize of my dataset.
     override fun getItemCount() = hivesList.size

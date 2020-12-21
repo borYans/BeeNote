@@ -15,6 +15,7 @@ import com.example.beenote.constants.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.jakewharton.threetenabp.AndroidThreeTen
 
 private lateinit var navController: NavController
 private lateinit var auth: FirebaseAuth
@@ -23,6 +24,7 @@ private lateinit var auth: FirebaseAuth
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidThreeTen.init(this)
         setTheme(R.style.Theme_splashScreen)
         setContentView(R.layout.activity_main)
 

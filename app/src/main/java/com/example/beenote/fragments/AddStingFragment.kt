@@ -9,15 +9,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.beenote.R
+import com.example.beenote.model.Sting
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_add_sting.*
 
 
 class AddStingFragment : Fragment() {
 
+    private val authUser = Firebase.auth.currentUser?.uid
+    private var stingListenerRegistration: ListenerRegistration? = null
     private val db = FirebaseFirestore.getInstance()
     private var stingCounter = 0
 
@@ -41,7 +45,8 @@ class AddStingFragment : Fragment() {
         addSting.setOnClickListener {
             if (stingCounter != 0) {
 
-                updateStingsToFirebaseFirestore(totalNumberOfStings.text.toString().toDouble())
+                val sting = Sting(stingCounter)
+                updateStingsToFirebaseFirestore(sting)
                 navigateBackToHome(it)
 
                 Toast.makeText(
@@ -59,50 +64,50 @@ class AddStingFragment : Fragment() {
         }
     }
 
-    private fun getTotalStingsFromFirebaseFirestore() {
-        Firebase.auth.currentUser?.uid?.let {
-            db.collection("stings")
-                .document(it)
-                .get()
-                .addOnSuccessListener { document ->
-                    document?.let {
-                        if (document.data?.get("count") != null) {
-                            totalNumberOfStings.text = document.data?.get("count").toString()
-                        } else {
-                            Log.d("ERROR DATA", "Something is not working. ")
-                        }
 
-                    }
-                }
-        }
-    }
-
-    private fun updateStingsToFirebaseFirestore(newSting: Double) {
-        Firebase.auth.currentUser?.uid?.let { it1 ->
+    private fun updateStingsToFirebaseFirestore(sting: Sting) {
+        authUser.let {
             db.collection("stings")
-                .document(it1)
-                .set(
-                    mapOf(
-                        "count" to FieldValue.increment(stingCounter.toDouble())
-                    )
-                )
-                .addOnSuccessListener {
-                    Log.d("@@@", "Stings added successfully.")
-                }
+                .document(it!!)
+                .set(sting)
         }
 
+            .addOnSuccessListener {
+                Log.d("@@@", "Stings added successfully.")
+            }
     }
+
 
     private fun navigateBackToHome(v: View) {
         val action = AddStingFragmentDirections.actionAddStingFragmentToHomeFragment()
         Navigation.findNavController(v).navigate(action)
     }
 
-    override fun onStart() {
-        super.onStart()
-        getTotalStingsFromFirebaseFirestore()
+    override fun onResume() {
+        super.onResume()
+        stingListenerRegistration =
+            authUser.let {
+                db.collection("stings")
+                    .document(it!!)
+                    .addSnapshotListener { document, error ->
+                        error?.let {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error occured: $error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        document?.let {
+                            totalNumberOfStings.text = document.data?.get("stings").toString()
+                        }
+                    }
+            }
     }
 
+    override fun onPause() {
+        super.onPause()
+        stingListenerRegistration?.remove()
+    }
 
 }
 
