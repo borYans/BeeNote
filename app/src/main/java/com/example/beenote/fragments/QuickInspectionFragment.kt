@@ -20,14 +20,13 @@ import kotlinx.android.synthetic.main.fragment_quick_inspection.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import java.util.*
 
 
 class QuickInspectionFragment : Fragment() {
 
     private val authUser = Firebase.auth.currentUser?.uid
     private val db = FirebaseFirestore.getInstance()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +43,7 @@ class QuickInspectionFragment : Fragment() {
 
         finishInspectionBtn.setOnClickListener {
 
-
-            val quickInspection = QuickInspection(getCurrentDate(),
+            val quickInspection = QuickInspection(getDateAndTime(),
                 getTextFromRadioButton(honeyStoresRadioGroup),
                 getTextFromRadioButton(layingPatternRadioGroup),
                 getTextFromRadioButton(populationRadioGroup),
@@ -106,7 +104,12 @@ class QuickInspectionFragment : Fragment() {
         val date = LocalDateTime.now()
         return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))
     }
-    
+
+    private fun getDateAndTime(): Date {
+        val calendar = Calendar.getInstance()
+        calendar.get(Calendar.DAY_OF_YEAR)
+        return calendar.time
+    }
 
     private fun getTextFromNotes(): String =
         if (noteTxt.text.equals("")) "Empty notes" else noteTxt.text.toString()

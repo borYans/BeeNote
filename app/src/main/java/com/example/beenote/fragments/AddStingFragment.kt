@@ -86,9 +86,9 @@ class AddStingFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         stingListenerRegistration =
-            authUser.let {
+            authUser?.let {
                 db.collection("stings")
-                    .document(it!!)
+                    .document(it)
                     .addSnapshotListener { document, error ->
                         error?.let {
                             Toast.makeText(

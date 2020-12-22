@@ -44,10 +44,10 @@ class AddNewHiveFragment : Fragment() {
         Firebase.auth.currentUser?.uid?.let {
             db.collection("new_hive")
                 .add(mapOf(
-                    "hive_created" to getDateAndTime(),
-                    "hive name" to getHiveNameFromEditText(),
-                    "hive_status" to getTextFromRadioButton(statusRadioGroup),
-                    "queen_age" to getQueenAgeFromEditText(),
+                    "dateCreated" to getDateAndTime(),
+                    "hiveName" to getHiveNameFromEditText(),
+                    "hiveStatus" to getTextFromRadioButton(statusRadioGroup),
+                    "queenAge" to getQueenAgeFromEditText(),
                 ))
         }
     }

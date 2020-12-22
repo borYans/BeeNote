@@ -75,7 +75,7 @@
                     android:checked="true"
                     android:clickable="true"
                     android:fontFamily="sans-serif-light"
-                    android:text="Strong"
+                    android:text="strong"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/hiveStatus" />
@@ -87,7 +87,7 @@
                     android:checked="false"
                     android:clickable="true"
                     android:fontFamily="sans-serif-light"
-                    android:text="Weak"
+                    android:text="weak"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/strongRadioBtn" />
@@ -99,7 +99,7 @@
                     android:checked="false"
                     android:clickable="true"
                     android:fontFamily="sans-serif-light"
-                    android:text="Nucleus"
+                    android:text="nucleus"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/weakRadioBtn" />

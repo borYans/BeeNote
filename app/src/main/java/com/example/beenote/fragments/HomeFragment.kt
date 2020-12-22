@@ -24,7 +24,9 @@ class HomeFragment : Fragment() {
     private var stingsListenerRegistration: ListenerRegistration? = null
     private var hivesListenerRegistration: ListenerRegistration? = null
     private var inspectedHivesListenerRegistration: ListenerRegistration? = null
-    private var dateListenerRegistration: ListenerRegistration? = null
+    private var strongHivesListenerRegistration: ListenerRegistration? = null
+    private var weakHIvesListenerRegistration: ListenerRegistration? = null
+    private var nucleusHivesListenerRegistration: ListenerRegistration? = null
 
     private val db = FirebaseFirestore.getInstance()
 
@@ -67,18 +69,28 @@ class HomeFragment : Fragment() {
     }
 
     private fun getLastInspectionDate() {
-        Firebase.auth.currentUser?.uid?.let {
-            db.collection("last_inspection")
-                .document(it)
-                .get()
-                .addOnSuccessListener { document ->
-                    document?.let {
-                        lastInspectionDate.text =
-                            document.data?.get("lastInspection").toString()
-                    }
+        try {
+            Firebase.auth.currentUser?.uid?.let {
+                db.collection("last_inspection")
+                    .document(it)
+                    .get()
+                    .addOnSuccessListener { document ->
+                        document?.let {
+                            lastInspectionDate.text =
+                                document.data?.get("lastInspection").toString()
+                        }
 
-                }
+                    }
+            }
+        } catch (e: Exception){
+            Log.d("ERROR", "Error occurred: $e")
+            Toast.makeText(
+                requireContext(),
+                "Error occurred",
+                Toast.LENGTH_SHORT
+            ).show()
         }
+
     }
 
 
@@ -113,6 +125,15 @@ class HomeFragment : Fragment() {
         Navigation.findNavController(v).navigate(action)
     }
 
+    private fun cancelListenerRegistrations() {
+        stingsListenerRegistration?.remove()
+        hivesListenerRegistration?.remove()
+        inspectedHivesListenerRegistration?.remove()
+        strongHivesListenerRegistration?.remove()
+        weakHIvesListenerRegistration?.remove()
+        nucleusHivesListenerRegistration?.remove()
+    }
+
     override fun onStart() {
         super.onStart()
         getLastInspectionDate()
@@ -122,9 +143,9 @@ class HomeFragment : Fragment() {
         super.onResume()
 
         stingsListenerRegistration =
-            authUser.let {
+            authUser?.let {
                 db.collection("stings")
-                    .document(it!!)
+                    .document(it)
                     .addSnapshotListener { document, error ->
                         error?.let {
                             Toast.makeText(
@@ -176,14 +197,62 @@ class HomeFragment : Fragment() {
                     }
             }
 
+        strongHivesListenerRegistration =
+            db.collection("new_hive")
+                .whereEqualTo("hiveStatus", "strong")
+                .addSnapshotListener { snapshots, error ->
+                    error?.let {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error occured: $error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
 
+                    snapshots?.let {
+                        strongHivesText.text = it.size().toString()
+                    }
+                }
+
+
+        weakHIvesListenerRegistration =
+            db.collection("new_hive")
+                .whereEqualTo("hiveStatus", "weak")
+                .addSnapshotListener { snapshots, error ->
+                    error?.let {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error occured: $error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    snapshots?.let {
+                        weakHivesTxt.text = it.size().toString()
+                    }
+                }
+
+        nucleusHivesListenerRegistration =
+            db.collection("new_hive")
+                .whereEqualTo("hiveStatus", "nucleus")
+                .addSnapshotListener { snapshots, error ->
+                    error?.let {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error occured: $error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    snapshots?.let {
+                        nucleusHivesTxt.text = it.size().toString()
+                    }
+                }
     }
 
     override fun onPause() {
         super.onPause()
-        stingsListenerRegistration?.remove()
-        hivesListenerRegistration?.remove()
-        inspectedHivesListenerRegistration?.remove()
+        cancelListenerRegistrations()
     }
 
 
