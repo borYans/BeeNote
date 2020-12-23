@@ -68,77 +68,6 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun getLastInspectionDate() {
-        try {
-            Firebase.auth.currentUser?.uid?.let {
-                db.collection("last_inspection")
-                    .document(it)
-                    .get()
-                    .addOnSuccessListener { document ->
-                        document?.let {
-                            lastInspectionDate.text =
-                                document.data?.get("lastInspection").toString()
-                        }
-
-                    }
-            }
-        } catch (e: Exception){
-            Log.d("ERROR", "Error occurred: $e")
-            Toast.makeText(
-                requireContext(),
-                "Error occurred",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-
-    }
-
-
-    private fun getDateSevenDaysAgo(): Date {
-        calendar.add(Calendar.DAY_OF_YEAR, -7)
-        return calendar.time
-    }
-
-
-    private fun navigateToAddNewHiveFragment(v: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToAddNewHiveFragment()
-        Navigation.findNavController(v).navigate(action)
-    }
-
-    private fun navigateToWeatherFragment(v: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToWeatherFragment()
-        Navigation.findNavController(v).navigate(action)
-    }
-
-    private fun navigateToAddStingFragment(v: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToAddStingFragment()
-        Navigation.findNavController(v).navigate(action)
-    }
-
-    private fun navigateToQuickInspectionFragment(v: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToQuickInspectionFragment()
-        Navigation.findNavController(v).navigate(action)
-    }
-
-    private fun navigateToListOfHivesFragment(v: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToHivesListFragment()
-        Navigation.findNavController(v).navigate(action)
-    }
-
-    private fun cancelListenerRegistrations() {
-        stingsListenerRegistration?.remove()
-        hivesListenerRegistration?.remove()
-        inspectedHivesListenerRegistration?.remove()
-        strongHivesListenerRegistration?.remove()
-        weakHIvesListenerRegistration?.remove()
-        nucleusHivesListenerRegistration?.remove()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        getLastInspectionDate()
-    }
-
     override fun onResume() {
         super.onResume()
 
@@ -254,6 +183,79 @@ class HomeFragment : Fragment() {
         super.onPause()
         cancelListenerRegistrations()
     }
+
+    private fun getLastInspectionDate() { // must go with listener registration or you will be getting null.
+        try {
+            Firebase.auth.currentUser?.uid?.let {
+                db.collection("last_inspection")
+                    .document(it)
+                    .get()
+                    .addOnSuccessListener { document ->
+                        document.let {
+                            lastInspectionDate.text =
+                                document.data?.get("lastInspection").toString()
+                        }
+
+                    }
+            }
+        } catch (e: Exception){
+            Log.d("ERROR", "Error occurred: $e")
+            Toast.makeText(
+                requireContext(),
+                "Error occurred",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+    }
+
+
+    private fun getDateSevenDaysAgo(): Date {
+        calendar.add(Calendar.DAY_OF_YEAR, -7)
+        return calendar.time
+    }
+
+
+    private fun navigateToAddNewHiveFragment(v: View) {
+        val action = HomeFragmentDirections.actionHomeFragmentToAddNewHiveFragment()
+        Navigation.findNavController(v).navigate(action)
+    }
+
+    private fun navigateToWeatherFragment(v: View) {
+        val action = HomeFragmentDirections.actionHomeFragmentToWeatherFragment()
+        Navigation.findNavController(v).navigate(action)
+    }
+
+    private fun navigateToAddStingFragment(v: View) {
+        val action = HomeFragmentDirections.actionHomeFragmentToAddStingFragment()
+        Navigation.findNavController(v).navigate(action)
+    }
+
+    private fun navigateToQuickInspectionFragment(v: View) {
+        val action = HomeFragmentDirections.actionHomeFragmentToQuickInspectionFragment()
+        Navigation.findNavController(v).navigate(action)
+    }
+
+    private fun navigateToListOfHivesFragment(v: View) {
+        val action = HomeFragmentDirections.actionHomeFragmentToHivesListFragment()
+        Navigation.findNavController(v).navigate(action)
+    }
+
+    private fun cancelListenerRegistrations() {
+        stingsListenerRegistration?.remove()
+        hivesListenerRegistration?.remove()
+        inspectedHivesListenerRegistration?.remove()
+        strongHivesListenerRegistration?.remove()
+        weakHIvesListenerRegistration?.remove()
+        nucleusHivesListenerRegistration?.remove()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        getLastInspectionDate()
+    }
+
+
 
 
 

@@ -1,6 +1,7 @@
 package com.example.beenote.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -41,15 +42,20 @@ class AddNewHiveFragment : Fragment() {
 
 
     private fun setNewHives() {
-        Firebase.auth.currentUser?.uid?.let {
-            db.collection("new_hive")
-                .add(mapOf(
-                    "dateCreated" to getDateAndTime(),
-                    "hiveName" to getHiveNameFromEditText(),
-                    "hiveStatus" to getTextFromRadioButton(statusRadioGroup),
-                    "queenAge" to getQueenAgeFromEditText(),
-                ))
+        try {
+            Firebase.auth.currentUser?.uid?.let {
+                db.collection("new_hive")
+                    .add(mapOf(
+                        "dateCreated" to getDateAndTime(),
+                        "hiveName" to getHiveNameFromEditText(),
+                        "hiveStatus" to getTextFromRadioButton(statusRadioGroup),
+                        "queenAge" to getQueenAgeFromEditText(),
+                    ))
+            }
+        } catch (e: Exception) {
+            Log.d("ERROR", "Error occurred: $e")
         }
+
     }
 
     private fun getTextFromRadioButton(rdGroup: RadioGroup): String {

@@ -35,7 +35,6 @@ class QuickInspectionFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_quick_inspection, container, false)
 
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,28 +62,38 @@ class QuickInspectionFragment : Fragment() {
     }
 
     private fun updateInspectionDataToFirebaseFirestore(inspection: QuickInspection) {
-        authUser.let {
-            db.collection("inspection")
-                .add(inspection)
-                .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Successfully added new inspection", Toast.LENGTH_SHORT).show()
-                }
+        try {
+            authUser.let {
+                db.collection("inspection")
+                    .add(inspection)
+                    .addOnSuccessListener {
+                        Toast.makeText(requireContext(), "Successfully added new inspection", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        } catch (e: Exception) {
+            Log.d("ERROR", "Error occurred: $e")
         }
+
     }
 
     private fun setLastInspectionDate() {
-        Firebase.auth.currentUser?.uid?.let {
-            db.collection("last_inspection")
-                .document(it)
-                .set(
-                    mapOf(
-                        "lastInspection" to getCurrentDate()
+        try {
+            Firebase.auth.currentUser?.uid?.let {
+                db.collection("last_inspection")
+                    .document(it)
+                    .set(
+                        mapOf(
+                            "lastInspection" to getCurrentDate()
+                        )
                     )
-                )
-                .addOnSuccessListener {
-                    Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
-                }
+                    .addOnSuccessListener {
+                        Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
+                    }
+            }
+        } catch (e: Exception) {
+            Log.d("ERROR", "Error occurred: $e")
         }
+
     }
 
 

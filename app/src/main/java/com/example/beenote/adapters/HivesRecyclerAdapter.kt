@@ -5,11 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beenote.R
+import com.example.beenote.utils.HiveClickListener
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.item_hive.view.*
 
-class HivesRecyclerAdapter(private val hivesList: ArrayList<QueryDocumentSnapshot>): RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewHolder>() {
+class HivesRecyclerAdapter(private val hivesList: ArrayList<QueryDocumentSnapshot>,
+private  val hiveClickListener: HiveClickListener): RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewHolder>() {
 
 
     fun updateHivesList(newHivesList: ArrayList<QueryDocumentSnapshot>) {
@@ -41,7 +43,10 @@ class HivesRecyclerAdapter(private val hivesList: ArrayList<QueryDocumentSnapsho
         holder.itemView.hiveNameTxt.text = docs.get("hiveName").toString()
         holder.itemView.hiveStatusTxt.text = "Status: " + docs.get("hiveStatus").toString()
         holder.itemView.queenBeeAgeTxt.text = "Queen age: " + docs.get("queenAge").toString()
-       // holder.itemView.dateCreatedTxt.text = docs.get("hive_created").toString()
+       // holder.itemView.dateCreatedTxt.text = docs.get("dateCreated").toString()
+        holder.itemView.setOnClickListener {
+            hiveClickListener.onHiveClickListener()
+        }
 
     }
 
