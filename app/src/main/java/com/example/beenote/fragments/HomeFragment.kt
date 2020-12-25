@@ -58,10 +58,6 @@ class HomeFragment : Fragment() {
             navigateToWeatherFragment(it)
         }
 
-        quickInspectionBtn.setOnClickListener {
-            navigateToQuickInspectionFragment(it)
-        }
-
         viewAllHivesLayout.setOnClickListener {
             navigateToListOfHivesFragment(it)
         }
@@ -231,10 +227,7 @@ class HomeFragment : Fragment() {
         Navigation.findNavController(v).navigate(action)
     }
 
-    private fun navigateToQuickInspectionFragment(v: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToQuickInspectionFragment()
-        Navigation.findNavController(v).navigate(action)
-    }
+
 
     private fun navigateToListOfHivesFragment(v: View) {
         val action = HomeFragmentDirections.actionHomeFragmentToHivesListFragment()

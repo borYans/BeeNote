@@ -27,6 +27,7 @@ class QuickInspectionFragment : Fragment() {
 
     private val authUser = Firebase.auth.currentUser?.uid
     private val db = FirebaseFirestore.getInstance()
+    private var hive_Id: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +43,9 @@ class QuickInspectionFragment : Fragment() {
 
         finishInspectionBtn.setOnClickListener {
 
-            val quickInspection = QuickInspection(getDateAndTime(),
+
+            val quickInspection = QuickInspection(hive_Id,
+                getDateAndTime(),
                 getTextFromRadioButton(honeyStoresRadioGroup),
                 getTextFromRadioButton(layingPatternRadioGroup),
                 getTextFromRadioButton(populationRadioGroup),
@@ -73,7 +76,6 @@ class QuickInspectionFragment : Fragment() {
         } catch (e: Exception) {
             Log.d("ERROR", "Error occurred: $e")
         }
-
     }
 
     private fun setLastInspectionDate() {
@@ -128,4 +130,12 @@ class QuickInspectionFragment : Fragment() {
         if (checkBox.isChecked) checkBox.text.toString() else "Not seen"
 
 
+    override fun onResume() {
+        super.onResume()
+
+        arguments?.let { bundle ->
+            val args = QuickInspectionFragmentArgs.fromBundle(bundle)
+            hive_Id = args.hiveId
+        }
+    }
 }

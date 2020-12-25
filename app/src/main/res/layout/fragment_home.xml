@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -10,7 +11,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/darkerBackgroundColor"
             android:gravity="start"
             android:padding="15dp"
@@ -25,12 +26,13 @@
                 android:shadowRadius="15"
                 android:text="0"
                 android:textColor="@color/yellowText"
-                android:textSize="80sp"
+                android:textSize="90sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread" />
 
             <TextView
                 android:id="@+id/textView"
@@ -55,7 +57,7 @@
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/empty_layouts_background"
                 app:layout_constraintBottom_toTopOf="@+id/addNewHiveLayout"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +74,7 @@
                     android:gravity="center"
                     android:text="21.10.2020"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/totalStingsHome"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -86,7 +88,7 @@
                     android:gravity="center"
                     android:text="45"
                     android:textColor="@color/white"
-                    android:textSize="25sp"
+                    android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintBaseline_toBaselineOf="@+id/lastInspectionDate"
                     app:layout_constraintEnd_toStartOf="@+id/totalNumberOfHives"
@@ -100,7 +102,7 @@
                     android:gravity="center"
                     android:text="45"
                     android:textColor="@color/white"
-                    android:textSize="25sp"
+                    android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintBaseline_toBaselineOf="@+id/totalStingsHome"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +117,7 @@
                     android:gravity="center"
                     android:text="45"
                     android:textColor="@color/white"
-                    android:textSize="25sp"
+                    android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/weakHivesTxt"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -130,7 +132,7 @@
                     android:gravity="center"
                     android:text="45"
                     android:textColor="@color/white"
-                    android:textSize="25sp"
+                    android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/nucleusHivesTxt"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -187,7 +189,7 @@
                     android:gravity="center"
                     android:text="45"
                     android:textColor="@color/white"
-                    android:textSize="25sp"
+                    android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -248,7 +250,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/constraintLayout"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/straight_layouts_background"
                 android:clickable="true"
                 android:orientation="horizontal"
@@ -261,15 +263,15 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
                     android:text="Add new hive"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textColor="@color/greyText"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:gravity="center"
                     android:text=">"
@@ -284,7 +286,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/constraintLayout"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/straight_layouts_background"
                 android:clickable="true"
                 android:orientation="horizontal"
@@ -297,15 +299,15 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
                     android:text="View all hives"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textColor="@color/greyText"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:gravity="center"
                     android:text=">"
@@ -320,7 +322,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/constraintLayout"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/straight_layouts_background"
                 android:clickable="true"
                 android:orientation="horizontal"
@@ -333,15 +335,15 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
                     android:text="Current weather conditions"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textColor="@color/greyText"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:gravity="center"
                     android:text=">"
@@ -356,12 +358,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/constraintLayout"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/straight_layouts_background"
                 android:clickable="true"
                 android:orientation="horizontal"
                 android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/quickInspectionBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -369,15 +370,15 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
                     android:text="Add sting"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textColor="@color/greyText"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:gravity="center"
                     android:text=">"
@@ -386,23 +387,6 @@
 
 
             </RelativeLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/quickInspectionBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/buttons"
-                android:text="Quick inspection"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addNewStingLayout"
-                app:layout_constraintVertical_bias="1.0" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

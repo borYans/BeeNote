@@ -17,9 +17,6 @@
             android:id="@+id/action_homeFragment_to_addStingFragment"
             app:destination="@id/addStingFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_quickInspectionFragment"
-            app:destination="@id/quickInspectionFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_weatherFragment"
             app:destination="@id/weatherFragment" />
         <action
@@ -49,6 +46,9 @@
         <action
             android:id="@+id/action_quickInspectionFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="hive_id"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/inspectionRatingInfoFragment"
@@ -65,5 +65,20 @@
     <fragment
         android:id="@+id/hivesListFragment"
         android:name="com.example.beenote.fragments.HivesListFragment"
-        android:label="HivesListFragment" />
+        android:label="HivesListFragment" >
+        <action
+            android:id="@+id/action_hivesListFragment_to_inspectionsListFragment"
+            app:destination="@id/inspectionsListFragment" />
+        <action
+            android:id="@+id/action_hivesListFragment_to_quickInspectionFragment"
+            app:destination="@id/quickInspectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inspectionsListFragment"
+        android:name="com.example.beenote.fragments.InspectionsListFragment"
+        android:label="InspectionsListFragment" >
+        <argument
+            android:name="hiveId"
+            app:argType="string" />
+    </fragment>
 </navigation>

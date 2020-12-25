@@ -37,13 +37,12 @@ class HivesListFragment : Fragment(), HiveClickListener {
         super.onViewCreated(view, savedInstanceState)
 
 
-        listOfHivesRecycler.apply {
+        inspectionsRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = hivesListAdapter
         }
 
     }
-
 
 
     override fun onResume() {
@@ -79,5 +78,10 @@ class HivesListFragment : Fragment(), HiveClickListener {
         ).show()
 
 
+    }
+
+    override fun onStop() {
+        super.onStop()
+        hivesListenerRegistration?.remove()
     }
 }
