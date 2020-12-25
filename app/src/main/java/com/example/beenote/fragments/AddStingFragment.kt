@@ -14,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_add_sting.*
 
@@ -66,19 +67,16 @@ class AddStingFragment : Fragment() {
 
 
     private fun updateStingsToFirebaseFirestore(sting: Sting) {
-        try {
-            authUser.let {
-                db.collection("stings")
-                    .document(it!!)
-                    .set(sting)
-            }
 
+        authUser?.let {
+            db.collection("users")
+                .document(it)
+                .set(sting, SetOptions.merge())
                 .addOnSuccessListener {
                     Log.d("@@@", "Stings added successfully.")
                 }
-        } catch (e: Exception) {
-            Log.d("ERROR", "Error occurred: $e")
         }
+
 
     }
 

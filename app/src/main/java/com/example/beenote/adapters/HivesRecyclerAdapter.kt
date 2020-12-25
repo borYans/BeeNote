@@ -22,7 +22,7 @@ class HivesRecyclerAdapter(
     fun updateHivesList(newHivesList: ArrayList<QueryDocumentSnapshot>) {
         hivesList.clear()
         hivesList.addAll(newHivesList)
-        notifyDataSetChanged()
+        notifyDataSetChanged() // rezultatot od diff util...
     }
 
     class HivesViewHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -33,7 +33,6 @@ class HivesRecyclerAdapter(
 
         //Create new view, which defines the UI of the list item.
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hive, parent, false)
-
         return HivesViewHolder(view)
     }
 

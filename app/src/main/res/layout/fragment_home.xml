@@ -12,7 +12,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/darkerBackgroundColor"
+            android:background="@drawable/gradient_main_background"
             android:gravity="start"
             android:padding="15dp"
             tools:context=".fragments.HomeFragment">
@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:shadowColor="@color/yellowText"
-                android:shadowRadius="15"
+                android:shadowRadius="20"
                 android:text="0"
                 android:textColor="@color/yellowText"
                 android:textSize="90sp"
@@ -250,16 +250,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/constraintLayout"
-                android:layout_marginTop="50dp"
                 android:background="@drawable/straight_layouts_background"
                 android:clickable="true"
                 android:orientation="horizontal"
                 android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/viewAllHivesLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                tools:layout_editor_absoluteX="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -286,16 +283,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/constraintLayout"
-                android:layout_marginTop="15dp"
                 android:background="@drawable/straight_layouts_background"
                 android:clickable="true"
                 android:orientation="horizontal"
                 android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/currentWeatherConditionsLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addNewHiveLayout">
+                app:layout_constraintTop_toBottomOf="@+id/addNewHiveLayout"
+                tools:layout_editor_absoluteX="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -322,16 +316,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/constraintLayout"
-                android:layout_marginTop="15dp"
                 android:background="@drawable/straight_layouts_background"
                 android:clickable="true"
                 android:orientation="horizontal"
                 android:padding="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/addNewStingLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewAllHivesLayout">
+                app:layout_constraintTop_toBottomOf="@+id/viewAllHivesLayout"
+                tools:layout_editor_absoluteX="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -358,15 +349,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/constraintLayout"
-                android:layout_marginTop="15dp"
                 android:background="@drawable/straight_layouts_background"
                 android:clickable="true"
                 android:orientation="horizontal"
                 android:padding="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/currentWeatherConditionsLayout">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currentWeatherConditionsLayout"
+                tools:layout_editor_absoluteX="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"

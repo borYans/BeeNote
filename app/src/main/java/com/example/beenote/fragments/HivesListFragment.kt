@@ -48,8 +48,10 @@ class HivesListFragment : Fragment(), HiveClickListener {
     override fun onResume() {
         super.onResume()
         hivesListenerRegistration =
-            authUser.let {
-                db.collection("new_hive")
+            authUser?.let {
+                db.collection("users")
+                    .document(it)
+                    .collection("hives")
                     .addSnapshotListener { documents, error ->
                         error?.let {
                             Toast.makeText(

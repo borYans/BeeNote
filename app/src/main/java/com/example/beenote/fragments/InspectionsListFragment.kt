@@ -62,8 +62,11 @@ class InspectionsListFragment : Fragment(), InspectionClickListener  {
             Log.d("HIVE", "Hive id is: $hive_id")
             inspectionsListenerRegistration =
                 authUser?.let {
-                    db.collection("inspection")
-                        .whereEqualTo("hiveId", hive_id)
+                    db.collection("users")
+                        .document(it)
+                        .collection("hives")
+                        .document(hive_id!!)
+                        .collection("inspections")
                         .addSnapshotListener { inspections, error ->
                             error?.let {
                                 Toast.makeText(requireContext(), "Error occurred.", Toast.LENGTH_SHORT).show()

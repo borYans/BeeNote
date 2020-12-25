@@ -10,6 +10,7 @@
 
     <color name="darkerBackgroundColor">#1B1E27</color>
     <color name="darkBackgroundColor">#2F3B56</color>
+    <color name="centerMainBakcgroundColor">#282C39</color>
 
 
     <color name="yellowText">#DFC75F</color>

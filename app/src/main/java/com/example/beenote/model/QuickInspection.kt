@@ -4,7 +4,8 @@ import java.util.*
 
 class QuickInspection(
     var hiveId: String?,
-    var date: Date,
+    var timestamp: Date,
+    var dateCreated: String?,
     var honeyStores: String?,
     var layingPattern: String?,
     var population: String?,

@@ -44,7 +44,9 @@ class AddNewHiveFragment : Fragment() {
     private fun setNewHives() {
         try {
             Firebase.auth.currentUser?.uid?.let {
-                db.collection("new_hive")
+                db.collection("users")
+                    .document(it)
+                    .collection("hives")
                     .add(mapOf(
                         "dateCreated" to getDateAndTime(),
                         "hiveName" to getHiveNameFromEditText(),

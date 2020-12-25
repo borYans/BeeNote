@@ -37,7 +37,7 @@ class InspectionRecyclerAdapter(
     override fun onBindViewHolder(holder: InspectionViewHolder, position: Int) {
 
         val inspections = inspectionsList[position]
-        holder.itemView.dateOfInspection.text = inspections.get("date").toString() // konvertiraj go vo date posto sega ti e timestamp.
+        holder.itemView.dateOfInspection.text ="Hive inspection: ${inspections.get("dateCreated").toString()}"
     }
 
 

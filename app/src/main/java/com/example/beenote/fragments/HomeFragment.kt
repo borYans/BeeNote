@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.beenote.R
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_add_sting.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.text.DateFormat
 import java.util.*
 
 class HomeFragment : Fragment() {
@@ -69,7 +71,7 @@ class HomeFragment : Fragment() {
 
         stingsListenerRegistration =
             authUser?.let {
-                db.collection("stings")
+                db.collection("users")
                     .document(it)
                     .addSnapshotListener { document, error ->
                         error?.let {
@@ -86,8 +88,10 @@ class HomeFragment : Fragment() {
             }
 
         hivesListenerRegistration =
-            authUser.let {
-                db.collection("new_hive")
+            authUser?.let {
+                db.collection("users")
+                    .document(it)
+                    .collection("hives")
                     .addSnapshotListener { documents, error ->
                         error?.let {
                             Toast.makeText(
@@ -104,9 +108,11 @@ class HomeFragment : Fragment() {
             }
 
         inspectedHivesListenerRegistration =
-            authUser.let {
-                db.collection("inspection")
-                    .whereGreaterThan("date", getDateSevenDaysAgo())
+            authUser?.let {
+                db.collection("users")
+                    .document(it)
+                    .collection("hives")
+                    .whereGreaterThan("lastInspection", getDateSevenDaysAgo())
                     .addSnapshotListener { documents, error ->
                         error?.let {
                             Toast.makeText(
@@ -123,87 +129,95 @@ class HomeFragment : Fragment() {
             }
 
         strongHivesListenerRegistration =
-            db.collection("new_hive")
-                .whereEqualTo("hiveStatus", "strong")
-                .addSnapshotListener { snapshots, error ->
-                    error?.let {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error occured: $error",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            authUser?.let {
+                db.collection("users")
+                    .document(it)
+                    .collection("hives")
+                    .whereEqualTo("hiveStatus", "strong")
+                    .addSnapshotListener { snapshots, error ->
+                        error?.let {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error occured: $error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
 
-                    snapshots?.let {
-                        strongHivesText.text = it.size().toString()
+                        snapshots?.let {
+                            strongHivesText.text = it.size().toString()
+                        }
                     }
-                }
+            }
+
 
 
         weakHIvesListenerRegistration =
-            db.collection("new_hive")
-                .whereEqualTo("hiveStatus", "weak")
-                .addSnapshotListener { snapshots, error ->
-                    error?.let {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error occured: $error",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            authUser?.let {
+                db.collection("users")
+                    .document(it)
+                    .collection("hives")
+                    .whereEqualTo("hiveStatus", "weak")
+                    .addSnapshotListener { snapshots, error ->
+                        error?.let {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error occured: $error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
 
-                    snapshots?.let {
-                        weakHivesTxt.text = it.size().toString()
+                        snapshots?.let {
+                            weakHivesTxt.text = it.size().toString()
+                        }
                     }
-                }
+            }
+
 
         nucleusHivesListenerRegistration =
-            db.collection("new_hive")
-                .whereEqualTo("hiveStatus", "nucleus")
-                .addSnapshotListener { snapshots, error ->
-                    error?.let {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error occured: $error",
-                            Toast.LENGTH_SHORT
-                        ).show()
+            authUser?.let {
+                db.collection("users")
+                    .document(it)
+                    .collection("hives")
+                    .whereEqualTo("hiveStatus", "nucleus")
+                    .addSnapshotListener { snapshots, error ->
+                        error?.let {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error occured: $error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        snapshots?.let {
+                            nucleusHivesTxt.text = it.size().toString()
+                        }
                     }
 
-                    snapshots?.let {
-                        nucleusHivesTxt.text = it.size().toString()
-                    }
-                }
+            }
+
     }
-
     override fun onPause() {
         super.onPause()
         cancelListenerRegistrations()
     }
 
     private fun getLastInspectionDate() { // must go with listener registration or you will be getting null.
-        try {
+
             Firebase.auth.currentUser?.uid?.let {
-                db.collection("last_inspection")
+                db.collection("users")
                     .document(it)
                     .get()
                     .addOnSuccessListener { document ->
                         document.let {
                             lastInspectionDate.text =
-                                document.data?.get("lastInspection").toString()
+                                document.data?.get("lastInspection")?.let { DateFormat.getDateInstance(DateFormat.SHORT).format((it as Timestamp).toDate()) }
                         }
 
                     }
             }
-        } catch (e: Exception){
-            Log.d("ERROR", "Error occurred: $e")
-            Toast.makeText(
-                requireContext(),
-                "Error occurred",
-                Toast.LENGTH_SHORT
-            ).show()
         }
 
-    }
+
 
 
     private fun getDateSevenDaysAgo(): Date {

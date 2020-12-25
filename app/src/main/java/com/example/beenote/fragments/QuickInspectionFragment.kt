@@ -14,7 +14,9 @@ import androidx.navigation.Navigation
 import com.example.beenote.R
 import com.example.beenote.model.QuickInspection
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_quick_inspection.*
 import java.time.LocalDateTime
@@ -46,6 +48,7 @@ class QuickInspectionFragment : Fragment() {
 
             val quickInspection = QuickInspection(hive_Id,
                 getDateAndTime(),
+                getCurrentDate(),
                 getTextFromRadioButton(honeyStoresRadioGroup),
                 getTextFromRadioButton(layingPatternRadioGroup),
                 getTextFromRadioButton(populationRadioGroup),
@@ -65,38 +68,50 @@ class QuickInspectionFragment : Fragment() {
     }
 
     private fun updateInspectionDataToFirebaseFirestore(inspection: QuickInspection) {
-        try {
-            authUser.let {
-                db.collection("inspection")
+
+            authUser?.let {
+                db.collection("users")
+                    .document(it)
+                    .collection("hives")
+                    .document(hive_Id!!)
+                    .collection("inspections")
                     .add(inspection)
                     .addOnSuccessListener {
                         Toast.makeText(requireContext(), "Successfully added new inspection", Toast.LENGTH_SHORT).show()
                     }
             }
-        } catch (e: Exception) {
-            Log.d("ERROR", "Error occurred: $e")
         }
-    }
+
 
     private fun setLastInspectionDate() {
-        try {
+
             Firebase.auth.currentUser?.uid?.let {
-                db.collection("last_inspection")
+                db.collection("users")
                     .document(it)
                     .set(
                         mapOf(
-                            "lastInspection" to getCurrentDate()
-                        )
+                            "lastInspection" to FieldValue.serverTimestamp()
+                        ), SetOptions.merge()
+                    )
+                    .addOnSuccessListener {
+                        Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
+                    }
+                db.collection("users")
+                    .document(it)
+                    .collection("hives")
+                    .document(hive_Id!!)
+                    .set(
+                        mapOf(
+                            "lastInspection" to FieldValue.serverTimestamp()
+                        ), SetOptions.merge()
                     )
                     .addOnSuccessListener {
                         Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
                     }
             }
-        } catch (e: Exception) {
-            Log.d("ERROR", "Error occurred: $e")
         }
 
-    }
+
 
 
     private fun navigateBacktoHomeFragment(v: View) {
