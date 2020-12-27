@@ -12,6 +12,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.beenote.R
+import com.example.beenote.constants.Constants
 import com.example.beenote.model.QuickInspection
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -45,15 +46,15 @@ class QuickInspectionFragment : Fragment() {
 
         finishInspectionBtn.setOnClickListener {
 
-
-            val quickInspection = QuickInspection(hive_Id,
-                getDateAndTime(),
+            val quickInspection = QuickInspection(
+                hive_Id,
+                FieldValue.serverTimestamp(),
                 getCurrentDate(),
                 getTextFromRadioButton(honeyStoresRadioGroup),
                 getTextFromRadioButton(layingPatternRadioGroup),
                 getTextFromRadioButton(populationRadioGroup),
                 getTextFromRadioButton(temperRadioGroup),
-                getTextFromNotes(),
+                noteTxt.text.toString(),
                 listOf(
                     onCheckBoxClicked(queenCheckBox),
                     onCheckBoxClicked(uncappedBroodCheckBox),
@@ -67,51 +68,62 @@ class QuickInspectionFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        arguments?.let { bundle ->
+            val args = QuickInspectionFragmentArgs.fromBundle(bundle)
+            hive_Id = args.hiveId
+        }
+    }
+
     private fun updateInspectionDataToFirebaseFirestore(inspection: QuickInspection) {
 
-            authUser?.let {
-                db.collection("users")
-                    .document(it)
-                    .collection("hives")
-                    .document(hive_Id!!)
-                    .collection("inspections")
-                    .add(inspection)
-                    .addOnSuccessListener {
-                        Toast.makeText(requireContext(), "Successfully added new inspection", Toast.LENGTH_SHORT).show()
-                    }
-            }
+        authUser?.let {
+            db.collection(Constants.USERS)
+                .document(it)
+                .collection(Constants.HIVES)
+                .document(hive_Id!!)
+                .collection(Constants.INSPECTIONS)
+                .add(inspection)
+                .addOnSuccessListener {
+                    Toast.makeText(
+                        requireContext(),
+                        "Successfully added new inspection",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
         }
+    }
 
 
     private fun setLastInspectionDate() {
 
-            Firebase.auth.currentUser?.uid?.let {
-                db.collection("users")
-                    .document(it)
-                    .set(
-                        mapOf(
-                            "lastInspection" to FieldValue.serverTimestamp()
-                        ), SetOptions.merge()
-                    )
-                    .addOnSuccessListener {
-                        Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
-                    }
-                db.collection("users")
-                    .document(it)
-                    .collection("hives")
-                    .document(hive_Id!!)
-                    .set(
-                        mapOf(
-                            "lastInspection" to FieldValue.serverTimestamp()
-                        ), SetOptions.merge()
-                    )
-                    .addOnSuccessListener {
-                        Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
-                    }
-            }
+        authUser?.let {
+            db.collection("users")
+                .document(it)
+                .set(
+                    mapOf(
+                        "lastInspection" to FieldValue.serverTimestamp()
+                    ), SetOptions.merge()
+                )
+                .addOnSuccessListener {
+                    Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
+                }
+            db.collection("users")
+                .document(it)
+                .collection("hives")
+                .document(hive_Id!!)
+                .set(
+                    mapOf(
+                        "lastInspection" to FieldValue.serverTimestamp()
+                    ), SetOptions.merge()
+                )
+                .addOnSuccessListener {
+                    Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
+                }
         }
-
-
+    }
 
 
     private fun navigateBacktoHomeFragment(v: View) {
@@ -131,26 +143,10 @@ class QuickInspectionFragment : Fragment() {
         return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))
     }
 
-    private fun getDateAndTime(): Date {
-        val calendar = Calendar.getInstance()
-        calendar.get(Calendar.DAY_OF_YEAR)
-        return calendar.time
-    }
-
-    private fun getTextFromNotes(): String =
-        if (noteTxt.text.equals("")) "Empty notes" else noteTxt.text.toString()
-
 
     private fun onCheckBoxClicked(checkBox: CheckBox) =
         if (checkBox.isChecked) checkBox.text.toString() else "Not seen"
 
 
-    override fun onResume() {
-        super.onResume()
 
-        arguments?.let { bundle ->
-            val args = QuickInspectionFragmentArgs.fromBundle(bundle)
-            hive_Id = args.hiveId
-        }
-    }
 }

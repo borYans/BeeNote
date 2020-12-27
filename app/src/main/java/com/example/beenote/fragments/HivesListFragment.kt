@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beenote.R
 import com.example.beenote.adapters.HivesRecyclerAdapter
+import com.example.beenote.constants.Constants
 import com.example.beenote.utils.HiveClickListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -49,9 +50,9 @@ class HivesListFragment : Fragment(), HiveClickListener {
         super.onResume()
         hivesListenerRegistration =
             authUser?.let {
-                db.collection("users")
+                db.collection(Constants.USERS)
                     .document(it)
-                    .collection("hives")
+                    .collection(Constants.HIVES)
                     .addSnapshotListener { documents, error ->
                         error?.let {
                             Toast.makeText(

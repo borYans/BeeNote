@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.beenote.R
+import com.example.beenote.constants.Constants
 import com.example.beenote.model.Sting
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -69,7 +70,7 @@ class AddStingFragment : Fragment() {
     private fun updateStingsToFirebaseFirestore(sting: Sting) {
 
         authUser?.let {
-            db.collection("users")
+            db.collection(Constants.USERS)
                 .document(it)
                 .set(sting, SetOptions.merge())
                 .addOnSuccessListener {

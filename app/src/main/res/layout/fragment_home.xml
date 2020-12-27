@@ -46,7 +46,7 @@
                 android:shadowRadius="3"
                 android:text="Inspected hives in the past 7 days"
                 android:textColor="@color/white"
-                android:textSize="17sp"
+                android:textSize="19sp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

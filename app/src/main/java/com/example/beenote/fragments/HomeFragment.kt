@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.beenote.R
+import com.example.beenote.constants.Constants
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,6 +30,7 @@ class HomeFragment : Fragment() {
     private var strongHivesListenerRegistration: ListenerRegistration? = null
     private var weakHIvesListenerRegistration: ListenerRegistration? = null
     private var nucleusHivesListenerRegistration: ListenerRegistration? = null
+    private var lastInspectionDateListenerRegistration: ListenerRegistration? = null
 
     private val db = FirebaseFirestore.getInstance()
 
@@ -69,9 +71,27 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
+
+        lastInspectionDateListenerRegistration =
+            authUser?.let {
+                db.collection(Constants.USERS)
+                    .document(it)
+                    .addSnapshotListener { snapshot, error ->
+                        error?.let {
+                            Log.d("@@@", "Error occured: $error")
+                        }
+                        snapshot?.let { lastInspectionDoc ->
+                            lastInspectionDate.text = lastInspectionDoc.data?.get("lastInspection")?.let { date ->
+                                DateFormat.getDateInstance(DateFormat.SHORT)
+                                    .format((date as Timestamp).toDate())
+                            }
+
+                        }
+                    }
+            }
         stingsListenerRegistration =
             authUser?.let {
-                db.collection("users")
+                db.collection(Constants.USERS)
                     .document(it)
                     .addSnapshotListener { document, error ->
                         error?.let {
@@ -89,9 +109,9 @@ class HomeFragment : Fragment() {
 
         hivesListenerRegistration =
             authUser?.let {
-                db.collection("users")
+                db.collection(Constants.USERS)
                     .document(it)
-                    .collection("hives")
+                    .collection(Constants.HIVES)
                     .addSnapshotListener { documents, error ->
                         error?.let {
                             Toast.makeText(
@@ -109,9 +129,9 @@ class HomeFragment : Fragment() {
 
         inspectedHivesListenerRegistration =
             authUser?.let {
-                db.collection("users")
+                db.collection(Constants.USERS)
                     .document(it)
-                    .collection("hives")
+                    .collection(Constants.HIVES)
                     .whereGreaterThan("lastInspection", getDateSevenDaysAgo())
                     .addSnapshotListener { documents, error ->
                         error?.let {
@@ -130,9 +150,9 @@ class HomeFragment : Fragment() {
 
         strongHivesListenerRegistration =
             authUser?.let {
-                db.collection("users")
+                db.collection(Constants.USERS)
                     .document(it)
-                    .collection("hives")
+                    .collection(Constants.HIVES)
                     .whereEqualTo("hiveStatus", "strong")
                     .addSnapshotListener { snapshots, error ->
                         error?.let {
@@ -153,9 +173,9 @@ class HomeFragment : Fragment() {
 
         weakHIvesListenerRegistration =
             authUser?.let {
-                db.collection("users")
+                db.collection(Constants.USERS)
                     .document(it)
-                    .collection("hives")
+                    .collection(Constants.HIVES)
                     .whereEqualTo("hiveStatus", "weak")
                     .addSnapshotListener { snapshots, error ->
                         error?.let {
@@ -175,9 +195,9 @@ class HomeFragment : Fragment() {
 
         nucleusHivesListenerRegistration =
             authUser?.let {
-                db.collection("users")
+                db.collection(Constants.USERS)
                     .document(it)
-                    .collection("hives")
+                    .collection(Constants.HIVES)
                     .whereEqualTo("hiveStatus", "nucleus")
                     .addSnapshotListener { snapshots, error ->
                         error?.let {
@@ -196,28 +216,11 @@ class HomeFragment : Fragment() {
             }
 
     }
+
     override fun onPause() {
         super.onPause()
         cancelListenerRegistrations()
     }
-
-    private fun getLastInspectionDate() { // must go with listener registration or you will be getting null.
-
-            Firebase.auth.currentUser?.uid?.let {
-                db.collection("users")
-                    .document(it)
-                    .get()
-                    .addOnSuccessListener { document ->
-                        document.let {
-                            lastInspectionDate.text =
-                                document.data?.get("lastInspection")?.let { DateFormat.getDateInstance(DateFormat.SHORT).format((it as Timestamp).toDate()) }
-                        }
-
-                    }
-            }
-        }
-
-
 
 
     private fun getDateSevenDaysAgo(): Date {
@@ -231,16 +234,17 @@ class HomeFragment : Fragment() {
         Navigation.findNavController(v).navigate(action)
     }
 
+
     private fun navigateToWeatherFragment(v: View) {
         val action = HomeFragmentDirections.actionHomeFragmentToWeatherFragment()
         Navigation.findNavController(v).navigate(action)
     }
 
+
     private fun navigateToAddStingFragment(v: View) {
         val action = HomeFragmentDirections.actionHomeFragmentToAddStingFragment()
         Navigation.findNavController(v).navigate(action)
     }
-
 
 
     private fun navigateToListOfHivesFragment(v: View) {
@@ -255,15 +259,8 @@ class HomeFragment : Fragment() {
         strongHivesListenerRegistration?.remove()
         weakHIvesListenerRegistration?.remove()
         nucleusHivesListenerRegistration?.remove()
+        lastInspectionDateListenerRegistration?.remove()
     }
-
-    override fun onStart() {
-        super.onStart()
-        getLastInspectionDate()
-    }
-
-
-
 
 
 }

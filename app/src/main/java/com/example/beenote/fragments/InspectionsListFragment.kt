@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beenote.R
 import com.example.beenote.adapters.InspectionRecyclerAdapter
+import com.example.beenote.constants.Constants
 import com.example.beenote.utils.InspectionClickListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -62,9 +63,9 @@ class InspectionsListFragment : Fragment(), InspectionClickListener  {
             Log.d("HIVE", "Hive id is: $hive_id")
             inspectionsListenerRegistration =
                 authUser?.let {
-                    db.collection("users")
+                    db.collection(Constants.USERS)
                         .document(it)
-                        .collection("hives")
+                        .collection(Constants.HIVES)
                         .document(hive_id!!)
                         .collection("inspections")
                         .addSnapshotListener { inspections, error ->

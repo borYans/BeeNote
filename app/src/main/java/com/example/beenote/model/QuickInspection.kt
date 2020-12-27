@@ -1,10 +1,11 @@
 package com.example.beenote.model
 
+import com.google.firebase.firestore.FieldValue
 import java.util.*
 
-class QuickInspection(
+ data class QuickInspection(
     var hiveId: String?,
-    var timestamp: Date,
+    var timestamp: FieldValue,
     var dateCreated: String?,
     var honeyStores: String?,
     var layingPattern: String?,
