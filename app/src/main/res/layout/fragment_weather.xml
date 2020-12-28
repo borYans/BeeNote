@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkerBackgroundColor"
+        android:background="@drawable/gradient_main_background"
         tools:context=".fragments.WeatherFragment">
 
 
@@ -41,10 +41,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
+            android:shadowColor="@color/yellowText"
+            android:shadowRadius="8"
             android:text="21°C"
             android:textColor="@color/yellowText"
             android:textSize="90sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/nameOfTheCity"
@@ -73,7 +74,7 @@
             android:id="@+id/weatherRelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:background="@color/darkBackgroundColor"
+            android:background="@color/randomColor"
             app:layout_constraintBottom_toTopOf="@+id/weatherRelativeLayout1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

@@ -23,10 +23,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:shadowColor="@color/yellowText"
-                android:shadowRadius="20"
+                android:shadowRadius="40"
                 android:text="0"
                 android:textColor="@color/yellowText"
-                android:textSize="90sp"
+                android:textSize="100sp"
                 app:layout_constraintBottom_toTopOf="@+id/textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -46,7 +46,7 @@
                 android:shadowRadius="3"
                 android:text="Inspected hives in the past 7 days"
                 android:textColor="@color/white"
-                android:textSize="19sp"
+                android:textSize="21sp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -72,7 +72,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:text="21.10.2020"
+                    android:shadowColor="@color/white"
+                    android:shadowRadius="4"
+                    android:text="-"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -86,7 +88,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="45"
+                    android:shadowColor="@color/white"
+                    android:shadowRadius="4"
+                    android:text="-"
                     android:textColor="@color/white"
                     android:textSize="27sp"
                     android:textStyle="bold"
@@ -100,7 +104,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="45"
+                    android:shadowColor="@color/white"
+                    android:shadowRadius="4"
+                    android:text="-"
                     android:textColor="@color/white"
                     android:textSize="27sp"
                     android:textStyle="bold"
@@ -115,7 +121,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:text="45"
+                    android:shadowColor="@color/white"
+                    android:shadowRadius="4"
+                    android:text="-"
                     android:textColor="@color/white"
                     android:textSize="27sp"
                     android:textStyle="bold"
@@ -130,7 +138,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:text="45"
+                    android:shadowColor="@color/white"
+                    android:shadowRadius="4"
+                    android:text="-"
                     android:textColor="@color/white"
                     android:textSize="27sp"
                     android:textStyle="bold"
@@ -187,7 +197,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:text="45"
+                    android:shadowColor="@color/white"
+                    android:shadowRadius="4"
+                    android:text="-"
                     android:textColor="@color/white"
                     android:textSize="27sp"
                     android:textStyle="bold"
@@ -245,7 +257,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/addNewHiveLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -264,21 +276,25 @@
                     android:gravity="center"
                     android:text="Add new hive"
                     android:textColor="@color/greyText"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:gravity="center"
-                    android:text=">"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:alpha="0.7"
+                    android:src="@drawable/ic_hive_add_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/viewAllHivesLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -297,21 +313,24 @@
                     android:gravity="center"
                     android:text="View all hives"
                     android:textColor="@color/greyText"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:gravity="center"
-                    android:text=">"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:layout_height="wrap_content"
+                    android:alpha="0.7"
+                    android:src="@drawable/ic_hives_list_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/currentWeatherConditionsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -330,21 +349,23 @@
                     android:gravity="center"
                     android:text="Current weather conditions"
                     android:textColor="@color/greyText"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:gravity="center"
-                    android:text=">"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:layout_height="wrap_content"
+                    android:alpha="0.7"
+                    android:src="@drawable/ic_weather_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/addNewStingLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -363,19 +384,22 @@
                     android:gravity="center"
                     android:text="Add sting"
                     android:textColor="@color/greyText"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:gravity="center"
-                    android:text=">"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:layout_height="wrap_content"
+                    android:alpha="0.7"
+                    android:src="@drawable/ic_sting_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

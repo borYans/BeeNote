@@ -80,5 +80,13 @@
         <argument
             android:name="hiveId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_inspectionsListFragment_to_inspectionDetailFragment"
+            app:destination="@id/inspectionDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/inspectionDetailFragment"
+        android:name="com.example.beenote.fragments.InspectionDetailFragment"
+        android:label="fragment_inspection_detail"
+        tools:layout="@layout/fragment_inspection_detail" />
 </navigation>

@@ -47,24 +47,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
+
+        <ImageView
             android:id="@+id/addNewInspectionBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:text=" add new inspection >"
-            android:textColor="@color/yellowText"
-            android:textSize="14sp"
+            android:src="@drawable/ic_add_inspection_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
 
         <TextView
             android:id="@+id/viewData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="view data >"
+            android:text="view all inspections >"
             android:textColor="@color/greyText"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"

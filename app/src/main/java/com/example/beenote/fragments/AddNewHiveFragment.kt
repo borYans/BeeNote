@@ -33,31 +33,39 @@ class AddNewHiveFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_add_new_hive, container, false)
 
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
         addNewHiveBtn.setOnClickListener {
-            val hive = Hive(hiveNameEditText.text.toString(),
+            val hive = Hive(
+                hiveNameEditText.text.toString(),
                 queenAgeEditText.text.toString(),
-            getTextFromRadioButton(statusRadioGroup),
-            FieldValue.serverTimestamp())
+                getTextFromRadioButton(statusRadioGroup),
+                FieldValue.serverTimestamp()
+            )
 
-            setNewHives(hive)
-            navigateBackToHome(it)
+            if (hiveNameEditText.text.isEmpty()) {
+                Toast.makeText(requireContext(), "Enter hive name.", Toast.LENGTH_SHORT).show()
+            } else if (queenAgeEditText.text.isEmpty()) {
+                Toast.makeText(requireContext(), "Enter queen age.", Toast.LENGTH_SHORT).show()
+            } else {
+                setNewHives(hive)
+                navigateBackToHome(it)
+            }
         }
     }
 
 
     private fun setNewHives(hive: Hive) {
 
-           authUser?.let {
-                db.collection(Constants.USERS)
-                    .document(it)
-                    .collection(Constants.HIVES)
-                    .add(hive)
-            }
-
+        authUser?.let {
+            db.collection(Constants.USERS)
+                .document(it)
+                .collection(Constants.HIVES)
+                .add(hive)
+        }
     }
 
     private fun getTextFromRadioButton(rdGroup: RadioGroup): String {
@@ -67,7 +75,7 @@ class AddNewHiveFragment : Fragment() {
     }
 
 
-    private fun navigateBackToHome(v:View) {
+    private fun navigateBackToHome(v: View) {
         val action = AddNewHiveFragmentDirections.actionAddNewHiveFragmentToHomeFragment()
         Navigation.findNavController(v).navigate(action)
     }

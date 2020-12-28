@@ -79,7 +79,6 @@ class InspectionsListFragment : Fragment(), InspectionClickListener  {
                                 for (document in inspections) {
                                     inspectionArrayList.add(document)
                                 }
-                                Toast.makeText(requireContext(), "You are on the right way.", Toast.LENGTH_SHORT).show()
                                 Log.d("HIVE", "$inspectionArrayList")
                                 inspectionListAdapter.updateInspectionsList(inspectionArrayList)
                             }

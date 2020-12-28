@@ -13,10 +13,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.item_hive.view.*
 
 
-class HivesRecyclerAdapter(
-    private val hivesList: ArrayList<QueryDocumentSnapshot>,
-    private val hiveClickListener: HiveClickListener
-) : RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewHolder>() {
+class HivesRecyclerAdapter: RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewHolder>() {
 
     private var items = ArrayList<QueryDocumentSnapshot>()
 

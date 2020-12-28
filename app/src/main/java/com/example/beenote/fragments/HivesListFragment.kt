@@ -24,7 +24,7 @@ class HivesListFragment : Fragment(), HiveClickListener {
     private var hivesListenerRegistration: ListenerRegistration? = null
     private val db = FirebaseFirestore.getInstance()
 
-    private val hivesListAdapter = HivesRecyclerAdapter(arrayListOf(), this)
+    private val hivesListAdapter = HivesRecyclerAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

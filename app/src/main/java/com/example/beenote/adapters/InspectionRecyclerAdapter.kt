@@ -3,6 +3,7 @@ package com.example.beenote.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beenote.R
 import com.example.beenote.utils.InspectionClickListener
@@ -17,11 +18,19 @@ class InspectionRecyclerAdapter(
     private val inspectionClickListener: InspectionClickListener // ova ke treba za otvaranje na poedinecen dokument
 ) : RecyclerView.Adapter<InspectionRecyclerAdapter.InspectionViewHolder>() {
 
+    private var items = ArrayList<QueryDocumentSnapshot>()
+
 
     fun updateInspectionsList(newInspectionsList: ArrayList<QueryDocumentSnapshot>) {
-        inspectionsList.clear()
-        inspectionsList.addAll(newInspectionsList)
-        notifyDataSetChanged()
+        val oldList = items
+        val diffResult: DiffUtil.DiffResult = DiffUtil.calculateDiff(
+            InspectionItemDiffCallback(
+                oldList,
+                newInspectionsList
+            )
+        )
+        items = newInspectionsList
+        diffResult.dispatchUpdatesTo(this)
     }
 
 
@@ -36,12 +45,35 @@ class InspectionRecyclerAdapter(
 
     override fun onBindViewHolder(holder: InspectionViewHolder, position: Int) {
 
-        val inspections = inspectionsList[position]
+        val inspections = items[position]
         holder.itemView.dateOfInspection.text ="Hive inspection: ${inspections.get("dateCreated").toString()}"
     }
 
 
-    override fun getItemCount() = inspectionsList.size
+    override fun getItemCount() = items.size
+
+}
+
+class InspectionItemDiffCallback(
+    var oldInspectionList: List<QueryDocumentSnapshot>,
+    var newInspectionList: List<QueryDocumentSnapshot>
+) : DiffUtil.Callback() {
+
+    override fun getOldListSize(): Int {
+        return oldInspectionList.size
+    }
+
+    override fun getNewListSize(): Int {
+        return newInspectionList.size
+    }
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return (oldInspectionList[oldItemPosition].id == newInspectionList[newItemPosition].id)
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldInspectionList[oldItemPosition].equals(newInspectionList[newItemPosition])
+    }
 
 }
 

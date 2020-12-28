@@ -167,6 +167,8 @@
                     android:layout_marginTop="20dp"
                     android:backgroundTint="@color/white"
                     android:ems="10"
+                    android:textColor="@color/white"
+                    android:maxLength="150"
                     android:hint="Add note"
                     android:inputType="text"
                     android:textColorHint="@color/yellowText"
