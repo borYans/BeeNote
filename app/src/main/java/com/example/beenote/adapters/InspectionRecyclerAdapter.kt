@@ -3,17 +3,16 @@ package com.example.beenote.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.beenote.Listeners.InspectionsClickListener
 import com.example.beenote.R
-import com.example.beenote.fragments.InspectionsListFragmentDirections
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.item_inspection.view.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class InspectionRecyclerAdapter(
+    private val inspectionsClickListener: InspectionsClickListener
 ) : RecyclerView.Adapter<InspectionRecyclerAdapter.InspectionViewHolder>() {
 
     private var items = ArrayList<QueryDocumentSnapshot>()
@@ -32,7 +31,17 @@ class InspectionRecyclerAdapter(
     }
 
 
-    class InspectionViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    inner class InspectionViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnLongClickListener {
+
+        init {
+            itemView.setOnLongClickListener(this)
+        }
+
+        override fun onLongClick(v: View?): Boolean {
+            inspectionsClickListener.onInspectionLongCLick(items[adapterPosition].id)
+            return true
+        }
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InspectionViewHolder {
@@ -48,8 +57,7 @@ class InspectionRecyclerAdapter(
 
 
         holder.itemView.setOnClickListener {
-            val action = InspectionsListFragmentDirections.actionInspectionsListFragmentToInspectionDetailFragment()
-            Navigation.findNavController(it).navigate(action)
+            inspectionsClickListener.onInspectionClick(inspections.id, position, it)
         }
     }
 

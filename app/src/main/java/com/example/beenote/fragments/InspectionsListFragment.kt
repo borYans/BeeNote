@@ -1,5 +1,6 @@
 package com.example.beenote.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.beenote.Listeners.InspectionsClickListener
 import com.example.beenote.R
 import com.example.beenote.adapters.InspectionRecyclerAdapter
 import com.example.beenote.constants.Constants
@@ -17,9 +20,10 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_inspections_list.*
+import kotlinx.android.synthetic.main.item_hive.*
 
 
-class InspectionsListFragment : Fragment()  {
+class InspectionsListFragment : Fragment(), InspectionsClickListener  {
 
 
     private val authUser = Firebase.auth.currentUser?.uid
@@ -28,7 +32,7 @@ class InspectionsListFragment : Fragment()  {
 
     private var hive_id: String? = null
 
-    private val inspectionListAdapter = InspectionRecyclerAdapter()
+    private val inspectionListAdapter = InspectionRecyclerAdapter(this)
 
 
     override fun onCreateView(
@@ -66,7 +70,7 @@ class InspectionsListFragment : Fragment()  {
                         .document(it)
                         .collection(Constants.HIVES)
                         .document(hive_id!!)
-                        .collection("inspections")
+                        .collection(Constants.INSPECTIONS)
                         .addSnapshotListener { inspections, error ->
                             error?.let {
                                 Toast.makeText(requireContext(), "Error occurred.", Toast.LENGTH_SHORT).show()
@@ -94,6 +98,34 @@ class InspectionsListFragment : Fragment()  {
         inspectionsListenerRegistration?.remove()
     }
 
+    override fun onInspectionClick(id: String, position: Int, v: View) {
+        val action = InspectionsListFragmentDirections.actionInspectionsListFragmentToInspectionDetailFragment(id, hive_id!!)
+        Navigation.findNavController(v).navigate(action)
+    }
+
+    override fun onInspectionLongCLick(inspection_id: String) {
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle("Are you sure?")
+            .setMessage("Are you sure you want to delete this inspection?")
+            .setCancelable(false)
+            .setIcon(R.drawable.ic_info_24)
+            .setPositiveButton("Yes") { dialogInterface, which ->
+                authUser?.let {
+                    db.collection(Constants.USERS)
+                        .document(it)
+                        .collection(Constants.HIVES)
+                        .document(hive_id!!)
+                        .collection(Constants.INSPECTIONS)
+                        .document(inspection_id)
+                        .delete()
+                }
+            }
+            .setNegativeButton("No") {dialogInterface, which ->
+                dialogInterface.cancel()
+            }
+            .create()
+            .show()
+    }
 
 
 }

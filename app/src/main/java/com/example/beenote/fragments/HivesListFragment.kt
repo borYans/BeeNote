@@ -1,5 +1,6 @@
 package com.example.beenote.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.beenote.Listeners.HiveClickListener
 import com.example.beenote.R
 import com.example.beenote.adapters.HivesRecyclerAdapter
 import com.example.beenote.constants.Constants
@@ -17,13 +19,13 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_hives_list.*
 
-class HivesListFragment : Fragment() {
+class HivesListFragment : Fragment(), HiveClickListener {
 
     private val authUser = Firebase.auth.currentUser?.uid
     private var hivesListenerRegistration: ListenerRegistration? = null
     private val db = FirebaseFirestore.getInstance()
 
-    private val hivesListAdapter = HivesRecyclerAdapter()
+    private val hivesListAdapter = HivesRecyclerAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,4 +78,28 @@ class HivesListFragment : Fragment() {
         super.onStop()
         hivesListenerRegistration?.remove()
     }
+
+    override fun onHiveLongClick(position: String) {
+        //warn user and delete hive
+
+        val alertDialog = AlertDialog.Builder(requireContext())
+            alertDialog.setTitle("Are you sure?")
+                .setMessage("Are you sure you want to delete this hive?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialogInterface, which ->
+                    authUser?.let {
+                        db.collection(Constants.USERS)
+                            .document(it)
+                            .collection(Constants.HIVES)
+                            .document(position)
+                            .delete()
+                    }
+                }
+                .setNegativeButton("No") {dialogInterface, which ->
+                    dialogInterface.cancel()
+                }
+                .create()
+                .show()
+    }
+
 }

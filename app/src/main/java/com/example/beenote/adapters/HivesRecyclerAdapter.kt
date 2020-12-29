@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.beenote.Listeners.HiveClickListener
 import com.example.beenote.R
 import com.example.beenote.constants.Constants
 import com.example.beenote.fragments.HivesListFragmentDirections
@@ -19,7 +20,9 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.item_hive.view.*
 
 
-class HivesRecyclerAdapter() :
+class HivesRecyclerAdapter(
+    private val hiveClickListener: HiveClickListener
+) :
     RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewHolder>() {
 
     private val authUser = Firebase.auth.currentUser?.uid
@@ -48,15 +51,7 @@ class HivesRecyclerAdapter() :
         }
 
         override fun onLongClick(v: View?): Boolean {
-            authUser?.let {
-                db.collection(Constants.USERS)
-                    .document(it)
-                    .collection(Constants.HIVES)
-                    .document(items[adapterPosition].id)
-                    .delete()
-            }
-            items.removeAt(adapterPosition)
-            notifyItemRemoved(adapterPosition)
+            hiveClickListener.onHiveLongClick(items[adapterPosition].id)
             return true
         }
     }

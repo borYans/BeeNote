@@ -15,7 +15,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_add_sting.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.DateFormat
 import java.util.*
@@ -33,7 +32,6 @@ class HomeFragment : Fragment() {
     private var lastInspectionDateListenerRegistration: ListenerRegistration? = null
 
     private val db = FirebaseFirestore.getInstance()
-
     private val calendar = Calendar.getInstance()
 
 
@@ -49,6 +47,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        swipeHomeRefresh.setOnRefreshListener {
+            refreshHomeFragmentData()
+            swipeHomeRefresh.isRefreshing = false
+        }
 
         addNewHiveLayout.setOnClickListener {
             navigateToAddNewHiveFragment(it)
@@ -68,10 +70,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-
-
+    private fun refreshHomeFragmentData() {
         lastInspectionDateListenerRegistration =
             authUser?.let {
                 db.collection(Constants.USERS)
@@ -215,6 +214,11 @@ class HomeFragment : Fragment() {
 
             }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshHomeFragmentData()
     }
 
     override fun onPause() {

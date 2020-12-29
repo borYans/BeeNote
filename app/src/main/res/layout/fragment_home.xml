@@ -9,6 +9,11 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeHomeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,10 +69,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:shadowColor="@color/white"
+                    android:shadowColor="@color/yellowText"
                     android:shadowRadius="4"
                     android:text="-"
-                    android:textColor="@color/white"
+                    android:textColor="@color/yellowText"
                     android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/totalStingsHome"
@@ -80,10 +85,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:shadowColor="@color/white"
+                    android:shadowColor="@color/yellowText"
                     android:shadowRadius="4"
                     android:text="-"
-                    android:textColor="@color/white"
+                    android:textColor="@color/yellowText"
                     android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintBaseline_toBaselineOf="@+id/lastInspectionDate"
@@ -96,10 +101,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:shadowColor="@color/white"
+                    android:shadowColor="@color/yellowText"
                     android:shadowRadius="4"
                     android:text="-"
-                    android:textColor="@color/white"
+                    android:textColor="@color/yellowText"
                     android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintBaseline_toBaselineOf="@+id/totalStingsHome"
@@ -113,10 +118,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:shadowColor="@color/white"
+                    android:shadowColor="@color/yellowText"
                     android:shadowRadius="4"
                     android:text="-"
-                    android:textColor="@color/white"
+                    android:textColor="@color/yellowText"
                     android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/weakHivesTxt"
@@ -130,10 +135,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:shadowColor="@color/white"
+                    android:shadowColor="@color/yellowText"
                     android:shadowRadius="4"
                     android:text="-"
-                    android:textColor="@color/white"
+                    android:textColor="@color/yellowText"
                     android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/nucleusHivesTxt"
@@ -189,10 +194,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:gravity="center"
-                    android:shadowColor="@color/white"
+                    android:shadowColor="@color/yellowText"
                     android:shadowRadius="4"
                     android:text="-"
-                    android:textColor="@color/white"
+                    android:textColor="@color/yellowText"
                     android:textSize="27sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -395,6 +400,8 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </ScrollView>
 </layout>

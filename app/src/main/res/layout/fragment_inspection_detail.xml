@@ -35,16 +35,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:elevation="10dp"
-                    android:shadowColor="@color/orangeShadowBackground"
                     android:alpha="0.8"
                     android:text="Queen seen"
-                    android:textColor="@color/orangeShadowBackground"
+                    android:textColor="@color/greyText"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/queenSeenTxt"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -104,9 +104,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:elevation="10dp"
-                    android:shadowColor="@color/orangeShadowBackground"
                     android:text="Your Notes"
-                    android:textColor="@color/orangeShadowBackground"
+                    android:textColor="@color/greyText"
                     android:textSize="50sp"
                     android:alpha=".2"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -137,16 +136,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:elevation="10dp"
-                    android:shadowColor="@color/orangeShadowBackground"
                     android:alpha="0.8"
                     android:text="Temper"
-                    android:textColor="@color/orangeShadowBackground"
+                    android:textColor="@color/greyText"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/temperamentTxt"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -187,15 +186,15 @@
                     android:layout_marginStart="15dp"
                     android:elevation="10dp"
                     android:alpha="0.8"
-                    android:shadowColor="@color/orangeShadowBackground"
                     android:text="Population"
-                    android:textColor="@color/orangeShadowBackground"
+                    android:textColor="@color/greyText"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/populationTxt"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -236,16 +235,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:elevation="10dp"
-                    android:shadowColor="@color/orangeShadowBackground"
                     android:text="Honey stores"
                     android:alpha="0.8"
-                    android:textColor="@color/orangeShadowBackground"
+                    android:textColor="@color/greyText"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/honeyStoresTxt"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -285,16 +284,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:elevation="10dp"
-                    android:shadowColor="@color/orangeShadowBackground"
                     android:alpha="0.8"
                     android:text="Laying pattern"
-                    android:textColor="@color/orangeShadowBackground"
+                    android:textColor="@color/greyText"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/layingPatternTxt"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -334,16 +333,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:elevation="10dp"
-                    android:shadowColor="@color/orangeShadowBackground"
                     android:alpha="0.8"
                     android:text="Capped brood seen"
-                    android:textColor="@color/orangeShadowBackground"
+                    android:textColor="@color/greyText"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/cappedBroodSeenTxt"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -383,16 +382,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:elevation="10dp"
-                    android:shadowColor="@color/orangeShadowBackground"
                     android:text="Uncapped brood seen"
                     android:alpha=".8"
-                    android:textColor="@color/orangeShadowBackground"
+                    android:textColor="@color/greyText"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/uncappedBroodSeenTxt"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
@@ -433,16 +432,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:elevation="10dp"
-                    android:shadowColor="@color/orangeShadowBackground"
                     android:alpha=".8"
                     android:text="Eggs seen"
-                    android:textColor="@color/orangeShadowBackground"
+                    android:textColor="@color/greyText"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/eggsSeenTxt"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
