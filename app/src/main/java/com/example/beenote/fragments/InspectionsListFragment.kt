@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beenote.R
 import com.example.beenote.adapters.InspectionRecyclerAdapter
 import com.example.beenote.constants.Constants
-import com.example.beenote.utils.InspectionClickListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -20,7 +19,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_inspections_list.*
 
 
-class InspectionsListFragment : Fragment(), InspectionClickListener  {
+class InspectionsListFragment : Fragment()  {
 
 
     private val authUser = Firebase.auth.currentUser?.uid
@@ -29,7 +28,7 @@ class InspectionsListFragment : Fragment(), InspectionClickListener  {
 
     private var hive_id: String? = null
 
-    private val inspectionListAdapter = InspectionRecyclerAdapter(arrayListOf(), this)
+    private val inspectionListAdapter = InspectionRecyclerAdapter()
 
 
     override fun onCreateView(
@@ -95,7 +94,6 @@ class InspectionsListFragment : Fragment(), InspectionClickListener  {
         inspectionsListenerRegistration?.remove()
     }
 
-    override fun onInspectionClickListener() {
-    }
+
 
 }

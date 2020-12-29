@@ -74,7 +74,7 @@
             android:id="@+id/weatherRelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:background="@color/randomColor"
+            android:background="@drawable/curved_detail_screen_layout"
             app:layout_constraintBottom_toTopOf="@+id/weatherRelativeLayout1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -168,7 +168,7 @@
             android:id="@+id/weatherRelativeLayout1"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@color/darkerBackgroundColor"
+            android:background="@drawable/curved_detail_screen_layout"
             android:padding="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -176,12 +176,12 @@
 
             <ImageView
                 android:id="@+id/inspectionRatingInfo"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_marginTop="26dp"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@+id/inspectonRating"
-                android:src="@drawable/ic_baseline_info_24" />
+                android:src="@drawable/ic_info_24" />
 
             <TextView
                 android:id="@+id/humidityText6"

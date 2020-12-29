@@ -5,19 +5,22 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/hive"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
-        android:background="@drawable/straight_layouts_background"
-        android:padding="10dp">
+        android:background="@drawable/curved_detail_screen_layout"
+        android:padding="12dp">
 
 
         <TextView
             android:id="@+id/hiveNameTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="sans-serif"
             android:text="HIVE 1"
+            android:shadowRadius="2"
+            android:shadowColor="@color/yellowText"
             android:textColor="@color/yellowText"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -32,7 +35,7 @@
             android:fontFamily="sans-serif-light"
             android:text="Status: weak"
             android:textColor="@color/greyText"
-            android:textSize="12sp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/queenBeeAgeTxt"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -52,18 +55,8 @@
             android:id="@+id/addNewInspectionBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_add_inspection_24"
+            android:src="@drawable/ic_add_inspection_button_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/viewData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:text="view all inspections >"
-            android:textColor="@color/greyText"
-            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

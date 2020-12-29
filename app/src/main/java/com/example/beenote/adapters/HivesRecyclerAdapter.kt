@@ -1,21 +1,32 @@
 package com.example.beenote.adapters
 
+import android.app.AlertDialog
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beenote.R
+import com.example.beenote.constants.Constants
 import com.example.beenote.fragments.HivesListFragmentDirections
-import com.example.beenote.utils.HiveClickListener
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.item_hive.view.*
 
 
-class HivesRecyclerAdapter: RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewHolder>() {
+class HivesRecyclerAdapter() :
+    RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewHolder>() {
 
-    private var items = ArrayList<QueryDocumentSnapshot>()
+    private val authUser = Firebase.auth.currentUser?.uid
+    private val db = FirebaseFirestore.getInstance()
+
+
+    private var items = mutableListOf<QueryDocumentSnapshot>() //items can be added or removed.
 
     fun updateHivesList(hivesList: ArrayList<QueryDocumentSnapshot>) {
         val oldList = items
@@ -29,7 +40,27 @@ class HivesRecyclerAdapter: RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewH
         diffResult.dispatchUpdatesTo(this)
     }
 
-    class HivesViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    inner class HivesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnLongClickListener {
+
+        init {
+            itemView.setOnLongClickListener(this)
+        }
+
+        override fun onLongClick(v: View?): Boolean {
+            authUser?.let {
+                db.collection(Constants.USERS)
+                    .document(it)
+                    .collection(Constants.HIVES)
+                    .document(items[adapterPosition].id)
+                    .delete()
+            }
+            items.removeAt(adapterPosition)
+            notifyItemRemoved(adapterPosition)
+            return true
+        }
+    }
+
 
     //Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HivesViewHolder {
@@ -50,7 +81,7 @@ class HivesRecyclerAdapter: RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewH
         holder.itemView.queenBeeAgeTxt.text = "Queen age: " + docs.get("queenAge").toString()
         // holder.itemView.dateCreatedTxt.text = docs.get("dateCreated").toString()
 
-        holder.itemView.viewData.setOnClickListener {
+        holder.itemView.setOnClickListener {
             val action =
                 HivesListFragmentDirections.actionHivesListFragmentToInspectionsListFragment(docs.id)
             Navigation.findNavController(it).navigate(action)

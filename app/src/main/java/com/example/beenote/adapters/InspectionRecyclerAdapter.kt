@@ -3,19 +3,17 @@ package com.example.beenote.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beenote.R
-import com.example.beenote.utils.InspectionClickListener
+import com.example.beenote.fragments.InspectionsListFragmentDirections
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.item_inspection.view.*
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 class InspectionRecyclerAdapter(
-    private val inspectionsList: ArrayList<QueryDocumentSnapshot>,
-    private val inspectionClickListener: InspectionClickListener // ova ke treba za otvaranje na poedinecen dokument
 ) : RecyclerView.Adapter<InspectionRecyclerAdapter.InspectionViewHolder>() {
 
     private var items = ArrayList<QueryDocumentSnapshot>()
@@ -47,6 +45,12 @@ class InspectionRecyclerAdapter(
 
         val inspections = items[position]
         holder.itemView.dateOfInspection.text ="Hive inspection: ${inspections.get("dateCreated").toString()}"
+
+
+        holder.itemView.setOnClickListener {
+            val action = InspectionsListFragmentDirections.actionInspectionsListFragmentToInspectionDetailFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
 

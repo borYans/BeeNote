@@ -8,44 +8,463 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/gradient_main_background"
-        android:gravity="start"
-        android:padding="15dp"
-        tools:context=".fragments.HomeFragment">
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/empty_layouts_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_main_background"
+            android:gravity="start"
+            android:padding="20dp"
+            tools:context=".fragments.HomeFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/queenConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inverted_curved_layout_background"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/cappedBroodConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layingPatternConstraintLayout">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:elevation="10dp"
+                    android:shadowColor="@color/orangeShadowBackground"
+                    android:alpha="0.8"
+                    android:text="Queen seen"
+                    android:textColor="@color/orangeShadowBackground"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:alpha="0.8"
+                    android:elevation="20dp"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:shadowRadius="2"
+                    android:shadowColor="@color/observedDataTextColor"
+                    android:text="No"
+                    android:textColor="@color/observedDataTextColor"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/nameHiveTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0.85"
+                android:elevation="10dp"
+                android:gravity="center"
+                android:shadowColor="@color/yellowText"
+                android:shadowRadius="4"
+                android:fontFamily="sans-serif"
+                android:text="Hive 1"
+                android:textColor="@color/yellowText"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/notesConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/notesConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/curved_detail_screen_layout"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/temperamentConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameHiveTxt">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="10dp"
+                    android:shadowColor="@color/orangeShadowBackground"
+                    android:text="Your Notes"
+                    android:textColor="@color/orangeShadowBackground"
+                    android:textSize="50sp"
+                    android:alpha=".2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/temperamentConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inverted_curved_layout_background"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/populationConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notesConstraintLayout">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:elevation="10dp"
+                    android:shadowColor="@color/orangeShadowBackground"
+                    android:alpha="0.8"
+                    android:text="Temper"
+                    android:textColor="@color/orangeShadowBackground"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:alpha="0.8"
+                    android:elevation="20dp"
+                    android:gravity="center"
+                    android:shadowRadius="2"
+                    android:padding="3dp"
+                    android:shadowColor="@color/yellowText"
+                    android:text="Calm"
+                    android:textColor="@color/yellowText"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/populationConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inverted_curved_layout_background"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/honeyStoresConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/temperamentConstraintLayout">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:elevation="10dp"
+                    android:alpha="0.8"
+                    android:shadowColor="@color/orangeShadowBackground"
+                    android:text="Population"
+                    android:textColor="@color/orangeShadowBackground"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:alpha="0.8"
+                    android:elevation="20dp"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:shadowRadius="2"
+                    android:shadowColor="@color/yellowText"
+                    android:text="Moderate"
+                    android:textColor="@color/yellowText"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/honeyStoresConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inverted_curved_layout_background"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/layingPatternConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/populationConstraintLayout">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:elevation="10dp"
+                    android:shadowColor="@color/orangeShadowBackground"
+                    android:text="Honey stores"
+                    android:alpha="0.8"
+                    android:textColor="@color/orangeShadowBackground"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:alpha="0.8"
+                    android:elevation="20dp"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:shadowColor="@color/yellowText"
+                    android:shadowRadius="2"
+                    android:text="High"
+                    android:textColor="@color/yellowText"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layingPatternConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inverted_curved_layout_background"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/queenConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/honeyStoresConstraintLayout">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:elevation="10dp"
+                    android:shadowColor="@color/orangeShadowBackground"
+                    android:alpha="0.8"
+                    android:text="Laying pattern"
+                    android:textColor="@color/orangeShadowBackground"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:alpha="0.8"
+                    android:elevation="20dp"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:shadowColor="@color/yellowText"
+                    android:shadowRadius="2"
+                    android:text="Poor"
+                    android:textColor="@color/yellowText"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cappedBroodConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inverted_curved_layout_background"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/uncappedBroodConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/queenConstraintLayout">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:elevation="10dp"
+                    android:shadowColor="@color/orangeShadowBackground"
+                    android:alpha="0.8"
+                    android:text="Capped brood seen"
+                    android:textColor="@color/orangeShadowBackground"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:alpha="0.8"
+                    android:elevation="20dp"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:shadowRadius="2"
+                    android:shadowColor="@color/observedDataTextColor"
+                    android:text="Yes"
+                    android:textColor="@color/observedDataTextColor"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/uncappedBroodConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inverted_curved_layout_background"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/eggsConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cappedBroodConstraintLayout">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:elevation="10dp"
+                    android:shadowColor="@color/orangeShadowBackground"
+                    android:text="Uncapped brood seen"
+                    android:alpha=".8"
+                    android:textColor="@color/orangeShadowBackground"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:alpha="0.8"
+                    android:elevation="20dp"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:shadowRadius="2"
+
+                    android:shadowColor="@color/observedDataTextColor"
+                    android:text="Yes"
+                    android:textColor="@color/observedDataTextColor"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/eggsConstraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inverted_curved_layout_background"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/uncappedBroodConstraintLayout">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:elevation="10dp"
+                    android:shadowColor="@color/orangeShadowBackground"
+                    android:alpha=".8"
+                    android:text="Eggs seen"
+                    android:textColor="@color/orangeShadowBackground"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:alpha="0.8"
+                    android:elevation="20dp"
+                    android:gravity="center"
+                    android:shadowRadius="2"
+                    android:padding="3dp"
+                    android:shadowColor="@color/observedDataTextColor"
+                    android:text="Yes"
+                    android:textColor="@color/observedDataTextColor"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     </ScrollView>

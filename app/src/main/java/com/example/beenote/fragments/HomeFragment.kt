@@ -261,6 +261,4 @@ class HomeFragment : Fragment() {
         nucleusHivesListenerRegistration?.remove()
         lastInspectionDateListenerRegistration?.remove()
     }
-
-
 }

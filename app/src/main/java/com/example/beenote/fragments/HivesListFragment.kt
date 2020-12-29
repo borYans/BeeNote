@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beenote.R
 import com.example.beenote.adapters.HivesRecyclerAdapter
 import com.example.beenote.constants.Constants
-import com.example.beenote.utils.HiveClickListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -18,7 +17,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_hives_list.*
 
-class HivesListFragment : Fragment(), HiveClickListener {
+class HivesListFragment : Fragment() {
 
     private val authUser = Firebase.auth.currentUser?.uid
     private var hivesListenerRegistration: ListenerRegistration? = null
@@ -70,16 +69,6 @@ class HivesListFragment : Fragment(), HiveClickListener {
                         }
                     }
             }
-
-    }
-
-    override fun onHiveClickListener() {
-        Toast.makeText(
-            requireContext(),
-            "Hive clicked!",
-            Toast.LENGTH_SHORT
-        ).show()
-
 
     }
 

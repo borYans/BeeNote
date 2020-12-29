@@ -15,10 +15,14 @@
     <color name="centerMainBakcgroundColor">#282C39</color>
     <color name="experimentalColor">#2F3342</color>
 
+    <color name="detailScreeNotesColor">#bbbfca</color>
+
 
     <color name="yellowText">#DFC75F</color>
     <color name="greyText">#C2BFAF</color>
 
-    <color name="orangeShadowBackground">#F4511E</color>
+    <color name="orangeShadowBackground">#f39233</color>
+    <color name="detailTextDataColor">#01c5c4</color>
+    <color name="observedDataTextColor">#01c5c4</color>
 
 </resources>
