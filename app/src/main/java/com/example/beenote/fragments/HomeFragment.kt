@@ -47,6 +47,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        currentWeatherConditionsLayout.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToMapLocationFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+
+
         swipeHomeRefresh.setOnRefreshListener {
             refreshHomeFragmentData()
             swipeHomeRefresh.isRefreshing = false
@@ -60,9 +66,11 @@ class HomeFragment : Fragment() {
             navigateToAddStingFragment(it)
         }
 
-        currentWeatherConditionsLayout.setOnClickListener {
+        /*currentWeatherConditionsLayout.setOnClickListener {
             navigateToWeatherFragment(it)
         }
+
+         */
 
         viewAllHivesLayout.setOnClickListener {
             navigateToListOfHivesFragment(it)
@@ -88,6 +96,7 @@ class HomeFragment : Fragment() {
                         }
                     }
             }
+
         stingsListenerRegistration =
             authUser?.let {
                 db.collection(Constants.USERS)
@@ -238,11 +247,13 @@ class HomeFragment : Fragment() {
         Navigation.findNavController(v).navigate(action)
     }
 
-
+/*
     private fun navigateToWeatherFragment(v: View) {
         val action = HomeFragmentDirections.actionHomeFragmentToWeatherFragment()
         Navigation.findNavController(v).navigate(action)
     }
+
+ */
 
 
     private fun navigateToAddStingFragment(v: View) {

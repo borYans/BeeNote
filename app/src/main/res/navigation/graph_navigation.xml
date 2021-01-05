@@ -17,11 +17,11 @@
             android:id="@+id/action_homeFragment_to_addStingFragment"
             app:destination="@id/addStingFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_weatherFragment"
-            app:destination="@id/weatherFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_hivesListFragment"
             app:destination="@id/hivesListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mapLocationFragment"
+            app:destination="@id/mapLocationFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewHiveFragment"
@@ -96,4 +96,8 @@
             android:name="hiveId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/mapLocationFragment"
+        android:name="com.example.beenote.fragments.MapLocationFragment"
+        android:label="MapLocationFragment" />
 </navigation>

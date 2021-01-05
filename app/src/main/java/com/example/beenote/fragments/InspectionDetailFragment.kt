@@ -77,9 +77,6 @@ class InspectionDetailFragment : Fragment() {
                                     Log.d("OBSERVED", "Observed data: ${entry.value}") //need to solve this.
                                 }
                             }
-
-
-
                         }
                     }
             }

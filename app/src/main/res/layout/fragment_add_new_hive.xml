@@ -18,11 +18,11 @@
         tools:context=".activities.AddCoordFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/constraintLayoutAddColony"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/curved_detail_screen_layout"
             android:layout_marginTop="50dp"
-            android:background="@drawable/inverted_curved_layout_background"
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
                 android:id="@+id/hiveNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:textColor="@color/white"
                 android:maxLength="8"
                 android:fontFamily="sans-serif-light"
@@ -50,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@color/white"
+                android:layout_marginTop="5dp"
                 android:inputType="number"
                 android:maxLength="2"
                 android:hint="Queen age"
@@ -128,6 +129,7 @@
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:layout_margin="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />

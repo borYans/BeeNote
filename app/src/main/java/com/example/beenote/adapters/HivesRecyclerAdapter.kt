@@ -114,7 +114,7 @@ class HiveItemDiffCallback(
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldHivesList[oldItemPosition].equals(newHivesList[newItemPosition])
+        return oldHivesList[oldItemPosition] === newHivesList[newItemPosition]
     }
 
 

@@ -4,404 +4,410 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeHomeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="wrap_content">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeHomeRefresh"
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/gradient_main_background"
-            android:gravity="start"
-            android:padding="15dp"
-            tools:context=".fragments.HomeFragment">
-
-            <TextView
-                android:id="@+id/inspectedHiveTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:shadowColor="@color/yellowText"
-                android:shadowRadius="40"
-                android:text="0"
-                android:textColor="@color/yellowText"
-                android:textSize="100sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="15dp" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/inspectedHiveTxt"
-                android:alpha=".5"
-                android:fontFamily="sans-serif-light"
-                android:gravity="center"
-                android:shadowColor="@color/orangeShadowBackground"
-                android:shadowRadius="4"
-                android:text="Inspected hives in the past 7 days"
-                android:textColor="@color/white"
-                android:textSize="21sp"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-                app:layout_constraintTop_toBottomOf="@+id/inspectedHiveTxt"
-                tools:layout_editor_absoluteX="15dp" />
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:background="@drawable/curved_detail_screen_layout"
-                app:layout_constraintBottom_toTopOf="@+id/addNewHiveLayout"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
-                tools:layout_editor_absoluteX="15dp">
-
-
-                <TextView
-                    android:id="@+id/lastInspectionDate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:gravity="center"
-                    android:shadowColor="@color/yellowText"
-                    android:shadowRadius="4"
-                    android:text="-"
-                    android:textColor="@color/yellowText"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/totalStingsHome"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_main_background"
+                android:gravity="start"
+                android:padding="15dp"
+                tools:context=".fragments.HomeFragment">
 
                 <TextView
-                    android:id="@+id/totalStingsHome"
-                    android:layout_width="0dp"
+                    android:id="@+id/inspectedHiveTxt"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:shadowColor="@color/yellowText"
-                    android:shadowRadius="4"
-                    android:text="-"
+                    android:shadowRadius="40"
+                    android:text="0"
                     android:textColor="@color/yellowText"
-                    android:textSize="27sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/lastInspectionDate"
-                    app:layout_constraintEnd_toStartOf="@+id/totalNumberOfHives"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/lastInspectionDate" />
+                    android:textSize="100sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="15dp" />
 
                 <TextView
-                    android:id="@+id/totalNumberOfHives"
-                    android:layout_width="0dp"
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/inspectedHiveTxt"
+                    android:alpha=".5"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center"
-                    android:shadowColor="@color/yellowText"
+                    android:shadowColor="@color/orangeShadowBackground"
                     android:shadowRadius="4"
-                    android:text="-"
-                    android:textColor="@color/yellowText"
-                    android:textSize="27sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/totalStingsHome"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/totalStingsHome" />
-
-                <TextView
-                    android:id="@+id/strongHivesText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:gravity="center"
-                    android:shadowColor="@color/yellowText"
-                    android:shadowRadius="4"
-                    android:text="-"
-                    android:textColor="@color/yellowText"
-                    android:textSize="27sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/weakHivesTxt"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/weakHivesTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:gravity="center"
-                    android:shadowColor="@color/yellowText"
-                    android:shadowRadius="4"
-                    android:text="-"
-                    android:textColor="@color/yellowText"
-                    android:textSize="27sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/nucleusHivesTxt"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/strongHivesText"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    android:gravity="center"
-                    android:text="Strong hives"
+                    android:text="Inspected hives in the past 7 days"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="@+id/strongHivesText"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/strongHivesText"
-                    app:layout_constraintTop_toBottomOf="@+id/strongHivesText" />
+                    android:textSize="21sp"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/inspectedHiveTxt"
+                    tools:layout_editor_absoluteX="15dp" />
 
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    android:gravity="center"
-                    android:text="Weak hives"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="@+id/weakHivesTxt"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/strongHivesText"
-                    app:layout_constraintTop_toBottomOf="@+id/weakHivesTxt" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@drawable/curved_detail_screen_layout"
+                    app:layout_constraintBottom_toTopOf="@+id/addNewHiveLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    tools:layout_editor_absoluteX="15dp">
 
-                <TextView
-                    android:id="@+id/textView1023"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    android:gravity="center"
-                    android:text="Nucleus hives"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="@+id/nucleusHivesTxt"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/weakHivesTxt"
-                    app:layout_constraintTop_toBottomOf="@+id/nucleusHivesTxt" />
 
-                <TextView
-                    android:id="@+id/nucleusHivesTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:gravity="center"
-                    android:shadowColor="@color/yellowText"
-                    android:shadowRadius="4"
-                    android:text="-"
-                    android:textColor="@color/yellowText"
-                    android:textSize="27sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/weakHivesTxt"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/lastInspectionDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center"
+                        android:shadowColor="@color/yellowText"
+                        android:shadowRadius="4"
+                        android:text="-"
+                        android:textColor="@color/yellowText"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/totalStingsHome"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    android:gravity="center"
-                    android:text="Last inspection"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="@+id/lastInspectionDate"
-                    app:layout_constraintEnd_toStartOf="@+id/textView11"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lastInspectionDate" />
+                    <TextView
+                        android:id="@+id/totalStingsHome"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:shadowColor="@color/yellowText"
+                        android:shadowRadius="4"
+                        android:text="-"
+                        android:textColor="@color/yellowText"
+                        android:textSize="27sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/lastInspectionDate"
+                        app:layout_constraintEnd_toStartOf="@+id/totalNumberOfHives"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/lastInspectionDate" />
 
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    android:gravity="center"
-                    android:text="Stings"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
-                    app:layout_constraintEnd_toEndOf="@+id/totalStingsHome"
-                    app:layout_constraintEnd_toStartOf="@+id/textView13"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView4"
-                    app:layout_constraintStart_toStartOf="@+id/totalStingsHome" />
+                    <TextView
+                        android:id="@+id/totalNumberOfHives"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:shadowColor="@color/yellowText"
+                        android:shadowRadius="4"
+                        android:text="-"
+                        android:textColor="@color/yellowText"
+                        android:textSize="27sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/totalStingsHome"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/totalStingsHome" />
 
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/strongHivesText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center"
+                        android:shadowColor="@color/yellowText"
+                        android:shadowRadius="4"
+                        android:text="-"
+                        android:textColor="@color/yellowText"
+                        android:textSize="27sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/weakHivesTxt"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/weakHivesTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center"
+                        android:shadowColor="@color/yellowText"
+                        android:shadowRadius="4"
+                        android:text="-"
+                        android:textColor="@color/yellowText"
+                        android:textSize="27sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/nucleusHivesTxt"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/strongHivesText"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        android:gravity="center"
+                        android:text="Strong hives"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="@+id/strongHivesText"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="@+id/strongHivesText"
+                        app:layout_constraintTop_toBottomOf="@+id/strongHivesText" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        android:gravity="center"
+                        android:text="Weak hives"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="@+id/weakHivesTxt"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/strongHivesText"
+                        app:layout_constraintTop_toBottomOf="@+id/weakHivesTxt" />
+
+                    <TextView
+                        android:id="@+id/textView1023"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        android:gravity="center"
+                        android:text="Nucleus hives"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="@+id/nucleusHivesTxt"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/weakHivesTxt"
+                        app:layout_constraintTop_toBottomOf="@+id/nucleusHivesTxt" />
+
+                    <TextView
+                        android:id="@+id/nucleusHivesTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center"
+                        android:shadowColor="@color/yellowText"
+                        android:shadowRadius="4"
+                        android:text="-"
+                        android:textColor="@color/yellowText"
+                        android:textSize="27sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/weakHivesTxt"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        android:gravity="center"
+                        android:text="Last inspection"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="@+id/lastInspectionDate"
+                        app:layout_constraintEnd_toStartOf="@+id/textView11"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lastInspectionDate" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        android:gravity="center"
+                        android:text="Stings"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
+                        app:layout_constraintEnd_toEndOf="@+id/totalStingsHome"
+                        app:layout_constraintEnd_toStartOf="@+id/textView13"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/textView4"
+                        app:layout_constraintStart_toStartOf="@+id/totalStingsHome" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        android:gravity="center"
+                        android:text="Total hives"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView11"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/textView11"
+                        app:layout_constraintStart_toStartOf="@+id/totalNumberOfHives" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/addNewHiveLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    android:gravity="center"
-                    android:text="Total hives"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textView11"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView11"
-                    app:layout_constraintStart_toStartOf="@+id/totalNumberOfHives" />
+                    android:layout_below="@id/constraintLayout"
+                    android:background="@drawable/inverted_curved_layout_background"
+                    android:clickable="true"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/viewAllHivesLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                    tools:layout_editor_absoluteX="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:text="Add new colony"
+                        android:textColor="@color/greyText"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_add_new_colony_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/viewAllHivesLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/constraintLayout"
+                    android:background="@drawable/inverted_curved_layout_background"
+                    android:clickable="true"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/addNewStingLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/addNewHiveLayout"
+                    tools:layout_editor_absoluteX="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:text="View all hives"
+                        android:textColor="@color/greyText"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_hives_list_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/currentWeatherConditionsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/constraintLayout"
+                    android:background="@drawable/inverted_curved_layout_background"
+                    android:clickable="true"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addNewStingLayout"
+                    tools:layout_editor_absoluteX="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:text="Current weather conditions"
+                        android:textColor="@color/greyText"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_weather_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/addNewStingLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/constraintLayout"
+                    android:background="@drawable/inverted_curved_layout_background"
+                    android:clickable="true"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/currentWeatherConditionsLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/viewAllHivesLayout"
+                    tools:layout_editor_absoluteX="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:text="Add sting"
+                        android:textColor="@color/greyText"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.7"
+                        android:src="@drawable/ic_sting_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/addNewHiveLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/constraintLayout"
-                android:background="@drawable/inverted_curved_layout_background"
-                android:clickable="true"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/viewAllHivesLayout"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                tools:layout_editor_absoluteX="15dp">
+        </ScrollView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="Add new colony"
-                    android:textColor="@color/greyText"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_add_new_colony_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/viewAllHivesLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/constraintLayout"
-                android:background="@drawable/inverted_curved_layout_background"
-                android:clickable="true"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/addNewStingLayout"
-                app:layout_constraintTop_toBottomOf="@+id/addNewHiveLayout"
-                tools:layout_editor_absoluteX="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="View all hives"
-                    android:textColor="@color/greyText"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_hives_list_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/currentWeatherConditionsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/constraintLayout"
-                android:background="@drawable/inverted_curved_layout_background"
-                android:clickable="true"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addNewStingLayout"
-                tools:layout_editor_absoluteX="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="Current weather conditions"
-                    android:textColor="@color/greyText"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_weather_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/addNewStingLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/constraintLayout"
-                android:background="@drawable/inverted_curved_layout_background"
-                android:clickable="true"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/currentWeatherConditionsLayout"
-                app:layout_constraintTop_toBottomOf="@+id/viewAllHivesLayout"
-                tools:layout_editor_absoluteX="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="Add sting"
-                    android:textColor="@color/greyText"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:alpha="0.7"
-                    android:src="@drawable/ic_sting_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    </ScrollView>
 </layout>

@@ -8,7 +8,7 @@
         android:id="@+id/hive"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:background="@drawable/curved_detail_screen_layout"
         android:padding="12dp">
 
@@ -53,10 +53,9 @@
 
         <ImageView
             android:id="@+id/addNewInspectionBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add_inspection_button"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

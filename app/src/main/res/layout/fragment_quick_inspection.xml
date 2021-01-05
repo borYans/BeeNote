@@ -11,7 +11,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/darkerBackgroundColor"
+            android:background="@drawable/gradient_main_background"
             android:padding="20dp"
             tools:context=".fragments.QuickInspectionFragment">
 
@@ -19,8 +19,8 @@
                 android:id="@+id/quickInspectionRelative"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/curved_detail_screen_layout"
                 android:layout_marginTop="50dp"
-                android:background="@drawable/inverted_curved_layout_background"
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
