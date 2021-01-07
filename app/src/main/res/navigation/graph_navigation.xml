@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/graph_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -20,8 +20,8 @@
             android:id="@+id/action_homeFragment_to_hivesListFragment"
             app:destination="@id/hivesListFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_mapLocationFragment"
-            app:destination="@id/mapLocationFragment" />
+            android:id="@+id/action_homeFragment_to_weatherFragment"
+            app:destination="@id/weatherFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewHiveFragment"
@@ -61,6 +61,9 @@
         <action
             android:id="@+id/action_weatherFragment_to_inspectionRatingInfoFragment"
             app:destination="@id/inspectionRatingInfoFragment" />
+        <action
+            android:id="@+id/action_weatherFragment_to_mapLocationFragment"
+            app:destination="@id/mapLocationFragment" />
     </fragment>
     <fragment
         android:id="@+id/hivesListFragment"
@@ -99,5 +102,31 @@
     <fragment
         android:id="@+id/mapLocationFragment"
         android:name="com.example.beenote.fragments.MapLocationFragment"
-        android:label="MapLocationFragment" />
+        android:label="MapLocationFragment" >
+        <action
+            android:id="@+id/action_mapLocationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLocationFragment"
+        android:name="com.example.beenote.fragments.AddLocationFragment"
+        android:label="AddLocationFragment" >
+        <action
+            android:id="@+id/action_addLocationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_addLocationFragment_to_mapLocationFragment"
+            app:destination="@id/mapLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.beenote.fragments.SplashScreenFragment"
+        android:label="SplashScreenFragment" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_addLocationFragment"
+            app:destination="@id/addLocationFragment" />
+    </fragment>
 </navigation>

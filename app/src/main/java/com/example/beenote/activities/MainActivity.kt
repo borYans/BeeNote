@@ -21,6 +21,7 @@ private lateinit var navController: NavController
 private lateinit var auth: FirebaseAuth
 
 
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +83,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, null)
+    }
+
+    private fun checkApiaryLocation() {
+
     }
 
     

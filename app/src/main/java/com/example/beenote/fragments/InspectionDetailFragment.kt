@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.beenote.Listeners.InspectionsClickListener
 import com.example.beenote.R
 import com.example.beenote.constants.Constants
 import com.google.firebase.auth.ktx.auth

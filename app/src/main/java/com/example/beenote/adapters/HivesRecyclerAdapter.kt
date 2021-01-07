@@ -1,17 +1,13 @@
 package com.example.beenote.adapters
 
-import android.app.AlertDialog
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.beenote.Listeners.HiveClickListener
+import com.example.beenote.listeners.HiveClickListener
 import com.example.beenote.R
-import com.example.beenote.constants.Constants
 import com.example.beenote.fragments.HivesListFragmentDirections
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore

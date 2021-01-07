@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.beenote.Listeners.InspectionsClickListener
+import com.example.beenote.listeners.InspectionsClickListener
 import com.example.beenote.R
 import com.example.beenote.adapters.InspectionRecyclerAdapter
 import com.example.beenote.constants.Constants
@@ -20,7 +20,6 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_inspections_list.*
-import kotlinx.android.synthetic.main.item_hive.*
 
 
 class InspectionsListFragment : Fragment(), InspectionsClickListener  {

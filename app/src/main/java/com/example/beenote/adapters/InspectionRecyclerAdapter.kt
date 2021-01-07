@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.beenote.Listeners.InspectionsClickListener
+import com.example.beenote.listeners.InspectionsClickListener
 import com.example.beenote.R
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.item_inspection.view.*

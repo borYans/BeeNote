@@ -1,4 +1,4 @@
-package com.example.beenote.Listeners
+package com.example.beenote.listeners
 
 import android.view.View
 

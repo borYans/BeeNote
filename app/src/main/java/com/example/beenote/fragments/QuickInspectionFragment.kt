@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_quick_inspection.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -87,11 +88,12 @@ class QuickInspectionFragment : Fragment() {
                 .collection(Constants.INSPECTIONS)
                 .add(inspection)
                 .addOnSuccessListener {
-                    Toast.makeText(
+                    Toasty.success(
                         requireContext(),
                         "Successfully added new inspection",
                         Toast.LENGTH_SHORT
                     ).show()
+
                 }
         }
     }

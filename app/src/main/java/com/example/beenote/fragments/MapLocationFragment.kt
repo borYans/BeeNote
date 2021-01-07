@@ -1,5 +1,6 @@
 package com.example.beenote.fragments
 
+import android.app.AlertDialog
 import android.graphics.Point
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.beenote.R
 import com.example.beenote.constants.Constants
 import com.google.android.gms.maps.GoogleMap
@@ -18,6 +20,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import com.google.type.LatLng
 import com.google.type.LatLngProto
@@ -29,11 +32,10 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
     //Firebase
     private val authUser = Firebase.auth.currentUser?.uid
     private val db = FirebaseFirestore.getInstance()
-    private var locationListenerRegistration: ListenerRegistration? = null
 
     //Google maps
     private lateinit var googleMap: GoogleMap
-    private  var marker: Marker? = null
+
     private val options = GoogleMapOptions()
 
     private var apiaryLatitude: String? = null
@@ -57,41 +59,62 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
 
         addLocationFloatingBtn.setOnClickListener {
 
-            authUser?.let {
-                db.collection(Constants.USERS)
-                    .document(it)
-                    .set(mapOf(
-                        "apiary_latitude" to apiaryLatitude,
-                        "apiary_longitude" to apiaryLongitude
-                    ))
-                    .addOnSuccessListener {
-                        Log.d("SUCCES", "Location added successfully")
+            val alert = AlertDialog.Builder(requireContext())
+            alert.setTitle("Save your location")
+                .setMessage("Your location will be used to inform you about current weather conditions at your apiary.")
+                .setPositiveButton("Yes") { dialogInterface, which ->
+
+                    authUser?.let {
+                        db.collection(Constants.USERS)
+                            .document(it)
+                            .collection(Constants.COORDINATES)
+                            .document(it)
+                            .set(
+                                mapOf(
+                                    "apiary_latitude" to apiaryLatitude,
+                                    "apiary_longitude" to apiaryLongitude
+                                ), SetOptions.merge()
+                            )
+                            .addOnSuccessListener {
+                                Log.d("SUCCES", "Location added successfully")
+                            }
                     }
 
-            }
+
+                    val action = MapLocationFragmentDirections.actionMapLocationFragmentToHomeFragment()
+                    Navigation.findNavController(it).navigate(action)
+
+                }
+                .setNegativeButton("No") { dialogInterface, which ->
+                    dialogInterface.cancel()
+                }
+                .create()
+                .show()
+
+
+
         }
     }
 
     override fun onMapReady(map: GoogleMap?) {
+
         map?.let {
             googleMap = it
             googleMap.mapType = GoogleMap.MAP_TYPE_HYBRID
-            options.mapType(GoogleMap.MAP_TYPE_HYBRID)
-                .compassEnabled(true)
+            options.compassEnabled(true)
                 .rotateGesturesEnabled(true)
             googleMap.setOnMapClickListener { point ->
                 Log.d("LOCATION", "Location on click: ${point.latitude}, ${point.longitude}")
-                when(marker){
-                    null -> marker = googleMap.addMarker(
-                        MarkerOptions()
-                            .draggable(true)
-                            .alpha(0.7f)
-                            .flat(true)
-                            .position
-                                (point)
-                    )
-                    else -> Log.d("MARKER", "Racki od tapani.")
-                }
+
+                googleMap.clear()
+                val marker = googleMap.addMarker(
+                    MarkerOptions()
+                        .draggable(false)
+                        .alpha(0.8f)
+                        .flat(true)
+                        .position
+                            (point)
+                )
 
                 apiaryLatitude = marker?.position?.latitude?.roundToInt().toString()
                 apiaryLongitude = marker?.position?.longitude?.roundToInt().toString()

@@ -16,8 +16,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_add_new_hive.*
-import java.util.*
 
 
 class AddNewHiveFragment : Fragment() {
@@ -38,7 +38,7 @@ class AddNewHiveFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        addNewHiveBtn.setOnClickListener {
+        skipBtn.setOnClickListener {
             val hive = Hive(
                 hiveNameEditText.text.toString(),
                 queenAgeEditText.text.toString(),
@@ -65,6 +65,9 @@ class AddNewHiveFragment : Fragment() {
                 .document(it)
                 .collection(Constants.HIVES)
                 .add(hive)
+                .addOnSuccessListener {
+                    Toasty.success(requireContext(), "Successfully added new colony.", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 

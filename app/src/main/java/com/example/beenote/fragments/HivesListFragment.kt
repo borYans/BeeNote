@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.beenote.Listeners.HiveClickListener
+import com.example.beenote.listeners.HiveClickListener
 import com.example.beenote.R
 import com.example.beenote.adapters.HivesRecyclerAdapter
 import com.example.beenote.constants.Constants

@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_add_sting.*
 
 
@@ -51,17 +52,19 @@ class AddStingFragment : Fragment() {
                 updateStingsToFirebaseFirestore(sting)
                 navigateBackToHome(it)
 
-                Toast.makeText(
+                Toasty.success(
                     requireContext(),
                     "$stingCounter stings added.",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                Toast.makeText(
+                Toasty.info(
                     requireContext(),
                     "Tap on the number to add new sting.",
                     Toast.LENGTH_SHORT
                 ).show()
+
+
             }
         }
     }
@@ -95,7 +98,7 @@ class AddStingFragment : Fragment() {
                     .document(it)
                     .addSnapshotListener { document, error ->
                         error?.let {
-                            Toast.makeText(
+                            Toasty.error(
                                 requireContext(),
                                 "Error occured: $error",
                                 Toast.LENGTH_SHORT
