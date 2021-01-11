@@ -5,6 +5,6 @@
     <solid android:color="@color/experimentalColor" />
     <gradient android:startColor="#363A49"
         android:angle="270"/>
-    <corners android:radius="13dp" />
+    <corners android:radius="22dp" />
 
 </shape>

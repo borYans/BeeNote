@@ -67,8 +67,6 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
                     authUser?.let {
                         db.collection(Constants.USERS)
                             .document(it)
-                            .collection(Constants.COORDINATES)
-                            .document(it)
                             .set(
                                 mapOf(
                                     "apiary_latitude" to apiaryLatitude,
@@ -116,8 +114,8 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
                             (point)
                 )
 
-                apiaryLatitude = marker?.position?.latitude?.roundToInt().toString()
-                apiaryLongitude = marker?.position?.longitude?.roundToInt().toString()
+                apiaryLatitude = marker?.position?.latitude?.toString()
+                apiaryLongitude = marker?.position?.longitude?.toString()
 
             }
         }

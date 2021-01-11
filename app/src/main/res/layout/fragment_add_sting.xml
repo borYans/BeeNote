@@ -91,6 +91,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/buttons"
             android:text="Add sting"
+            android:alpha=".8"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"

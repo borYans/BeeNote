@@ -10,60 +10,19 @@
         android:fillViewport="true">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient_main_background"
-        android:padding="10dp"
-        tools:context=".activities.AddCoordFragment">
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutAddColony"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/curved_detail_screen_layout"
-            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_main_background"
             android:padding="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            tools:context=".activities.AddCoordFragment">
 
-
-            <EditText
-                android:id="@+id/hiveNameEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textColor="@color/white"
-                android:maxLength="8"
-                android:fontFamily="sans-serif-light"
-                android:hint="Hive name (max 8 characters)"
-                android:textColorHint="@color/yellowText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/queenAgeEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:textColor="@color/white"
-                android:layout_marginTop="5dp"
-                android:inputType="number"
-                android:maxLength="2"
-                android:hint="Queen age"
-                android:textColorHint="@color/yellowText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hiveNameEditText" />
 
             <TextView
                 android:id="@+id/hiveStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-light"
                 android:text="Colony status"
                 android:textColor="@color/yellowText"
@@ -71,7 +30,36 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/queenAgeEditText" />
+                app:layout_constraintTop_toBottomOf="@+id/queenAgeEditText" />
+
+            <EditText
+                android:id="@+id/hiveNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-light"
+                android:hint="Hive name (max 8 characters)"
+                android:maxLength="8"
+                android:textColor="@color/white"
+                android:textColorHint="@color/greyText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            <EditText
+                android:id="@+id/queenAgeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif-light"
+                android:hint="Queen age"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textColor="@color/white"
+                android:textColorHint="@color/greyText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hiveNameEditText" />
 
             <RadioGroup
                 android:id="@+id/statusRadioGroup"
@@ -124,30 +112,31 @@
                 android:id="@+id/skipBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:alpha=".8"
                 android:background="@drawable/buttons"
                 android:text="Add new hive"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />
 
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="70dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="beehive"
+                android:src="@drawable/ic_add_hive_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_beehive"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="beehive" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 </layout>

@@ -18,7 +18,7 @@ class InspectionDetailFragment : Fragment() {
 
     private val authUser = Firebase.auth.currentUser?.uid
     private val db = FirebaseFirestore.getInstance()
-    private var inspectionId : String? = null
+    private var inspectionId: String? = null
     private var hive_id: String? = null
 
     private var inspectionDetailsListenerRegistration: ListenerRegistration? = null
@@ -44,11 +44,6 @@ class InspectionDetailFragment : Fragment() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
     override fun onResume() {
         super.onResume()
         inspectionDetailsListenerRegistration =
@@ -68,14 +63,7 @@ class InspectionDetailFragment : Fragment() {
                             populationTxt.text = it.data?.get("population").toString()
                             honeyStoresTxt.text = it.data?.get("honeyStores").toString()
                             layingPatternTxt.text = it.data?.get("layingPattern").toString()
-                            val map = it.data
-                            val observedList = ArrayList<String>()
-                            for (entry in map?.entries!!) {
-                                if (entry.key == it.data?.get("observed")) {
-                                    observedList.add(entry.value.toString())
-                                    Log.d("OBSERVED", "Observed data: ${entry.value}") //need to solve this.
-                                }
-                            }
+
                         }
                     }
             }

@@ -19,6 +19,7 @@ class SplashScreenFragment : Fragment() {
 
     private val authUser = Firebase.auth.currentUser?.uid
     private val db = FirebaseFirestore.getInstance()
+    private var locationListenerRegistration: ListenerRegistration? = null
 
 
     override fun onCreateView(
@@ -32,31 +33,37 @@ class SplashScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        authUser?.let {
-            db.collection(Constants.USERS)
-                .document(it)
-                .collection(Constants.COORDINATES)
-                .addSnapshotListener { doc, error ->
-                    error?.let {
-                        //something
-                    }
-                    doc.let { documents ->
-                        if (documents?.isEmpty == false) {
-                            val action =
-                                SplashScreenFragmentDirections.actionSplashScreenFragmentToHomeFragment()
-                            Navigation.findNavController(requireView()).navigate(action)
-
-                        } else  {
-
-                            val action =
-                                SplashScreenFragmentDirections.actionSplashScreenFragmentToAddLocationFragment()
-                            Navigation.findNavController(requireView()).navigate(action)
+        if (authUser == null) {
+            Navigation.findNavController(requireView())
+                .navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToAddLocationFragment())
+        } else {
+            locationListenerRegistration = authUser.let {
+                db.collection(Constants.USERS)
+                    .document(it)
+                    .addSnapshotListener { doc, error ->
+                        error?.let {
+                            //something
+                        }
+                        doc?.let { documents ->
+                            if (documents.data?.get("apiary_latitude") != null && documents.data?.get("apiary_longitude") != null) {
+                                Navigation.findNavController(requireView())
+                                    .navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToHomeFragment())
+                            } else {
+                                Navigation.findNavController(requireView())
+                                    .navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToAddLocationFragment())
+                            }
                         }
                     }
-                }
+            }
         }
+
+
     }
 
+    override fun onStop() {
+        super.onStop()
+        locationListenerRegistration?.remove()
+    }
 }
 
 
