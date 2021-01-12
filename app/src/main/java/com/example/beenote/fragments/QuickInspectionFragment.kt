@@ -24,7 +24,6 @@ import kotlinx.android.synthetic.main.fragment_quick_inspection.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
-import java.util.*
 
 
 class QuickInspectionFragment : Fragment() {
@@ -65,7 +64,7 @@ class QuickInspectionFragment : Fragment() {
             )
             updateInspectionDataToFirebaseFirestore(quickInspection)
             setLastInspectionDate()
-            navigateBacktoHomeFragment(it)
+            navigateBackToHomeFragment(it)
         }
     }
 
@@ -128,7 +127,7 @@ class QuickInspectionFragment : Fragment() {
     }
 
 
-    private fun navigateBacktoHomeFragment(v: View) {
+    private fun navigateBackToHomeFragment(v: View) {
         val action = QuickInspectionFragmentDirections.actionQuickInspectionFragmentToHomeFragment()
         Navigation.findNavController(v).navigate(action)
     }

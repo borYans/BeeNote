@@ -22,7 +22,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_inspections_list.*
 
 
-class InspectionsListFragment : Fragment(), InspectionsClickListener  {
+class InspectionsListFragment : Fragment(), InspectionsClickListener {
 
 
     private val authUser = Firebase.auth.currentUser?.uid
@@ -45,12 +45,20 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+        addNewInspection.setOnClickListener {
+            val action =
+                InspectionsListFragmentDirections.actionInspectionsListFragmentToQuickInspectionFragment(
+                    hive_id!!
+                )
+            Navigation.findNavController(it).navigate(action)
+        }
+
         inspectionsRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = inspectionListAdapter
         }
-
-
     }
 
     override fun onResume() {
@@ -61,35 +69,32 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener  {
 
         }
 
-            Log.d("HIVE", "onResume Called!")
-            Log.d("HIVE", "Hive id is: $hive_id")
-            inspectionsListenerRegistration =
-                authUser?.let {
-                    db.collection(Constants.USERS)
-                        .document(it)
-                        .collection(Constants.HIVES)
-                        .document(hive_id!!)
-                        .collection(Constants.INSPECTIONS)
-                        .addSnapshotListener { inspections, error ->
-                            error?.let {
-                                Toast.makeText(requireContext(), "Error occurred.", Toast.LENGTH_SHORT).show()
-                            }
-
-                            inspections?.let {
-
-                                val inspectionArrayList = ArrayList<QueryDocumentSnapshot>()
-                                for (document in inspections) {
-                                    inspectionArrayList.add(document)
-                                }
-                                Log.d("HIVE", "$inspectionArrayList")
-                                inspectionListAdapter.updateInspectionsList(inspectionArrayList)
-                            }
+        Log.d("HIVE", "onResume Called!")
+        Log.d("HIVE", "Hive id is: $hive_id")
+        inspectionsListenerRegistration =
+            authUser?.let {
+                db.collection(Constants.USERS)
+                    .document(it)
+                    .collection(Constants.HIVES)
+                    .document(hive_id!!)
+                    .collection(Constants.INSPECTIONS)
+                    .addSnapshotListener { inspections, error ->
+                        error?.let {
+                            Toast.makeText(requireContext(), "Error occurred.", Toast.LENGTH_SHORT)
+                                .show()
                         }
-                }
 
+                        inspections?.let {
 
-
-
+                            val inspectionArrayList = ArrayList<QueryDocumentSnapshot>()
+                            for (document in inspections) {
+                                inspectionArrayList.add(document)
+                            }
+                            Log.d("HIVE", "$inspectionArrayList")
+                            inspectionListAdapter.updateInspectionsList(inspectionArrayList)
+                        }
+                    }
+            }
     }
 
     override fun onStop() {
@@ -98,7 +103,11 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener  {
     }
 
     override fun onInspectionClick(id: String, position: Int, v: View) {
-        val action = InspectionsListFragmentDirections.actionInspectionsListFragmentToInspectionDetailFragment(id, hive_id!!)
+        val action =
+            InspectionsListFragmentDirections.actionInspectionsListFragmentToInspectionDetailFragment(
+                id,
+                hive_id!!
+            )
         Navigation.findNavController(v).navigate(action)
     }
 
@@ -119,7 +128,7 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener  {
                         .delete()
                 }
             }
-            .setNegativeButton("No") {dialogInterface, which ->
+            .setNegativeButton("No") { dialogInterface, which ->
                 dialogInterface.cancel()
             }
             .create()

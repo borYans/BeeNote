@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.beenote.R
 import com.example.beenote.constants.Constants
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import com.google.type.LatLng
 import com.google.type.LatLngProto
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_map_location.*
 import kotlin.math.roundToInt
 
@@ -59,37 +61,40 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
 
         addLocationFloatingBtn.setOnClickListener {
 
-            val alert = AlertDialog.Builder(requireContext())
-            alert.setTitle("Save your location")
-                .setMessage("Your location will be used to inform you about current weather conditions at your apiary.")
-                .setPositiveButton("Yes") { dialogInterface, which ->
+            if (apiaryLatitude == null && apiaryLongitude == null) {
+                Toasty.info(requireContext(), "Touch on the map to add marker for apiary location.", Toast.LENGTH_LONG).show()
+            } else {
+                val alert = AlertDialog.Builder(requireContext())
+                alert.setTitle("Confirm your location")
+                    .setMessage("Are you sure you want to confirm apiary location?")
+                    .setPositiveButton("Yes") { dialogInterface, which ->
 
-                    authUser?.let {
-                        db.collection(Constants.USERS)
-                            .document(it)
-                            .set(
-                                mapOf(
-                                    "apiary_latitude" to apiaryLatitude,
-                                    "apiary_longitude" to apiaryLongitude
-                                ), SetOptions.merge()
-                            )
-                            .addOnSuccessListener {
-                                Log.d("SUCCES", "Location added successfully")
-                            }
+                        authUser?.let {
+                            db.collection(Constants.USERS)
+                                .document(it)
+                                .set(
+                                    mapOf(
+                                        "apiary_latitude" to apiaryLatitude,
+                                        "apiary_longitude" to apiaryLongitude
+                                    ), SetOptions.merge()
+                                )
+                                .addOnSuccessListener {
+                                    Log.d("SUCCES", "Location added successfully")
+                                }
+                        }
+
+
+                        val action = MapLocationFragmentDirections.actionMapLocationFragmentToHomeFragment()
+                        Navigation.findNavController(it).navigate(action)
+
                     }
+                    .setNegativeButton("No") { dialogInterface, which ->
+                        dialogInterface.cancel()
+                    }
+                    .create()
+                    .show()
 
-
-                    val action = MapLocationFragmentDirections.actionMapLocationFragmentToHomeFragment()
-                    Navigation.findNavController(it).navigate(action)
-
-                }
-                .setNegativeButton("No") { dialogInterface, which ->
-                    dialogInterface.cancel()
-                }
-                .create()
-                .show()
-
-
+            }
 
         }
     }
@@ -109,7 +114,7 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
                     MarkerOptions()
                         .draggable(false)
                         .alpha(0.8f)
-                        .flat(true)
+                        .flat(false)
                         .position
                             (point)
                 )

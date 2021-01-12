@@ -72,9 +72,6 @@
         <action
             android:id="@+id/action_hivesListFragment_to_inspectionsListFragment"
             app:destination="@id/inspectionsListFragment" />
-        <action
-            android:id="@+id/action_hivesListFragment_to_quickInspectionFragment"
-            app:destination="@id/quickInspectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/inspectionsListFragment"
@@ -86,6 +83,9 @@
         <action
             android:id="@+id/action_inspectionsListFragment_to_inspectionDetailFragment"
             app:destination="@id/inspectionDetailFragment" />
+        <action
+            android:id="@+id/action_inspectionsListFragment_to_quickInspectionFragment"
+            app:destination="@id/quickInspectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/inspectionDetailFragment"

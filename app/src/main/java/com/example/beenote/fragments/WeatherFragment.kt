@@ -130,36 +130,36 @@ class WeatherFragment() : Fragment() {
         val wind = conditions.wind?.roundToInt()
         Log.d("TEMP&&HUMID", "Temperature: $temp Humidity: $wind")
 
-        if (conditions.humid!! > 95 || wind!! > 8 || temp!! < 10) {
+        if (conditions.humid!! > 95 || wind!! >= 7 || temp!! < 10) {
 
             updateInspectionRatingIndex(0, "Very bad")
 
-        } else if (temp in 10..14 && wind < 5 && conditions.humid >= 90) {
+        } else if (temp in 10..14 && wind <= 6 && conditions.humid in 80..95  ) {
 
             updateInspectionRatingIndex(35, "Not safe")
 
 
-        } else if (temp > 14 && wind < 2 && conditions.humid < 90) {
+        } else if (temp in 15..17 && wind <= 6 ) {
 
             updateInspectionRatingIndex(65, "Fair")
 
 
-        } else if (temp > 14 && wind < 2 && conditions.humid < 70) {
+        } else if (temp in 18..20 && wind <= 6 ) {
 
             updateInspectionRatingIndex(75, "Good")
 
 
-        } else if (temp > 20 && wind < 2 && conditions.humid < 70) {
+        } else if (temp in 21..23 && wind <= 6) {
 
             updateInspectionRatingIndex(85, "Very good")
 
 
-        } else if (temp > 20 && wind < 2 && conditions.humid in 40..60) {
+        } else if (temp in 23..25 && wind <= 6 ) {
 
             updateInspectionRatingIndex(90, "Almost perfect")
 
 
-        } else if (temp > 25 && wind < 3 && conditions.humid in 40..60) {
+        } else if (temp > 25 && wind <= 6 ) {
 
             updateInspectionRatingIndex(100, "Perfect")
 

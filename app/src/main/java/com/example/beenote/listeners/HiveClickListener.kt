@@ -1,5 +1,6 @@
 package com.example.beenote.listeners
 
 interface HiveClickListener {
-    fun onHiveLongClick(position: String)
+    fun onHiveLongClicked(position: String)
+    fun onHiveClicked(position:String)
 }

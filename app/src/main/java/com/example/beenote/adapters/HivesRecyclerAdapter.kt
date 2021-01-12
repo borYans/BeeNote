@@ -21,9 +21,6 @@ class HivesRecyclerAdapter(
 ) :
     RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewHolder>() {
 
-    private val authUser = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
-
 
     private var items = mutableListOf<QueryDocumentSnapshot>() //items can be added or removed.
 
@@ -47,11 +44,11 @@ class HivesRecyclerAdapter(
         }
 
         override fun onLongClick(v: View?): Boolean {
-            hiveClickListener.onHiveLongClick(items[adapterPosition].id)
+            hiveClickListener.onHiveLongClicked(items[adapterPosition].id)
             return true
         }
-    }
 
+    }
 
     //Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HivesViewHolder {
@@ -77,13 +74,9 @@ class HivesRecyclerAdapter(
                 HivesListFragmentDirections.actionHivesListFragmentToInspectionsListFragment(docs.id)
             Navigation.findNavController(it).navigate(action)
         }
-
-        holder.itemView.addNewInspectionBtn.setOnClickListener {
-            val action =
-                HivesListFragmentDirections.actionHivesListFragmentToQuickInspectionFragment(docs.id)
-            Navigation.findNavController(it).navigate(action)
+        holder.itemView.deleteHive.setOnClickListener {
+            hiveClickListener.onHiveClicked(docs.id)
         }
-
     }
 
     //Return datasize of my dataset.

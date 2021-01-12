@@ -248,9 +248,6 @@ class HomeFragment : Fragment() {
         Navigation.findNavController(v).navigate(action)
     }
 
-
-
-
     private fun navigateToAddStingFragment(v: View) {
         val action = HomeFragmentDirections.actionHomeFragmentToAddStingFragment()
         Navigation.findNavController(v).navigate(action)

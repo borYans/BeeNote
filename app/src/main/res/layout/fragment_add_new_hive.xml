@@ -100,6 +100,7 @@
                     android:clickable="true"
                     android:fontFamily="sans-serif-light"
                     android:text="nucleus"
+                    android:layout_marginBottom="100dp"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/weakRadioBtn" />

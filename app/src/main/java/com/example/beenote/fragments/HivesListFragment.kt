@@ -79,27 +79,51 @@ class HivesListFragment : Fragment(), HiveClickListener {
         hivesListenerRegistration?.remove()
     }
 
-    override fun onHiveLongClick(position: String) {
+    override fun onHiveLongClicked(position: String) {
         //warn user and delete hive
 
         val alertDialog = AlertDialog.Builder(requireContext())
-            alertDialog.setTitle("Are you sure?")
-                .setMessage("Are you sure you want to delete this hive?")
-                .setCancelable(false)
-                .setPositiveButton("Yes") { dialogInterface, which ->
-                    authUser?.let {
-                        db.collection(Constants.USERS)
-                            .document(it)
-                            .collection(Constants.HIVES)
-                            .document(position)
-                            .delete()
-                    }
+        alertDialog
+            .setTitle("Are you sure?")
+            .setMessage("Are you sure you want to delete this hive?")
+            .setCancelable(false)
+            .setPositiveButton("Yes") { dialogInterface, which ->
+                authUser?.let {
+                    db.collection(Constants.USERS)
+                        .document(it)
+                        .collection(Constants.HIVES)
+                        .document(position)
+                        .delete()
                 }
-                .setNegativeButton("No") {dialogInterface, which ->
-                    dialogInterface.cancel()
+            }
+            .setNegativeButton("No") { dialogInterface, which ->
+                dialogInterface.cancel()
+            }
+            .create()
+            .show()
+    }
+
+    override fun onHiveClicked(position: String) {
+
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog
+            .setTitle("Are you sure?")
+            .setMessage("Are you sure you want to delete this hive?")
+            .setCancelable(false)
+            .setPositiveButton("Yes") { dialogInterface, which ->
+                authUser?.let {
+                    db.collection(Constants.USERS)
+                        .document(it)
+                        .collection(Constants.HIVES)
+                        .document(position)
+                        .delete()
                 }
-                .create()
-                .show()
+            }
+            .setNegativeButton("No") { dialogInterface, which ->
+                dialogInterface.cancel()
+            }
+            .create()
+            .show()
     }
 
 }

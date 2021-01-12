@@ -31,35 +31,41 @@
 
 
                 <TextView
+                    android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:elevation="10dp"
+                    android:layout_marginStart="8dp"
                     android:alpha="0.8"
+                    android:elevation="10dp"
                     android:text="Queen seen"
                     android:textColor="@color/greyText"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/queenSeenTxt"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/queenSeenTxt"
-                    android:layout_width="140dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:alpha="0.8"
                     android:elevation="20dp"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:padding="3dp"
-                    android:shadowRadius="2"
                     android:shadowColor="@color/observedDataTextColor"
+                    android:shadowRadius="2"
                     android:text="No"
                     android:textColor="@color/observedDataTextColor"
-                    android:textSize="22sp"
+                    android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView9"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -132,35 +138,41 @@
 
 
                 <TextView
+                    android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:elevation="10dp"
+                    android:layout_marginStart="8dp"
                     android:alpha="0.8"
+                    android:elevation="10dp"
                     android:text="Temper"
                     android:textColor="@color/greyText"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/temperamentTxt"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/temperamentTxt"
-                    android:layout_width="140dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:alpha="0.8"
                     android:elevation="20dp"
-                    android:gravity="center"
-                    android:shadowRadius="2"
+                    android:gravity="right"
                     android:padding="3dp"
                     android:shadowColor="@color/yellowText"
+                    android:shadowRadius="2"
                     android:text="Calm"
                     android:textColor="@color/yellowText"
-                    android:textSize="22sp"
+                    android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView18"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -181,35 +193,41 @@
 
 
                 <TextView
+                    android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:elevation="10dp"
+                    android:layout_marginStart="8dp"
                     android:alpha="0.8"
+                    android:elevation="10dp"
                     android:text="Population"
                     android:textColor="@color/greyText"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/populationTxt"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/populationTxt"
-                    android:layout_width="140dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:alpha="0.8"
                     android:elevation="20dp"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:padding="3dp"
-                    android:shadowRadius="2"
                     android:shadowColor="@color/yellowText"
+                    android:shadowRadius="2"
                     android:text="Moderate"
                     android:textColor="@color/yellowText"
-                    android:textSize="22sp"
+                    android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView17"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -231,35 +249,41 @@
 
 
                 <TextView
+                    android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="8dp"
+                    android:alpha="0.8"
                     android:elevation="10dp"
                     android:text="Honey stores"
-                    android:alpha="0.8"
                     android:textColor="@color/greyText"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/honeyStoresTxt"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/honeyStoresTxt"
-                    android:layout_width="140dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:alpha="0.8"
                     android:elevation="20dp"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:padding="3dp"
                     android:shadowColor="@color/yellowText"
                     android:shadowRadius="2"
                     android:text="High"
                     android:textColor="@color/yellowText"
-                    android:textSize="22sp"
+                    android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView16"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -280,35 +304,41 @@
 
 
                 <TextView
+                    android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:elevation="10dp"
+                    android:layout_marginStart="8dp"
                     android:alpha="0.8"
+                    android:elevation="10dp"
                     android:text="Laying pattern"
                     android:textColor="@color/greyText"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/layingPatternTxt"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/layingPatternTxt"
-                    android:layout_width="140dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:alpha="0.8"
                     android:elevation="20dp"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:padding="3dp"
                     android:shadowColor="@color/yellowText"
                     android:shadowRadius="2"
                     android:text="Poor"
                     android:textColor="@color/yellowText"
-                    android:textSize="22sp"
+                    android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView14"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -329,35 +359,41 @@
 
 
                 <TextView
+                    android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:elevation="10dp"
+                    android:layout_marginStart="8dp"
                     android:alpha="0.8"
+                    android:elevation="10dp"
                     android:text="Capped brood seen"
                     android:textColor="@color/greyText"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cappedBroodSeenTxt"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/cappedBroodSeenTxt"
-                    android:layout_width="140dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:alpha="0.8"
                     android:elevation="20dp"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:padding="3dp"
-                    android:shadowRadius="2"
                     android:shadowColor="@color/observedDataTextColor"
+                    android:shadowRadius="2"
                     android:text="Yes"
                     android:textColor="@color/observedDataTextColor"
-                    android:textSize="22sp"
+                    android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView8"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -378,36 +414,41 @@
 
 
                 <TextView
+                    android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="8dp"
+                    android:alpha=".8"
                     android:elevation="10dp"
                     android:text="Uncapped brood seen"
-                    android:alpha=".8"
                     android:textColor="@color/greyText"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/uncappedBroodSeenTxt"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/uncappedBroodSeenTxt"
-                    android:layout_width="140dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:alpha="0.8"
                     android:elevation="20dp"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:padding="3dp"
-                    android:shadowRadius="2"
-
                     android:shadowColor="@color/observedDataTextColor"
+                    android:shadowRadius="2"
                     android:text="Yes"
                     android:textColor="@color/observedDataTextColor"
-                    android:textSize="22sp"
+                    android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView10"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -428,35 +469,40 @@
 
 
                 <TextView
+                    android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:elevation="10dp"
+                    android:layout_marginStart="8dp"
                     android:alpha=".8"
+                    android:elevation="10dp"
                     android:text="Eggs seen"
                     android:textColor="@color/greyText"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/eggsSeenTxt"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/eggsSeenTxt"
-                    android:layout_width="140dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:alpha="0.8"
                     android:elevation="20dp"
-                    android:gravity="center"
-                    android:shadowRadius="2"
+                    android:gravity="right"
                     android:padding="3dp"
                     android:shadowColor="@color/observedDataTextColor"
+                    android:shadowRadius="2"
                     android:text="Yes"
                     android:textColor="@color/observedDataTextColor"
-                    android:textSize="22sp"
+                    android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView12"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
