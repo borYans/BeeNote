@@ -42,11 +42,11 @@ class WeatherFragment() : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_weather, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
 
         inspectionRatingInfo.setOnClickListener {
@@ -57,7 +57,6 @@ class WeatherFragment() : Fragment() {
             swipeRefresh.isRefreshing = false
             //refresh UI
         }
-
     }
 
     private fun fetchWeather(lat: String, lon: String) {
@@ -84,7 +83,7 @@ class WeatherFragment() : Fragment() {
                 )
                 inspectionRatingInfo(conditions)
                 currentTemperature.visibility = View.VISIBLE
-                currentTemperature.text = conditions.temp?.roundToInt().toString() + "°"
+                currentTemperature.text = "${conditions.temp?.roundToInt().toString() } ${activity?.resources?.getString(R.string.celsiusSign)}"
                 humidity.text = conditions.humid?.toString() + "%"
                 windSpeedTxt.text = conditions.wind?.roundToInt().toString() + "m/s"
                 cloudCoverTxt.text = conditions.clouds?.toString() + "%"

@@ -12,7 +12,6 @@ import com.example.beenote.R
 import com.example.beenote.constants.Constants
 import com.example.beenote.model.Sting
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.SetOptions
@@ -27,6 +26,7 @@ class AddStingFragment : Fragment() {
     private var stingListenerRegistration: ListenerRegistration? = null
     private val db = FirebaseFirestore.getInstance()
     private var stingCounter = 0
+    private var currentNumberOfStings = 0
 
 
     override fun onCreateView(
@@ -48,7 +48,8 @@ class AddStingFragment : Fragment() {
         addSting.setOnClickListener {
             if (stingCounter != 0) {
 
-                val sting = Sting(stingCounter)
+                val totalStingsToAdd = stingCounter + currentNumberOfStings
+                val sting = Sting(totalStingsToAdd)
                 updateStingsToFirebaseFirestore(sting)
                 navigateBackToHome(it)
 
@@ -106,6 +107,7 @@ class AddStingFragment : Fragment() {
                         }
                         document?.let {
                             totalNumberOfStings.text = document.data?.get("stings").toString()
+                            currentNumberOfStings = document.data?.get("stings") as Int
                         }
                     }
             }

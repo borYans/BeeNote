@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beenote.listeners.HiveClickListener
 import com.example.beenote.R
 import com.example.beenote.adapters.HivesRecyclerAdapter
 import com.example.beenote.constants.Constants
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -26,6 +28,7 @@ class HivesListFragment : Fragment(), HiveClickListener {
     private val db = FirebaseFirestore.getInstance()
 
     private val hivesListAdapter = HivesRecyclerAdapter(this)
+    private var isSnackBarShowedOnce = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +46,6 @@ class HivesListFragment : Fragment(), HiveClickListener {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = hivesListAdapter
         }
-
     }
 
 
@@ -63,67 +65,70 @@ class HivesListFragment : Fragment(), HiveClickListener {
                             ).show()
                         }
                         documents?.let {
-                            val arrayList = ArrayList<QueryDocumentSnapshot>()
+                            val hivesList = ArrayList<QueryDocumentSnapshot>()
                             for (document in documents) {
-                                arrayList.add(document)
+                                hivesList.add(document)
                             }
-                            hivesListAdapter.updateHivesList(arrayList)
+                            if (hivesList.isEmpty() && !isSnackBarShowedOnce) {
+                                askForAddingNewHive(isSnackBarShowedOnce)
+                            } else {
+                                hivesListAdapter.updateHivesList(hivesList)
+                            }
                         }
                     }
             }
 
     }
 
-    override fun onStop() {
-        super.onStop()
-        hivesListenerRegistration?.remove()
+    private fun askForAddingNewHive(shown: Boolean) {
+        if (!shown) {
+            Snackbar.make(requireView(), "Empty list. Want to add new hive?", Snackbar.LENGTH_LONG)
+                .setBackgroundTint(resources.getColor(R.color.darkBackgroundColor))
+                .setActionTextColor(resources.getColor(R.color.yellowText))
+                .setAction("Add") {
+                    val action =
+                        HivesListFragmentDirections.actionHivesListFragmentToAddNewHiveFragment()
+                    Navigation.findNavController(requireView()).navigate(action)
+                }
+                .show()
+        }
+    }
+
+    private fun informUserForActions(position: String) {
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog
+            .setTitle(Constants.TITLE_CONFIRM)
+            .setMessage(Constants.MESSAGE_INFO)
+            .setCancelable(false)
+            .setPositiveButton("Yes") { dialogInterface, which ->
+
+                isSnackBarShowedOnce = true
+                authUser?.let {
+                    db.collection(Constants.USERS)
+                        .document(it)
+                        .collection(Constants.HIVES)
+                        .document(position)
+                        .delete()
+                }
+            }
+            .setNegativeButton("No") { dialogInterface, which ->
+                dialogInterface.cancel()
+            }
+            .create()
+            .show()
     }
 
     override fun onHiveLongClicked(position: String) {
-        //warn user and delete hive
-
-        val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog
-            .setTitle("Are you sure?")
-            .setMessage("Are you sure you want to delete this hive?")
-            .setCancelable(false)
-            .setPositiveButton("Yes") { dialogInterface, which ->
-                authUser?.let {
-                    db.collection(Constants.USERS)
-                        .document(it)
-                        .collection(Constants.HIVES)
-                        .document(position)
-                        .delete()
-                }
-            }
-            .setNegativeButton("No") { dialogInterface, which ->
-                dialogInterface.cancel()
-            }
-            .create()
-            .show()
+        informUserForActions(position)
     }
 
     override fun onHiveClicked(position: String) {
+        informUserForActions(position)
+    }
 
-        val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog
-            .setTitle("Are you sure?")
-            .setMessage("Are you sure you want to delete this hive?")
-            .setCancelable(false)
-            .setPositiveButton("Yes") { dialogInterface, which ->
-                authUser?.let {
-                    db.collection(Constants.USERS)
-                        .document(it)
-                        .collection(Constants.HIVES)
-                        .document(position)
-                        .delete()
-                }
-            }
-            .setNegativeButton("No") { dialogInterface, which ->
-                dialogInterface.cancel()
-            }
-            .create()
-            .show()
+    override fun onStop() {
+        super.onStop()
+        hivesListenerRegistration?.remove()
     }
 
 }

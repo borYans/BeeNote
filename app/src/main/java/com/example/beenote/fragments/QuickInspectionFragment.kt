@@ -10,6 +10,7 @@ import android.widget.CheckBox
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.Navigation
 import com.example.beenote.R
 import com.example.beenote.constants.Constants
@@ -146,7 +147,7 @@ class QuickInspectionFragment : Fragment() {
 
 
     private fun onCheckBoxClicked(checkBox: CheckBox) =
-        if (checkBox.isChecked) checkBox.text.toString() else "Not seen"
+        if (checkBox.isChecked) "Yes" else "No"
 
 
 

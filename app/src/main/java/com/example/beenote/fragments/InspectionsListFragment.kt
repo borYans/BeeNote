@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_inspections_list.*
 
 
@@ -86,12 +87,16 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
 
                         inspections?.let {
 
-                            val inspectionArrayList = ArrayList<QueryDocumentSnapshot>()
+                            val inspectionsList = ArrayList<QueryDocumentSnapshot>()
                             for (document in inspections) {
-                                inspectionArrayList.add(document)
+                                inspectionsList.add(document)
                             }
-                            Log.d("HIVE", "$inspectionArrayList")
-                            inspectionListAdapter.updateInspectionsList(inspectionArrayList)
+
+                            if (inspectionsList.isEmpty()) {
+                                Toasty.info(requireContext(), "Click on the button to add new inspection.", Toast.LENGTH_SHORT).show()
+                            } else {
+                                inspectionListAdapter.updateInspectionsList(inspectionsList)
+                            }
                         }
                     }
             }

@@ -10,4 +10,7 @@ object Constants {
      const val APP_ID = "41422c6253c8d90da3e465b64a9274a7"
      const val REQUEST_CODE_LOCATION = 123
      const val BASE_URL = "https://api.openweathermap.org/"
+    //alert dialog string const
+    const val TITLE_CONFIRM = "Are you sure?"
+    const val MESSAGE_INFO = "Are you sure you want to delete this hive?"
 }

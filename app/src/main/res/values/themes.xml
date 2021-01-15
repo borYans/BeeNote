@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BeeNote" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.BeeNote" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/darkerBackgroundColor</item>
         <item name="colorSecondary">@color/yellowText</item>
         <!-- Customize your theme here. -->

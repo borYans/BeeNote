@@ -1,12 +1,14 @@
 package com.example.beenote.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.beenote.R
 import com.example.beenote.constants.Constants
@@ -19,8 +21,23 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.DateFormat
 import java.util.*
 
+
 class HomeFragment : Fragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(
+            true // default to enabled
+        ) {
+            override fun handleOnBackPressed() {
+
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,  // LifecycleOwner
+            callback
+        )
+    }
 
     private val authUser = Firebase.auth.currentUser?.uid
     private var stingsListenerRegistration: ListenerRegistration? = null
@@ -83,9 +100,13 @@ class HomeFragment : Fragment() {
                             Log.d("@@@", "Error occured: $error")
                         }
                         snapshot?.let { lastInspectionDoc ->
+
                             lastInspectionDate.text = lastInspectionDoc.data?.get("lastInspection")?.let { date ->
                                 DateFormat.getDateInstance(DateFormat.SHORT)
                                     .format((date as Timestamp).toDate())
+                            }
+                            if (lastInspectionDate.text == "") { //not clean but it works.
+                                lastInspectionDate.text = "--"
                             }
 
                         }
@@ -105,7 +126,11 @@ class HomeFragment : Fragment() {
                             ).show()
                         }
                         document?.let {
-                            totalStingsHome.text = document.data?.get("stings").toString()
+                            if (document.data?.get("stings") == null){
+                                totalStingsHome.text = "0"
+                            } else {
+                                totalStingsHome.text = document.data?.get("stings").toString()
+                            }
                         }
                     }
             }
