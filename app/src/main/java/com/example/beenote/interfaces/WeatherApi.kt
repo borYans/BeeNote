@@ -11,5 +11,4 @@ interface WeatherApi {
     @GET("data/2.5/weather")
     fun getCurrentWeather(@Query("lat") lat:String, @Query("lon") lon:String, @Query("APPID") app_id:String): Call<WeatherDataModel>
 
-
 }

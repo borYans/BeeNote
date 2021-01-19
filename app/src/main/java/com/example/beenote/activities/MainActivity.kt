@@ -17,8 +17,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.jakewharton.threetenabp.AndroidThreeTen
 
+
 private lateinit var navController: NavController
-private lateinit var auth: FirebaseAuth
 
 
 
@@ -29,13 +29,6 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_splashScreen)
         setContentView(R.layout.activity_main)
 
-        auth = Firebase.auth
-        if(null == auth.currentUser) {
-            auth.signInAnonymously()
-                .addOnSuccessListener {
-                    Log.d("@@@", "Logged in successfully")
-                }
-        }
 
 
         navController = Navigation.findNavController(this, R.id.fragment)
@@ -84,10 +77,4 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, null)
     }
-
-    private fun checkApiaryLocation() {
-
-    }
-
-    
 }

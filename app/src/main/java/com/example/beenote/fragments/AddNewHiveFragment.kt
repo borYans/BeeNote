@@ -46,9 +46,9 @@ class AddNewHiveFragment : Fragment() {
                 FieldValue.serverTimestamp()
             )
 
-            if (hiveNameEditText.text.isEmpty()) {
+            if (hiveNameEditText.text.trim() == "") {
                 Toast.makeText(requireContext(), "Enter hive name.", Toast.LENGTH_SHORT).show()
-            } else if (queenAgeEditText.text.isEmpty()) {
+            } else if (queenAgeEditText.text.trim() == "") {
                 Toast.makeText(requireContext(), "Enter queen age.", Toast.LENGTH_SHORT).show()
             } else {
                 setNewHives(hive)

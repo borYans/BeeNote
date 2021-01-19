@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.beenote.R
+import com.example.beenote.application.Application
 import com.example.beenote.constants.Constants
-import com.example.beenote.interfaces.WeatherApi
-import com.example.beenote.model.ConditionData
+import com.example.beenote.model.Repository
 import com.example.beenote.model.WeatherDataModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,8 +21,6 @@ import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.math.roundToInt
 
 
@@ -59,15 +57,10 @@ class WeatherFragment() : Fragment() {
         }
     }
 
+
     private fun fetchWeather(lat: String, lon: String) {
 
-        val api = Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(WeatherApi::class.java)
-
-        val call = api.getCurrentWeather(lat, lon, Constants.APP_ID)
+        val call = (context?.applicationContext as Application).api.getCurrentWeather(lat, lon, Constants.APP_ID)
         call.enqueue(object : Callback<WeatherDataModel> {
             override fun onResponse(
                 call: Call<WeatherDataModel>?,
@@ -75,7 +68,7 @@ class WeatherFragment() : Fragment() {
             ) {
                 val weatherResponse = response?.body()
                 weatherProgressBar.visibility = View.GONE
-                val conditions = ConditionData(
+                val conditions = Repository(
                     weatherResponse?.main?.temp?.minus(273.1),
                     weatherResponse?.main?.humidity,
                     weatherResponse?.wind?.speed,
@@ -124,41 +117,41 @@ class WeatherFragment() : Fragment() {
         locationListener?.remove()
     }
 
-    private fun inspectionRatingInfo(conditions: ConditionData) {
+    private fun inspectionRatingInfo(conditions: Repository) {
         val temp = conditions.temp?.roundToInt()
         val wind = conditions.wind?.roundToInt()
         Log.d("TEMP&&HUMID", "Temperature: $temp Humidity: $wind")
 
-        if (conditions.humid!! > 95 || wind!! >= 7 || temp!! < 10) {
+        if (conditions.humid!! > 95 || wind!! >= 8 || temp!! <= 10) {
 
             updateInspectionRatingIndex(0, "Very bad")
 
-        } else if (temp in 10..14 && wind <= 6 && conditions.humid in 80..95  ) {
+        } else if (temp in 11..14 && wind <= 7 && conditions.humid in 80..95  ) {
 
-            updateInspectionRatingIndex(35, "Not safe")
+            updateInspectionRatingIndex(35, "Not advisable")
 
 
-        } else if (temp in 15..17 && wind <= 6 ) {
+        } else if (temp in 15..17 && wind <= 4 ) {
 
             updateInspectionRatingIndex(65, "Fair")
 
 
-        } else if (temp in 18..20 && wind <= 6 ) {
+        } else if (temp in 18..20 && wind <= 3 ) {
 
             updateInspectionRatingIndex(75, "Good")
 
 
-        } else if (temp in 21..23 && wind <= 6) {
+        } else if (temp in 21..23 && wind <= 2) {
 
             updateInspectionRatingIndex(85, "Very good")
 
 
-        } else if (temp in 23..25 && wind <= 6 ) {
+        } else if (temp in 23..25 && wind <= 1 ) {
 
             updateInspectionRatingIndex(90, "Almost perfect")
 
 
-        } else if (temp > 25 && wind <= 6 ) {
+        } else if (temp > 25 && wind == 0 ) {
 
             updateInspectionRatingIndex(100, "Perfect")
 

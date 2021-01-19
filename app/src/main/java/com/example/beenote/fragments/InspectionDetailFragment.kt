@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.fragment_inspection_detail.*
 
 class InspectionDetailFragment : Fragment() {
 
-    val TAG = "INSPECTIONS"
 
     private val authUser = Firebase.auth.currentUser?.uid
     private val db = FirebaseFirestore.getInstance()
@@ -65,6 +64,7 @@ class InspectionDetailFragment : Fragment() {
                             populationTxt.text = it.data?.get("population").toString()
                             honeyStoresTxt.text = it.data?.get("honeyStores").toString()
                             layingPatternTxt.text = it.data?.get("layingPattern").toString()
+                            displayNotesTxt.text = it.data?.get("notes").toString()
                             val observed = it.data?.get("observed") as List<*>
 
                             queenSeenTxt.text = observed[0].toString()

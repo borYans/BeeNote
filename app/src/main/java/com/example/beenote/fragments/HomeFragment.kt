@@ -1,6 +1,5 @@
 package com.example.beenote.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +12,7 @@ import androidx.navigation.Navigation
 import com.example.beenote.R
 import com.example.beenote.constants.Constants
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -27,14 +27,14 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val callback: OnBackPressedCallback = object : OnBackPressedCallback(
-            true // default to enabled
+            true
         ) {
             override fun handleOnBackPressed() {
 
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(
-            this,  // LifecycleOwner
+            this,
             callback
         )
     }
@@ -49,6 +49,7 @@ class HomeFragment : Fragment() {
     private var lastInspectionDateListenerRegistration: ListenerRegistration? = null
 
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var mAuth : FirebaseAuth
     private val calendar = Calendar.getInstance()
 
 
@@ -63,6 +64,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mAuth = FirebaseAuth.getInstance()
+        val currentUser = mAuth.currentUser
+
+        greetingText.text = "Welcome ${currentUser?.displayName}"
 
 
         swipeHomeRefresh.setOnRefreshListener {
@@ -70,7 +75,7 @@ class HomeFragment : Fragment() {
             swipeHomeRefresh.isRefreshing = false
         }
 
-        addNewHiveLayout.setOnClickListener {
+        googleSignInBtn.setOnClickListener {
             navigateToAddNewHiveFragment(it)
         }
 
