@@ -12,67 +12,78 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.beenote.R
 import com.example.beenote.constants.Constants
-import com.example.beenote.listeners.HiveClickListener
 import com.example.beenote.model.Hive
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_add_new_hive.*
+import kotlinx.android.synthetic.main.fragment_update_hive.*
 
 
-class AddNewHiveFragment : Fragment() {
+class UpdateHiveFragment : Fragment() {
 
     private val authUser = Firebase.auth.currentUser?.uid
     private val db = FirebaseFirestore.getInstance()
+
+    private var hiveId: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            val args = UpdateHiveFragmentArgs.fromBundle(it)
+            hiveId = args.hiveId
+        }
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_new_hive, container, false)
+        return inflater.inflate(R.layout.fragment_update_hive, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        addNewHiveBtn.setOnClickListener {
-            val hive = Hive(
-                hiveNameEditText.text.toString(),
-                queenAgeEditText.text.toString(),
-                getTextFromRadioButton(statusRadioGroup),
-                FieldValue.serverTimestamp()
-            )
+        updateHiveBtn_update.setOnClickListener {
 
-            if (hiveNameEditText.text.toString().trim().isBlank() || queenAgeEditText.text.toString().trim().isBlank() ) {
+            if (hiveNameEditText_update.text.toString().trim().isBlank()
+                    || queenAgeEditText_update.text.toString().trim().isBlank()
+            ) {
                 Toasty.info(
                     requireContext(),
                     activity?.getString(R.string.hive_data_cannot_be_empty)!!,
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                setNewHives(hive)
+
+                authUser?.let {
+                    db.collection(Constants.USERS)
+                        .document(it)
+                        .collection(Constants.HIVES)
+                        .document(hiveId!!)
+                        .update(
+                            mapOf(
+                                "hiveName" to hiveNameEditText_update.text.toString(),
+                                "queenAge" to queenAgeEditText_update.text.toString(),
+                                "hiveStatus" to getTextFromRadioButton(statusRadioGroup_update)
+                            )
+                        )
+                        .addOnSuccessListener {
+                            Toasty.success(
+                                requireContext(),
+                                activity?.getString(R.string.update_hive_success)!!,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                }
                 navigateBackToHome(it)
             }
-        }
-    }
 
-    private fun setNewHives(hive: Hive) {
-        authUser?.let {
-            db.collection(Constants.USERS)
-                .document(it)
-                .collection(Constants.HIVES)
-                .add(hive)
-                .addOnSuccessListener {
-                    Toasty.success(
-                        requireContext(),
-                        activity?.getString(R.string.successfuly_added_new_hive)!!,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
         }
     }
 
@@ -83,12 +94,10 @@ class AddNewHiveFragment : Fragment() {
         return radioBtn?.text.toString()
     }
 
-
     private fun navigateBackToHome(v: View) {
-        val action = AddNewHiveFragmentDirections.actionAddNewHiveFragmentToHomeFragment()
+        val action = UpdateHiveFragmentDirections.actionUpdateHiveFragmentToHomeFragment()
         Navigation.findNavController(v).navigate(action)
     }
-
-
-
 }
+
+

@@ -1,10 +1,146 @@
 <resources>
     <string name="app_name">BeeNote</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="beehive_location_coordinates">Beehive location coordinates</string>
-    <string name="dummyText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet leo lacus.</string>
-    <string name="title_activity_weather">WeatherActivity</string>
-    <string name="celsiusSign">°</string>
-    <string name="hello_world">Hello Square World!</string>
+
+
+    <!--Add location fragment-->
+    <string name="location_info">To provide current weather data from your apiary, please select your apiary location on the map</string>
+    <string name="add_location_buton">Add apiary location</string>
+    <string name="skip_location_button">Skip for now</string>
+
+
+    <!--Add new hive fragment-->
+    <string name="hive_name_hint_text">Hive name(max 9 characters)</string>
+    <string name="queen_age_hint_text">Queen age</string>
+    <string name="hive_status">Hive status</string>
+    <string name="hive_status_radio_btn_strong">strong</string>
+    <string name="hive_status_radio_btn_weak">weak</string>
+    <string name="hive_status_radio_btn_nucelus">nucelus</string>
+    <string name="add_new_hive_btn">Add new hive</string>
+    <string name="update_hive_button">Update hive</string>
+
+
+    <!--Add new sting fragment-->
+    <string name="add_sting_text">Tap on the number to add new sting</string>
+    <string name="total_stings_so_far">Total stings so far</string>
+    <string name="sting_information_text">Although bee venom has powerful anti-inflammatory properties and may benefit the health of your skin and immune system. Please wear protective gear.</string>
+    <string name="add_sting_button">Add sting</string>
+
+
+    <!--Hive item recyclerView-->
+    <string name="status_recycler_item">Status: </string>
+    <string name="queen_recycler_item">Queen: </string>
+    <string name="queen_recycler_endpoint">years old </string>
+
+    <!--Hive inspections recyclerView-->
+    <string name="hive_inspection_recycler_item">Hive inspection: </string>
+
+    <!--Inspection details fragment-->
+    <string name="temper_detail">Temper</string>
+    <string name="population_detail">Population</string>
+    <string name="honey_stores_detail">Honey stores</string>
+    <string name="laying_pattern_detail">Laying pattern</string>
+    <string name="queen_seen_detail">Queen seen</string>
+    <string name="capped_brood_seen_detail">Capped brood seen</string>
+    <string name="uncapped_brood_seen_detail">Uncapped brood seen</string>
+    <string name="eggs_seen_detail">Eggs seen</string>
+
+    <!--Home fragment-->
+    <string name="inspected_hives_in_the_past_7_days">Inspected hives in the past 7 days</string>
+    <string name="add_new_colony">Add new colony</string>
+    <string name="add_sting">Add sting</string>
+    <string name="view_all_hives">View all hives</string>
+    <string name="current_weather_conditions">Current weather conditions</string>
+    <string name="strong_hives">Strong hives</string>
+    <string name="weak_hives">Weak hives</string>
+    <string name="nucleus_hives">Nucleus hives</string>
+    <string name="last_inspection">Last inspection</string>
+    <string name="stings">Stings</string>
+    <string name="greeting">Welcome </string>
+    <string name="total_hives">Total hives</string>
+
+    <!--Weather fragment-->
+    <string name="celsius_sign" translatable="false">°</string>
+    <string name="wind">wind</string>
+    <string name="humidity">humidity</string>
+    <string name="clouds">clouds</string>
+    <string name="inspection_rating_index">Inspection rating index</string>
+    <string name="inspection_rating_index_very_bad">Very bad</string>
+    <string name="inspection_rating_index_not_advisable">Not advisable</string>
+    <string name="inspection_rating_index_fair">Fair</string>
+    <string name="inspection_rating_index_good">Good</string>
+    <string name="inspection_rating_index_very_good">Very good</string>
+    <string name="inspection_rating_index_safe">Safe</string>
+    <string name="inspection_rating_index_perfect">Safe</string>
+    <string name="inspection_rating_index_unknown">Unknown</string>
+    <string name="inspection_rating_index_no_inspection">No inspection</string>
+    <string name="inspection_rating_index_inspection">Inspection</string>
+
+    <!--Toasty/Snackbar messages-->
+    <string name="touch_map_info">Touch on the map to add marker for apiary location.</string>
+    <string name="empty_list_snackbar">Empty list. Want to add new hive?</string>
+    <string name="hive_data_cannot_be_empty">Hive name and queen age cannot be empty.</string>
+    <string name="enter_queen_age">Enter queen age.</string>
+    <string name="successfuly_added_new_hive">Successfully added new colony.</string>
+    <string name="successfuly_added_new_inspection">Successfully added new inspection.</string>
+    <string name="sting_added">stings added.</string>
+    <string name="click_on_the_button">Click on the button to add new inspection.</string>
+    <string name="no_internet_connection">No internet connection.</string>
+    <string name="empty_list_snackbar_add">Add</string>
+    <string name="update_hive_success">You have updated hive successfully.</string>
+
+    <!--Alert dialog messages-->
+    <string name="confirm_location_title">Confirm your location"</string>
+    <string name="confirm_location_message">Are you sure you want to confirm apiary location?</string>
+    <string name="positive_message">Yes</string>
+    <string name="negative_message">No</string>
+    <string name="title_confirm_deletion">Are you sure?</string>
+    <string name="message_confirm_deletion">Are you sure you want to delete this hive?</string>
+    <string name="message_confirm_deletion_inspection">Are you sure you want to delete this inspection?</string>
+
+    <!--Sign in fragment-->
+    <string name="welcome_sign_in_text">Welcome to BeeNotes</string>
+    <string name="welcome_sign_in_text_quote" translatable="false">"If we disappear, we’re taking you with us." - Ray Bradbury</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_in_google" translatable="false">Google</string>
+    <string name="sign_in_facebook" translatable="false">Facebook</string>
+
+    <!--Quick inspection-->
+    <string name="eggs_seen">Eggs</string>
+    <string name="what_you_see">What you see?</string>
+    <string name="notes">Notes?</string>
+    <string name="capped_brood">Capped brood</string>
+    <string name="uncapped_brood">Uncapped brood</string>
+    <string name="queen">Queen</string>
+    <string name="laying_pattern">Laying pattern?</string>
+    <string name="honey_stores">Honey stores?</string>
+    <string name="how_is_the_population">How is the population?</string>
+    <string name="what_is_the_temper">What is the temper?</string>
+    <string name="add_note">Add note</string>
+    <string name="calm">Calm</string>
+    <string name="nervous">Nervous</string>
+    <string name="angry">Aggressive</string>
+    <string name="low">Low</string>
+    <string name="moderate">Moderate</string>
+    <string name="heavy">Heavy</string>
+    <string name="average">Average</string>
+    <string name="high">High</string>
+    <string name="poor">Poor</string>
+    <string name="fair">Fair</string>
+    <string name="perfect">Perfect</string>
+    <string name="finish_inspection">Finish inspection</string>
+
+
+    <!--Confirm/Negative-->
+    <string name="yes">yes</string>
+    <string name="no">No</string>
+
+
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="beehive_location_coordinates" translatable="false">Beehive location coordinates</string>
+    <string name="dummyText" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet leo lacus.</string>
+    <string name="title_activity_weather" translatable="false">WeatherActivity</string>
+    <string name="hello_world" translatable="false">Hello Square World!</string>
+
+
 </resources>

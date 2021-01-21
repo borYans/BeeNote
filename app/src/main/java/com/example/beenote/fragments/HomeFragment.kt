@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
     private var lastInspectionDateListenerRegistration: ListenerRegistration? = null
 
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var mAuth : FirebaseAuth
+    private lateinit var mAuth: FirebaseAuth
     private val calendar = Calendar.getInstance()
 
 
@@ -67,7 +67,9 @@ class HomeFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
 
-        greetingText.text = "Welcome ${currentUser?.displayName}"
+        val greeting = activity?.getString(R.string.greeting)
+
+        greetingText.text = "$greeting ${currentUser?.displayName}"
 
 
         swipeHomeRefresh.setOnRefreshListener {
@@ -94,6 +96,7 @@ class HomeFragment : Fragment() {
         }
 
     }
+
 
     private fun refreshHomeFragmentData() {
         lastInspectionDateListenerRegistration =
@@ -186,7 +189,7 @@ class HomeFragment : Fragment() {
                 db.collection(Constants.USERS)
                     .document(it)
                     .collection(Constants.HIVES)
-                    .whereEqualTo("hiveStatus", "strong")
+                    .whereEqualTo("hiveStatus", activity?.getString(R.string.hive_status_radio_btn_strong))
                     .addSnapshotListener { snapshots, error ->
                         error?.let {
                             Toast.makeText(
@@ -209,7 +212,7 @@ class HomeFragment : Fragment() {
                 db.collection(Constants.USERS)
                     .document(it)
                     .collection(Constants.HIVES)
-                    .whereEqualTo("hiveStatus", "weak")
+                    .whereEqualTo("hiveStatus", activity?.getString(R.string.hive_status_radio_btn_weak))
                     .addSnapshotListener { snapshots, error ->
                         error?.let {
                             Toast.makeText(
@@ -231,7 +234,7 @@ class HomeFragment : Fragment() {
                 db.collection(Constants.USERS)
                     .document(it)
                     .collection(Constants.HIVES)
-                    .whereEqualTo("hiveStatus", "nucleus")
+                    .whereEqualTo("hiveStatus", activity?.getString(R.string.hive_status_radio_btn_nucelus))
                     .addSnapshotListener { snapshots, error ->
                         error?.let {
                             Toast.makeText(

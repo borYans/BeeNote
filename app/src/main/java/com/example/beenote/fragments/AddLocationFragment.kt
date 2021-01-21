@@ -30,7 +30,7 @@ class AddLocationFragment : Fragment() {
 
         }
 
-        skipBtn.setOnClickListener {
+        addNewHiveBtn.setOnClickListener {
             val action = AddLocationFragmentDirections.actionAddLocationFragmentToHomeFragment()
             Navigation.findNavController(it).navigate(action)
         }

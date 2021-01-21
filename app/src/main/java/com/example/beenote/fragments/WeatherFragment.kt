@@ -76,7 +76,7 @@ class WeatherFragment() : Fragment() {
                 )
                 inspectionRatingInfo(conditions)
                 currentTemperature.visibility = View.VISIBLE
-                currentTemperature.text = "${conditions.temp?.roundToInt().toString() } ${activity?.resources?.getString(R.string.celsiusSign)}"
+                currentTemperature.text = "${conditions.temp?.roundToInt().toString() } ${activity?.resources?.getString(R.string.celsius_sign)}"
                 humidity.text = conditions.humid?.toString() + "%"
                 windSpeedTxt.text = conditions.wind?.roundToInt().toString() + "m/s"
                 cloudCoverTxt.text = conditions.clouds?.toString() + "%"
@@ -86,7 +86,7 @@ class WeatherFragment() : Fragment() {
             }
 
             override fun onFailure(call: Call<WeatherDataModel>?, t: Throwable?) {
-                Toasty.info(requireContext(), "No internet connection.", Toast.LENGTH_LONG).show()
+                Toasty.info(requireContext(), activity?.getString(R.string.no_internet_connection)!!, Toast.LENGTH_LONG).show()
             }
         })
 
@@ -124,40 +124,40 @@ class WeatherFragment() : Fragment() {
 
         if (conditions.humid!! > 95 || wind!! >= 8 || temp!! <= 10) {
 
-            updateInspectionRatingIndex(0, "Very bad")
+            updateInspectionRatingIndex(0, activity?.getString(R.string.inspection_rating_index_very_bad)!!)
 
         } else if (temp in 11..14 && wind <= 7 && conditions.humid in 80..95  ) {
 
-            updateInspectionRatingIndex(35, "Not advisable")
+            updateInspectionRatingIndex(35, activity?.getString(R.string.inspection_rating_index_not_advisable)!!)
 
 
         } else if (temp in 15..17 && wind <= 4 ) {
 
-            updateInspectionRatingIndex(65, "Fair")
+            updateInspectionRatingIndex(65, activity?.getString(R.string.inspection_rating_index_fair)!!)
 
 
         } else if (temp in 18..20 && wind <= 3 ) {
 
-            updateInspectionRatingIndex(75, "Good")
+            updateInspectionRatingIndex(75, activity?.getString(R.string.inspection_rating_index_good)!!)
 
 
         } else if (temp in 21..23 && wind <= 2) {
 
-            updateInspectionRatingIndex(85, "Very good")
+            updateInspectionRatingIndex(85, activity?.getString(R.string.inspection_rating_index_very_good)!!)
 
 
         } else if (temp in 23..25 && wind <= 1 ) {
 
-            updateInspectionRatingIndex(90, "Almost perfect")
+            updateInspectionRatingIndex(90, activity?.getString(R.string.inspection_rating_index_safe)!!)
 
 
         } else if (temp > 25 && wind == 0 ) {
 
-            updateInspectionRatingIndex(100, "Perfect")
+            updateInspectionRatingIndex(100, activity?.getString(R.string.inspection_rating_index_safe)!!)
 
 
         } else {
-            updateInspectionRatingIndex(0, "Unknown")
+            updateInspectionRatingIndex(0, activity?.getString(R.string.inspection_rating_index_unknown)!!)
 
         }
     }

@@ -19,7 +19,7 @@
 
 
             <TextView
-                android:id="@+id/hiveStatus"
+                android:id="@+id/hiveStatus_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -30,10 +30,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/queenAgeEditText" />
+                app:layout_constraintTop_toBottomOf="@+id/queenAgeEditText_update" />
 
             <EditText
-                android:id="@+id/hiveNameEditText"
+                android:id="@+id/hiveNameEditText_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -46,7 +46,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <EditText
-                android:id="@+id/queenAgeEditText"
+                android:id="@+id/queenAgeEditText_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -58,17 +58,17 @@
                 android:textColorHint="@color/greyText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hiveNameEditText" />
+                app:layout_constraintTop_toBottomOf="@+id/hiveNameEditText_update" />
 
             <RadioGroup
-                android:id="@+id/statusRadioGroup"
+                android:id="@+id/statusRadioGroup_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/hiveStatus"
-                app:layout_constraintTop_toBottomOf="@+id/hiveStatus">
+                app:layout_constraintStart_toStartOf="@+id/hiveStatus_update"
+                app:layout_constraintTop_toBottomOf="@+id/hiveStatus_update">
 
                 <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/strongRadioBtn"
+                    android:id="@+id/strongRadioBtn_update"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -77,10 +77,10 @@
                     android:text="@string/hive_status_radio_btn_strong"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/hiveStatus" />
+                    app:layout_constraintTop_toBottomOf="@id/hiveStatus_update" />
 
                 <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/weakRadioBtn"
+                    android:id="@+id/weakRadioBtn_update"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
@@ -89,10 +89,10 @@
                     android:text="@string/hive_status_radio_btn_weak"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/strongRadioBtn" />
+                    app:layout_constraintTop_toBottomOf="@id/strongRadioBtn_update" />
 
                 <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/nucleusRadioButon"
+                    android:id="@+id/nucleusRadioButon_update"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
@@ -102,32 +102,18 @@
                     android:layout_marginBottom="100dp"
                     android:textColor="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/weakRadioBtn" />
+                    app:layout_constraintTop_toBottomOf="@id/weakRadioBtn_update" />
 
 
             </RadioGroup>
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/addNewHiveBtn"
+                android:id="@+id/updateHiveBtn_update"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:alpha=".8"
-                android:background="@drawable/buttons"
-                android:text="@string/add_new_hive_btn"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/updateHiveBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:alpha=".8"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:background="@drawable/buttons"
                 android:text="@string/update_hive_button"
                 android:textColor="@color/white"

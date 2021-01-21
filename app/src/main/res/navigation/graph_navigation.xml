@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_hivesListFragment_to_addNewHiveFragment"
             app:destination="@id/addNewHiveFragment" />
+        <action
+            android:id="@+id/action_hivesListFragment_to_updateHiveFragment"
+            app:destination="@id/updateHiveFragment" />
     </fragment>
     <fragment
         android:id="@+id/inspectionsListFragment"
@@ -148,5 +151,16 @@
         <action
             android:id="@+id/action_signInFragment_to_splashScreenFragment"
             app:destination="@id/splashScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateHiveFragment"
+        android:name="com.example.beenote.fragments.UpdateHiveFragment"
+        android:label="UpdateHiveFragment" >
+        <action
+            android:id="@+id/action_updateHiveFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="hive_id"
+            app:argType="string" />
     </fragment>
 </navigation>

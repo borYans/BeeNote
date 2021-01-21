@@ -93,7 +93,7 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
                             }
 
                             if (inspectionsList.isEmpty()) {
-                                Toasty.info(requireContext(), "Click on the button to add new inspection.", Toast.LENGTH_SHORT).show()
+                                Toasty.info(requireContext(), activity?.getString(R.string.click_on_the_button)!!, 1000).show()
                             } else {
                                 inspectionListAdapter.updateInspectionsList(inspectionsList)
                             }
@@ -118,11 +118,11 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
 
     override fun onInspectionLongCLick(inspection_id: String) {
         val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("Are you sure?")
-            .setMessage("Are you sure you want to delete this inspection?")
+        alertDialog.setTitle(activity?.getString(R.string.title_confirm_deletion))
+            .setMessage(activity?.getString(R.string.message_confirm_deletion_inspection))
             .setCancelable(false)
             .setIcon(R.drawable.ic_info_24)
-            .setPositiveButton("Yes") { dialogInterface, which ->
+            .setPositiveButton(activity?.getString(R.string.positive_message)) { dialogInterface, which ->
                 authUser?.let {
                     db.collection(Constants.USERS)
                         .document(it)
@@ -133,7 +133,7 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
                         .delete()
                 }
             }
-            .setNegativeButton("No") { dialogInterface, which ->
+            .setNegativeButton(activity?.getString(R.string.negative_message)) { dialogInterface, which ->
                 dialogInterface.cancel()
             }
             .create()

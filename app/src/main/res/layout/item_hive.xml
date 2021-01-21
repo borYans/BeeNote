@@ -18,9 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="HIVE 1"
-            android:shadowRadius="2"
             android:shadowColor="@color/yellowText"
+            android:shadowRadius="2"
+            android:text="HIVE 1"
             android:textColor="@color/yellowText"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="Status: weak"
+            android:text="@string/status_recycler_item"
             android:textColor="@color/greyText"
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/queenBeeAgeTxt"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="Queen: 2 years"
+            android:text="@string/queen_recycler_item"
             android:textColor="@color/greyText"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -56,17 +56,17 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_delete_hive"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
         <ImageView
-            android:id="@+id/updateHive"
+            android:id="@+id/editHIve"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_edit_hive"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:src="@drawable/ic_outline_edit_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

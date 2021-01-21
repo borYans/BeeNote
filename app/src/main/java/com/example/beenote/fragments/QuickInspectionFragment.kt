@@ -90,7 +90,7 @@ class QuickInspectionFragment : Fragment() {
                 .addOnSuccessListener {
                     Toasty.success(
                         requireContext(),
-                        "Successfully added new inspection",
+                        activity?.getString(R.string.successfuly_added_new_inspection)!!,
                         Toast.LENGTH_SHORT
                     ).show()
 
@@ -147,8 +147,7 @@ class QuickInspectionFragment : Fragment() {
 
 
     private fun onCheckBoxClicked(checkBox: CheckBox) =
-        if (checkBox.isChecked) "Yes" else "No"
-
+        if (checkBox.isChecked) activity?.getString(R.string.yes)!! else activity?.getString(R.string.no)!!
 
 
 }

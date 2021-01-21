@@ -41,13 +41,11 @@ class HivesListFragment : Fragment(), HiveClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         inspectionsRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = hivesListAdapter
         }
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -82,10 +80,10 @@ class HivesListFragment : Fragment(), HiveClickListener {
 
     private fun askForAddingNewHive(shown: Boolean) {
         if (!shown) {
-            Snackbar.make(requireView(), "Empty list. Want to add new hive?", Snackbar.LENGTH_LONG)
+            Snackbar.make(requireView(), activity?.getText(R.string.empty_list_snackbar)!!, Snackbar.LENGTH_LONG)
                 .setBackgroundTint(resources.getColor(R.color.darkBackgroundColor))
                 .setActionTextColor(resources.getColor(R.color.yellowText))
-                .setAction("Add") {
+                .setAction(activity?.getString(R.string.empty_list_snackbar_add)) {
                     val action =
                         HivesListFragmentDirections.actionHivesListFragmentToAddNewHiveFragment()
                     Navigation.findNavController(requireView()).navigate(action)
@@ -97,10 +95,10 @@ class HivesListFragment : Fragment(), HiveClickListener {
     private fun informUserForActions(position: String) {
         val alertDialog = AlertDialog.Builder(requireContext())
         alertDialog
-            .setTitle(Constants.TITLE_CONFIRM)
-            .setMessage(Constants.MESSAGE_INFO)
+            .setTitle(activity?.getString(R.string.title_confirm_deletion))
+            .setMessage(activity?.getString(R.string.message_confirm_deletion))
             .setCancelable(false)
-            .setPositiveButton("Yes") { dialogInterface, which ->
+            .setPositiveButton(activity?.getString(R.string.positive_message)) { dialogInterface, which ->
 
                 isSnackBarShowedOnce = true
                 authUser?.let {
@@ -111,7 +109,7 @@ class HivesListFragment : Fragment(), HiveClickListener {
                         .delete()
                 }
             }
-            .setNegativeButton("No") { dialogInterface, which ->
+            .setNegativeButton(activity?.getString(R.string.negative_message)) { dialogInterface, which ->
                 dialogInterface.cancel()
             }
             .create()
@@ -125,6 +123,7 @@ class HivesListFragment : Fragment(), HiveClickListener {
     override fun onHiveClicked(position: String) {
         informUserForActions(position)
     }
+
 
     override fun onStop() {
         super.onStop()

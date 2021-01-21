@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.beenote.listeners.HiveClickListener
 import com.example.beenote.R
 import com.example.beenote.fragments.HivesListFragmentDirections
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.item_hive.view.*
 
 
@@ -65,9 +62,8 @@ class HivesRecyclerAdapter(
 
         val docs = items[position]
         holder.itemView.hiveNameTxt.text = docs.get("hiveName").toString()
-        holder.itemView.hiveStatusTxt.text = "Status: " + docs.get("hiveStatus").toString()
-        holder.itemView.queenBeeAgeTxt.text = "Queen age: " + docs.get("queenAge").toString()
-        // holder.itemView.dateCreatedTxt.text = docs.get("dateCreated").toString()
+        holder.itemView.hiveStatusTxt.text = "${holder.itemView.context.getString(R.string.status_recycler_item)} ${docs.get("hiveStatus").toString()}"
+        holder.itemView.queenBeeAgeTxt.text = "${holder.itemView.context.getString(R.string.queen_recycler_item)} ${docs.get("queenAge").toString()} ${holder.itemView.context.getString(R.string.queen_recycler_endpoint)}"
 
         holder.itemView.setOnClickListener {
             val action =
@@ -76,6 +72,10 @@ class HivesRecyclerAdapter(
         }
         holder.itemView.deleteHive.setOnClickListener {
             hiveClickListener.onHiveClicked(docs.id)
+        }
+
+        holder.itemView.editHIve.setOnClickListener {
+            Navigation.findNavController(it).navigate(HivesListFragmentDirections.actionHivesListFragmentToUpdateHiveFragment(docs.id))
         }
     }
 
@@ -105,7 +105,6 @@ class HiveItemDiffCallback(
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return oldHivesList[oldItemPosition] === newHivesList[newItemPosition]
     }
-
 
 }
 

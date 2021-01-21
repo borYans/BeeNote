@@ -11,8 +11,6 @@ object Constants {
      const val REQUEST_CODE_LOCATION = 123
      const val BASE_URL = "https://api.openweathermap.org/"
     //alert dialog string const
-    const val TITLE_CONFIRM = "Are you sure?"
-    const val MESSAGE_INFO = "Are you sure you want to delete this hive?"
 
     //firebaseAuth
     const val RC_SIGN_IN = 120

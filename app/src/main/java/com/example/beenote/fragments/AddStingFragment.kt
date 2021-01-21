@@ -55,13 +55,13 @@ class AddStingFragment : Fragment() {
 
                 Toasty.success(
                     requireContext(),
-                    "$stingCounter stings added.",
+                    "$stingCounter ${activity?.getString(R.string.sting_added)}",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
                 Toasty.info(
                     requireContext(),
-                    "Tap on the number to add new sting.",
+                    activity?.getString(R.string.add_sting_text)!!,
                     Toast.LENGTH_SHORT
                 ).show()
 

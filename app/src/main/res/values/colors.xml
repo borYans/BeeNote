@@ -9,11 +9,13 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="darkerBackgroundColor">#1B1E27</color>
+    <color name="darkestBackgroundColor">#121629</color>
     <color name="darkBackgroundColor">#2F3B56</color>
     <color name="randomColor">#B42B4582</color>
 
     <color name="centerMainBakcgroundColor">#282C39</color>
     <color name="experimentalColor">#2F3342</color>
+    <color name="experimentalColor1">#343847</color>
 
     <color name="detailScreeNotesColor">#bbbfca</color>
 

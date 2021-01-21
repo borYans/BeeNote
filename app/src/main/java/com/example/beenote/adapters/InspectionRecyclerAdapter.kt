@@ -53,7 +53,7 @@ class InspectionRecyclerAdapter(
     override fun onBindViewHolder(holder: InspectionViewHolder, position: Int) {
 
         val inspections = items[position]
-        holder.itemView.dateOfInspection.text ="Hive inspection: ${inspections.get("dateCreated").toString()}"
+        holder.itemView.dateOfInspection.text ="${holder.itemView.context.getString(R.string.hive_inspection_recycler_item)} ${inspections.get("dateCreated").toString()}"
 
 
         holder.itemView.setOnClickListener {

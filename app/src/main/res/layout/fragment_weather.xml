@@ -157,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.7"
-                        android:text="Humidity"
+                        android:text="@string/humidity"
                         android:textColor="@color/white"
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="@+id/humidity"
@@ -169,7 +169,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.7"
-                        android:text="Wind"
+                        android:text="@string/wind"
                         android:textColor="@color/white"
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="@+id/windSpeedTxt"
@@ -181,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.7"
-                        android:text="Clouds"
+                        android:text="@string/clouds"
                         android:textColor="@color/white"
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="@+id/cloudCoverTxt"
@@ -219,7 +219,7 @@
                         android:layout_marginStart="0dp"
                         android:layout_marginBottom="20dp"
                         android:alpha="0.7"
-                        android:text="No inspection"
+                        android:text="@string/inspection_rating_index_no_inspection"
                         android:textColor="@color/white"
                         android:textSize="11sp" />
 
@@ -232,7 +232,7 @@
                         android:layout_marginEnd="0dp"
                         android:layout_marginBottom="20dp"
                         android:alpha="0.7"
-                        android:text="Inspection"
+                        android:text="@string/inspection_rating_index_inspection"
                         android:textColor="@color/white"
                         android:textSize="11sp" />
 
@@ -244,7 +244,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="3dp"
                         android:layout_marginEnd="10dp"
-                        android:text="Perfect"
+                        android:text="@string/perfect"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
@@ -270,7 +270,7 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginTop="25dp"
                         android:gravity="center"
-                        android:text="Inspection Rating Index"
+                        android:text="@string/inspection_rating_index"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 

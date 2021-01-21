@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="24.12.2020"
+            android:text="@string/hive_inspection_recycler_item"
             android:textColor="@color/greyText"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"

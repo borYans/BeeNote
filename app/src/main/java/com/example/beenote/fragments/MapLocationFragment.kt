@@ -62,12 +62,12 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
         addLocationFloatingBtn.setOnClickListener {
 
             if (apiaryLatitude == null && apiaryLongitude == null) {
-                Toasty.info(requireContext(), "Touch on the map to add marker for apiary location.", Toast.LENGTH_LONG).show()
+                Toasty.info(requireContext(), activity?.getString(R.string.touch_map_info)!!, Toast.LENGTH_LONG).show()
             } else {
                 val alert = AlertDialog.Builder(requireContext())
-                alert.setTitle("Confirm your location")
-                    .setMessage("Are you sure you want to confirm apiary location?")
-                    .setPositiveButton("Yes") { dialogInterface, which ->
+                alert.setTitle(activity?.getString(R.string.confirm_location_title))
+                    .setMessage(activity?.getString(R.string.confirm_location_message))
+                    .setPositiveButton(activity?.getString(R.string.positive_message)) { dialogInterface, which ->
 
                         authUser?.let {
                             db.collection(Constants.USERS)
@@ -88,7 +88,7 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
                         Navigation.findNavController(it).navigate(action)
 
                     }
-                    .setNegativeButton("No") { dialogInterface, which ->
+                    .setNegativeButton(activity?.getString(R.string.negative_message)) { dialogInterface, which ->
                         dialogInterface.cancel()
                     }
                     .create()

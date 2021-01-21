@@ -21,8 +21,8 @@
             android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:padding="15dp"
-            android:text="@string/dummyText"
-            android:textColor="@color/yellowText"
+            android:text="@string/location_info"
+            android:textColor="@color/greyText"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/skipBtn"
+            android:id="@+id/addNewHiveBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -50,7 +50,7 @@
             android:layout_marginBottom="5dp"
             android:alpha=".8"
             android:background="@drawable/buttons"
-            android:text="Skip for now"
+            android:text="@string/skip_location_button"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -66,11 +66,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/buttons"
-            android:text="Add apiary location"
+            android:text="@string/add_location_buton"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/skipBtn"
+            app:layout_constraintBottom_toTopOf="@+id/addNewHiveBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
