@@ -3,6 +3,13 @@
     <!-- TODO: Remove or change this placeholder text -->
 
 
+    <!-- Facebook Login setup -->
+    <string name="facebook_app_id" translatable="false">1863877137095783</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb1863877137095783</string>
+
+
+
+
     <!--Add location fragment-->
     <string name="location_info">To provide current weather data from your apiary, please select your apiary location on the map</string>
     <string name="add_location_buton">Add apiary location</string>
@@ -10,7 +17,7 @@
 
 
     <!--Add new hive fragment-->
-    <string name="hive_name_hint_text">Hive name(max 9 characters)</string>
+    <string name="hive_name_hint_text">Hive name (max 9 characters)</string>
     <string name="queen_age_hint_text">Queen age</string>
     <string name="hive_status">Hive status</string>
     <string name="hive_status_radio_btn_strong">strong</string>

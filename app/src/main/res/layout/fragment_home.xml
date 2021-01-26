@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
+
+
+
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeHomeRefresh"
         android:layout_width="match_parent"
@@ -20,17 +24,42 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/gradient_main_background"
                 android:gravity="start"
-                android:padding="10dp"
                 tools:context=".fragments.HomeFragment">
+
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/Theme.BeeNote"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/my_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="?attr/colorPrimary"
+                        android:elevation="4dp"
+                        android:theme="@style/Theme.BeeNote"
+                        app:menu="@menu/home_toolbar_menu"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        app:popupTheme="@style/Theme.BeeNote"
+                        app:titleTextColor="@color/white" >
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.AppBarLayout>
 
 
                 <TextView
                     android:id="@+id/inspectedHiveTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="9dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:gravity="center"
                     android:shadowColor="@color/yellowText"
                     android:shadowRadius="40"
@@ -47,9 +76,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/inspectedHiveTxt"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:alpha=".5"
                     android:fontFamily="sans-serif-light"
@@ -62,15 +91,16 @@
                     app:layout_constraintBottom_toTopOf="@+id/inspectedHiveTxt"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/inspectedHiveTxt"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:alpha=".5"
                     android:fontFamily="sans-serif-light"
@@ -89,6 +119,9 @@
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/curved_detail_screen_layout"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -288,165 +321,105 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/googleSignInBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/inverted_curved_layout_background"
-                    android:clickable="true"
-                    android:orientation="horizontal"
-                    android:padding="8dp"
+                    android:drawableEnd="@drawable/ic_add_new_colony_24"
+                    android:fontFamily="sans-serif-thin"
+                    android:gravity="fill"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:text="Add new hive"
+                    android:textAllCaps="false"
+                    android:textColor="@color/greyText"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/addNewStingLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView">
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:text="@string/add_new_colony"
-                        android:textColor="@color/greyText"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:alpha="0.7"
-                        android:src="@drawable/ic_add_new_colony_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/viewAllHivesLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/inverted_curved_layout_background"
-                    android:clickable="true"
-                    android:orientation="horizontal"
-                    android:padding="8dp"
+                    android:drawableEnd="@drawable/ic_hives_list_24"
+                    android:fontFamily="sans-serif-thin"
+                    android:gravity="fill"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:text="View all hives"
+                    android:textAllCaps="false"
+                    android:textColor="@color/greyText"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/currentWeatherConditionsLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/addNewStingLayout">
+                    app:layout_constraintTop_toBottomOf="@+id/addNewStingLayout" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:text="@string/view_all_hives"
-                        android:textColor="@color/greyText"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0.7"
-                        android:src="@drawable/ic_hives_list_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/currentWeatherConditionsLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/inverted_curved_layout_background"
-                    android:clickable="true"
-                    android:orientation="horizontal"
-                    android:padding="8dp"
+                    android:drawableEnd="@drawable/ic_weather_24"
+                    android:fontFamily="sans-serif-thin"
+                    android:gravity="fill"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:text="Current weather conditions"
+                    android:textAllCaps="false"
+                    android:textColor="@color/greyText"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/viewAllHivesLayout">
+                    app:layout_constraintTop_toBottomOf="@+id/viewAllHivesLayout" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:text="@string/current_weather_conditions"
-                        android:textColor="@color/greyText"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0.7"
-                        android:src="@drawable/ic_weather_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/addNewStingLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="9dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/inverted_curved_layout_background"
-                    android:clickable="true"
-                    android:orientation="horizontal"
-                    android:padding="8dp"
+                    android:drawableEnd="@drawable/ic_sting_24"
+                    android:fontFamily="sans-serif-thin"
+                    android:gravity="fill"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="30dp"
+                    android:text="Add sting"
+                    android:textAllCaps="false"
+                    android:textColor="@color/greyText"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/viewAllHivesLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/googleSignInBtn">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:gravity="center"
-                        android:text="@string/add_sting"
-                        android:textColor="@color/greyText"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0.7"
-                        android:src="@drawable/ic_sting_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/googleSignInBtn" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

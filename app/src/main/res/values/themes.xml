@@ -1,14 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.BeeNote" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="colorPrimary">@color/darkerBackgroundColor</item>
         <item name="colorSecondary">@color/yellowText</item>
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.splashScreen" parent="Theme.MaterialComponents.Light.DarkActionBar">
+
+    <style name="Theme.splashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/darkBackgroundColor</item>
         <item name="colorSecondary">@color/yellowText</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="android:colorSecondary">@color/yellowText</item>
         <item name="android:windowBackground">@drawable/splash_image</item>
         <item name="android:statusBarColor">@color/black</item>

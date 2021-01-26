@@ -8,12 +8,57 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:686584203394:android:0ae09353b886b2fb4f8c9b",
+        "android_client_info": {
+          "package_name": "com.boryans.beenote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686584203394-52tqnvfgbhms8d4c9vra1f92bhmt7boc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.boryans.beenote",
+            "certificate_hash": "ec827108513f318ca4015b46e2bfdd099892bc8b"
+          }
+        },
+        {
+          "client_id": "686584203394-0l28tpg8gocv7qh2nvni714ib7td4q72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrfnINRjqq4nju-Wup7pzcTkT00g_fiyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686584203394-0l28tpg8gocv7qh2nvni714ib7td4q72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:686584203394:android:4533f836a8211f764f8c9b",
         "android_client_info": {
           "package_name": "com.example.beenote"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "686584203394-thr2h0nq9tq4usu9gpe63aso2ttkg0gu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.beenote",
+            "certificate_hash": "ec827108513f318ca4015b46e2bfdd099892bc8b"
+          }
+        },
         {
           "client_id": "686584203394-0l28tpg8gocv7qh2nvni714ib7td4q72.apps.googleusercontent.com",
           "client_type": 3

@@ -13,6 +13,8 @@
     <color name="darkBackgroundColor">#2F3B56</color>
     <color name="randomColor">#B42B4582</color>
 
+    <color name="login_background">#f9fcfb</color>
+
     <color name="centerMainBakcgroundColor">#282C39</color>
     <color name="experimentalColor">#2F3342</color>
     <color name="experimentalColor1">#343847</color>
@@ -22,6 +24,9 @@
 
     <color name="yellowText">#DFC75F</color>
     <color name="greyText">#C2BFAF</color>
+    <color name="google_button">#2E2E2E</color>
+
+    <color name="fb_button_blue">#3b5998</color>
 
     <color name="orangeShadowBackground">#f39233</color>
     <color name="detailTextDataColor">#01c5c4</color>

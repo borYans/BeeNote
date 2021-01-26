@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_main_background"
-            android:padding="20dp"
+            android:padding="10dp"
             tools:context=".activities.AddCoordFragment">
 
 
@@ -23,10 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:padding="20dp"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/hive_status"
                 android:textColor="@color/yellowText"
-                android:textSize="15sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -37,9 +38,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:drawableEnd="@drawable/ic_add_new_colony_24"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/hive_name_hint_text"
                 android:maxLength="8"
+                android:padding="20dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/greyText"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -53,6 +56,7 @@
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/queen_age_hint_text"
                 android:inputType="number"
+                android:padding="20dp"
                 android:maxLength="2"
                 android:textColor="@color/white"
                 android:textColorHint="@color/greyText"
@@ -64,6 +68,7 @@
                 android:id="@+id/statusRadioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="20dp"
                 app:layout_constraintStart_toStartOf="@+id/hiveStatus"
                 app:layout_constraintTop_toBottomOf="@+id/hiveStatus">
 

@@ -7,10 +7,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/hive"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="95dp"
         android:layout_margin="5dp"
         android:background="@drawable/curved_detail_screen_layout"
-        android:padding="12dp">
+        android:padding="15dp">
 
 
         <TextView

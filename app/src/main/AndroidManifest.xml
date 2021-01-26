@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.beenote">
+    package="com.boryans.beenote">
 
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -10,13 +10,13 @@
 
 
     <application
-        android:name=".application.Application"
+        android:name="com.boryans.beenote.application.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_bee"
         android:supportsRtl="true"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
+        android:theme="@style/Theme.BeeNote">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBBOVbZd0CD4OsKWKwwKKi7j7hKRMiGhTA"/>
@@ -24,7 +24,7 @@
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.boryans.beenote.activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +36,26 @@
                 android:name="com.google.android.geo.API_KEY"
                 android:value="AIzaSyBBOVbZd0CD4OsKWKwwKKi7j7hKRMiGhTA"/>
         </activity>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
+
     </application>
 
 </manifest>
