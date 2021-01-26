@@ -7,9 +7,12 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
+import com.facebook.login.LoginManager
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -22,22 +25,6 @@ import java.util.*
 
 
 class HomeFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val callback: OnBackPressedCallback = object : OnBackPressedCallback(
-            true
-        ) {
-            override fun handleOnBackPressed() {
-
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            this,
-            callback
-        )
-    }
 
     private val authUser = Firebase.auth.currentUser?.uid
     private var stingsListenerRegistration: ListenerRegistration? = null
@@ -66,24 +53,22 @@ class HomeFragment : Fragment() {
         (activity as AppCompatActivity?)?.setSupportActionBar(my_toolbar)
         setHasOptionsMenu(true)
 
+        mAuth = FirebaseAuth.getInstance()
+        val currentUser = mAuth.currentUser
+
         my_toolbar.inflateMenu(R.menu.home_toolbar_menu)
 
         my_toolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.signOutMenu -> {
-                    Firebase.auth.signOut()
-                    Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionHomeFragmentToSignInFragment())
+                    mAuth.signOut()
+                    LoginManager.getInstance().logOut()
+                    Navigation.findNavController(requireView())
+                        .navigate(HomeFragmentDirections.actionHomeFragmentToSignInFragment())
                 }
             }
             true
         }
-
-
-
-
-
-        mAuth = FirebaseAuth.getInstance()
-        val currentUser = mAuth.currentUser
 
         val greeting = activity?.getString(R.string.greeting)
 
@@ -331,14 +316,14 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-      inflater.inflate(R.menu.home_toolbar_menu, menu)
+        inflater.inflate(R.menu.home_toolbar_menu, menu)
         super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-           R.id.signOutMenu -> Firebase.auth.signOut()
-       }
+            R.id.signOutMenu -> Firebase.auth.signOut()
+        }
         return true
     }
 }

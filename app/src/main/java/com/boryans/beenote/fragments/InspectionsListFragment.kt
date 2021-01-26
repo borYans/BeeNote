@@ -93,7 +93,7 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
                             }
 
                             if (inspectionsList.isEmpty()) {
-                                Toasty.info(requireContext(), activity?.getString(R.string.click_on_the_button)!!, 1000).show()
+                              //  Toasty.info(requireContext(), activity?.getString(R.string.click_on_the_button)!!, 1000).show()
                             } else {
                                 inspectionListAdapter.updateInspectionsList(inspectionsList)
                             }
@@ -116,7 +116,7 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
         Navigation.findNavController(v).navigate(action)
     }
 
-    override fun onInspectionLongCLick(inspection_id: String) {
+    override fun onInspectionLongCLick(position: String) {
         val alertDialog = AlertDialog.Builder(requireContext())
         alertDialog.setTitle(activity?.getString(R.string.title_confirm_deletion))
             .setMessage(activity?.getString(R.string.message_confirm_deletion_inspection))
@@ -129,7 +129,7 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
                         .collection(Constants.HIVES)
                         .document(hive_id!!)
                         .collection(Constants.INSPECTIONS)
-                        .document(inspection_id)
+                        .document(position)
                         .delete()
                 }
             }

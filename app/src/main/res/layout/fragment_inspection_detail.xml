@@ -97,6 +97,7 @@
                 android:layout_width="0dp"
                 android:layout_height="170dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/curved_detail_screen_layout"
                 android:elevation="10dp"
                 android:padding="10dp"
@@ -112,15 +113,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:elevation="10dp"
+                    android:gravity="center"
                     android:text="Your Notes"
                     android:textColor="@color/white"
                     android:textSize="13sp"
-                    android:gravity="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

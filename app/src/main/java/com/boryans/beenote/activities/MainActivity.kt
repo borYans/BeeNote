@@ -28,8 +28,6 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_splashScreen)
         setContentView(R.layout.activity_main)
 
-
-
     }
 
     override fun onStart() {
@@ -49,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             )
             return
         }
-
 
     }
 

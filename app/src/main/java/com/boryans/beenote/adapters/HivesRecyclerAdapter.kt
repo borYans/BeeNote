@@ -47,18 +47,13 @@ class HivesRecyclerAdapter(
 
     }
 
-    //Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HivesViewHolder {
-
-        //Create new view, which defines the UI of the list item.
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hive, parent, false)
         return HivesViewHolder(view)
     }
 
-    //Replace the contents of a view (invoked by the layout manager.)
     override fun onBindViewHolder(holder: HivesViewHolder, position: Int) {
-        //here I got an element from my dataset and replace the contents of the view with that element.
-        // viewHolder.textView.text = dataSet[position]
+
 
         val docs = items[position]
         holder.itemView.hiveNameTxt.text = docs.get("hiveName").toString()
@@ -90,13 +85,10 @@ class HiveItemDiffCallback(
     var newHivesList: ArrayList<QueryDocumentSnapshot>
 ) : DiffUtil.Callback() {
 
-    override fun getOldListSize(): Int {
-        return oldHivesList.size
-    }
+    override fun getOldListSize() = oldHivesList.size
 
-    override fun getNewListSize(): Int {
-        return newHivesList.size
-    }
+
+    override fun getNewListSize() = newHivesList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return (oldHivesList[oldItemPosition].id == newHivesList[newItemPosition].id)

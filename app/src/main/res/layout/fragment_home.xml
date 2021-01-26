@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-
-
-
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeHomeRefresh"
         android:layout_width="match_parent"
@@ -31,8 +27,8 @@
                     android:id="@+id/appBarLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/Theme.BeeNote"
                     android:orientation="vertical"
+                    android:theme="@style/Theme.BeeNote"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -42,14 +38,13 @@
                         android:id="@+id/my_toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        android:background="?attr/colorPrimary"
+                        android:background="@color/experimentalColor1"
                         android:elevation="4dp"
                         android:theme="@style/Theme.BeeNote"
-                        app:menu="@menu/home_toolbar_menu"
                         app:layout_scrollFlags="scroll|enterAlways"
+                        app:menu="@menu/home_toolbar_menu"
                         app:popupTheme="@style/Theme.BeeNote"
-                        app:titleTextColor="@color/white" >
-                    </androidx.appcompat.widget.Toolbar>
+                        app:titleTextColor="@color/white" />
 
                 </com.google.android.material.appbar.AppBarLayout>
 
@@ -85,7 +80,7 @@
                     android:gravity="center"
                     android:shadowColor="@color/orangeShadowBackground"
                     android:shadowRadius="4"
-                    android:text="@string/inspected_hives_in_the_past_7_days"
+                    android:text="--"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toTopOf="@+id/inspectedHiveTxt"
@@ -327,11 +322,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="3dp"
                     android:background="@drawable/inverted_curved_layout_background"
-                    android:drawableEnd="@drawable/ic_add_new_colony_24"
+                    android:drawableStart="@drawable/ic_add_new_colony_24"
+                    android:drawablePadding="15dp"
                     android:fontFamily="sans-serif-thin"
                     android:gravity="fill"
                     android:paddingStart="30dp"
@@ -352,11 +348,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="3dp"
                     android:background="@drawable/inverted_curved_layout_background"
-                    android:drawableEnd="@drawable/ic_hives_list_24"
+                    android:drawableStart="@drawable/ic_hives_list_24"
+                    android:drawablePadding="15dp"
                     android:fontFamily="sans-serif-thin"
                     android:gravity="fill"
                     android:paddingStart="30dp"
@@ -377,11 +374,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="3dp"
                     android:background="@drawable/inverted_curved_layout_background"
-                    android:drawableEnd="@drawable/ic_weather_24"
+                    android:drawableStart="@drawable/ic_weather_24"
+                    android:drawablePadding="15dp"
                     android:fontFamily="sans-serif-thin"
                     android:gravity="fill"
                     android:paddingStart="30dp"
@@ -402,11 +400,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="3dp"
                     android:background="@drawable/inverted_curved_layout_background"
-                    android:drawableEnd="@drawable/ic_sting_24"
+                    android:drawableStart="@drawable/ic_sting_24"
+                    android:drawablePadding="15dp"
                     android:fontFamily="sans-serif-thin"
                     android:gravity="fill"
                     android:paddingStart="30dp"

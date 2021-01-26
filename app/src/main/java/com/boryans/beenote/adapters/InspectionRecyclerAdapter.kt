@@ -15,8 +15,9 @@ class InspectionRecyclerAdapter(
     private val inspectionsClickListener: InspectionsClickListener
 ) : RecyclerView.Adapter<InspectionRecyclerAdapter.InspectionViewHolder>() {
 
-    private var items = ArrayList<QueryDocumentSnapshot>()
 
+
+    private var items = mutableListOf<QueryDocumentSnapshot>()
 
     fun updateInspectionsList(newInspectionsList: ArrayList<QueryDocumentSnapshot>) {
         val oldList = items
@@ -29,6 +30,7 @@ class InspectionRecyclerAdapter(
         items = newInspectionsList
         diffResult.dispatchUpdatesTo(this)
     }
+
 
 
     inner class InspectionViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnLongClickListener {
@@ -68,23 +70,19 @@ class InspectionRecyclerAdapter(
 
 class InspectionItemDiffCallback(
     var oldInspectionList: List<QueryDocumentSnapshot>,
-    var newInspectionList: List<QueryDocumentSnapshot>
+    var newInspectionList: ArrayList<QueryDocumentSnapshot>
 ) : DiffUtil.Callback() {
 
-    override fun getOldListSize(): Int {
-        return oldInspectionList.size
-    }
+    override fun getOldListSize() = oldInspectionList.size
 
-    override fun getNewListSize(): Int {
-        return newInspectionList.size
-    }
+    override fun getNewListSize() = newInspectionList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return (oldInspectionList[oldItemPosition].id == newInspectionList[newItemPosition].id)
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldInspectionList[oldItemPosition].equals(newInspectionList[newItemPosition])
+        return oldInspectionList[oldItemPosition] === (newInspectionList[newItemPosition])
     }
 
 }
