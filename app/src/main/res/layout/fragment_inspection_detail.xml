@@ -16,16 +16,69 @@
             android:padding="20dp"
             tools:context=".fragments.HomeFragment">
 
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/broodFramesConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/inverted_curved_layout_background"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/temperamentConstraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notesConstraintLayout">
+
+
+                <TextView
+                    android:id="@+id/numberOfBroodFramesTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:alpha=".8"
+                    android:elevation="10dp"
+                    android:text="Brood frames"
+                    android:textColor="@color/greyText"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/framesBrood"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:alpha="0.8"
+                    android:elevation="20dp"
+                    android:gravity="right"
+                    android:padding="3dp"
+                    android:shadowColor="@color/yellowText"
+                    android:shadowRadius="2"
+                    android:text="4"
+                    android:textColor="@color/yellowText"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/numberOfBroodFramesTxt"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/queenConstraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/inverted_curved_layout_background"
                 android:elevation="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/cappedBroodConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layingPatternConstraintLayout">
 
@@ -73,21 +126,20 @@
 
             <TextView
                 android:id="@+id/nameHiveTxt"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:alpha="0.85"
                 android:elevation="10dp"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:shadowColor="@color/yellowText"
                 android:shadowRadius="4"
-                android:fontFamily="sans-serif"
                 android:text="Hive 1"
                 android:textColor="@color/yellowText"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/notesConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,15 +147,14 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/notesConstraintLayout"
                 android:layout_width="0dp"
-                android:layout_height="170dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/curved_detail_screen_layout"
                 android:elevation="10dp"
                 android:padding="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/temperamentConstraintLayout"
+                app:layout_constraintBottom_toTopOf="@+id/broodFramesConstraint"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nameHiveTxt">
 
@@ -129,14 +180,14 @@
                 android:id="@+id/temperamentConstraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/inverted_curved_layout_background"
                 android:elevation="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/populationConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/notesConstraintLayout">
+                app:layout_constraintTop_toBottomOf="@+id/broodFramesConstraint">
 
 
                 <TextView
@@ -184,12 +235,12 @@
                 android:id="@+id/populationConstraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/inverted_curved_layout_background"
                 android:elevation="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/honeyStoresConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/temperamentConstraintLayout">
 
@@ -240,12 +291,12 @@
                 android:id="@+id/honeyStoresConstraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/inverted_curved_layout_background"
                 android:elevation="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/layingPatternConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/populationConstraintLayout">
 
@@ -295,12 +346,12 @@
                 android:id="@+id/layingPatternConstraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/inverted_curved_layout_background"
                 android:elevation="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/queenConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/honeyStoresConstraintLayout">
 
@@ -350,12 +401,12 @@
                 android:id="@+id/cappedBroodConstraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/inverted_curved_layout_background"
                 android:elevation="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/uncappedBroodConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/queenConstraintLayout">
 
@@ -405,12 +456,12 @@
                 android:id="@+id/uncappedBroodConstraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/inverted_curved_layout_background"
                 android:elevation="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/eggsConstraintLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cappedBroodConstraintLayout">
 
@@ -460,12 +511,12 @@
                 android:id="@+id/eggsConstraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/inverted_curved_layout_background"
                 android:elevation="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/uncappedBroodConstraintLayout">
 

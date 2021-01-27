@@ -1,15 +1,14 @@
 package com.boryans.beenote.fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.Toast
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
@@ -41,8 +40,26 @@ class QuickInspectionFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        numberOfFrames.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                numberOfBroodFrames.text = progress.toString()
+
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+        })
+
 
         finishInspectionBtn.setOnClickListener {
 
@@ -55,6 +72,7 @@ class QuickInspectionFragment : Fragment() {
                 getTextFromRadioButton(populationRadioGroup),
                 getTextFromRadioButton(temperRadioGroup),
                 noteTxt.text.toString(),
+                numberOfFrames.progress.toString(),
                 listOf(
                     onCheckBoxClicked(queenCheckBox),
                     onCheckBoxClicked(uncappedBroodCheckBox),
@@ -98,6 +116,7 @@ class QuickInspectionFragment : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setLastInspectionDate() {
 
         authUser?.let {
@@ -139,6 +158,7 @@ class QuickInspectionFragment : Fragment() {
         return radioBtn?.text.toString()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentDate(): String {
         val date = LocalDateTime.now()
         return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))
@@ -147,6 +167,5 @@ class QuickInspectionFragment : Fragment() {
 
     private fun onCheckBoxClicked(checkBox: CheckBox) =
         if (checkBox.isChecked) activity?.getString(R.string.yes)!! else activity?.getString(R.string.no)!!
-
 
 }

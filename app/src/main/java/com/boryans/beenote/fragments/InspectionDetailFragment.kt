@@ -65,12 +65,18 @@ class InspectionDetailFragment : Fragment() {
                             honeyStoresTxt.text = it.data?.get("honeyStores").toString()
                             layingPatternTxt.text = it.data?.get("layingPattern").toString()
                             displayNotesTxt.text = it.data?.get("notes").toString()
+                            framesBrood.text = it.data?.get("broodFrames").toString()
                             val observed = it.data?.get("observed") as List<*>
 
                             queenSeenTxt.text = observed[0].toString()
                             cappedBroodSeenTxt.text = observed[1].toString()
                             uncappedBroodSeenTxt.text = observed[2].toString()
                             eggsSeenTxt.text = observed[3].toString()
+
+
+                            if (displayNotesTxt.text.isBlank()) {
+                                displayNotesTxt.text = "No added notes."
+                            }
 
                         }
                     }

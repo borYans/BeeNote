@@ -18,6 +18,7 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_add_sting.*
+import java.lang.Exception
 
 
 class AddStingFragment : Fragment() {
@@ -93,6 +94,7 @@ class AddStingFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
         stingListenerRegistration =
             authUser?.let {
                 db.collection("stings")
@@ -106,11 +108,21 @@ class AddStingFragment : Fragment() {
                             ).show()
                         }
                         document?.let {
-                            totalNumberOfStings.text = document.data?.get("stings").toString()
-                            currentNumberOfStings = document.data?.get("stings") as Int
+                            try {
+
+                                if (document.data?.get("stings") != null) {
+                                    totalNumberOfStings.text =
+                                        document.data?.get("stings").toString()
+                                    currentNumberOfStings = (document.data?.get("stings") as Int?)!!
+                                }
+
+                            } catch (e: Exception) {
+                                Log.d("ERROR", "Error: $e")
+                            }
                         }
                     }
             }
+
     }
 
     override fun onPause() {

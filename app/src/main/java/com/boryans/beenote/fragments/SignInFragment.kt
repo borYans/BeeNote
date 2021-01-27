@@ -33,15 +33,9 @@ import java.lang.reflect.Array
 class SignInFragment : Fragment() {
 
 
-    companion object {
-
-        val TAG = "FACEBOOK"
-    }
 
     private lateinit var mAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
-
-    private lateinit var callbackManager: CallbackManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,58 +65,7 @@ class SignInFragment : Fragment() {
         }
 
 
-
-        callbackManager = CallbackManager.Factory.create()
-
-        facebookLoginBtn.setOnClickListener{
-            LoginManager.getInstance().logInWithReadPermissions(this,
-            arrayListOf("email", "public_profile")
-            )
-
-            LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-
-                override fun onSuccess(loginResult: LoginResult) {
-                    Log.d(TAG, "facebook:onSuccess:$loginResult")
-                    handleFacebookAccessToken(loginResult.accessToken)
-                }
-
-                override fun onCancel() {
-                    Log.d(TAG, "facebook:onCancel")
-                    // ...
-                }
-
-                override fun onError(error: FacebookException) {
-                    Log.d(TAG, "facebook:onError", error)
-                    // ...
-                }
-            })
-        }
     }
-
-    private fun handleFacebookAccessToken(token: AccessToken) {
-        Log.d(TAG, "handleFacebookAccessToken:$token")
-
-        val credential = FacebookAuthProvider.getCredential(token.token)
-        mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential:success")
-
-                    val action = SignInFragmentDirections.actionSignInFragmentToSplashScreenFragment()
-                    Navigation.findNavController(requireView()).navigate(action)
-
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    Toast.makeText(requireContext(), "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-                }
-
-                // ...
-            }
-    }
-
 
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
@@ -130,7 +73,6 @@ class SignInFragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        callbackManager.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
