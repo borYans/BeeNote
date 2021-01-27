@@ -27,7 +27,7 @@ class AddStingFragment : Fragment() {
     private var stingListenerRegistration: ListenerRegistration? = null
     private val db = FirebaseFirestore.getInstance()
     private var stingCounter = 0
-    private var currentNumberOfStings = 0
+    private var currentNumberOfStings: Long = 0
 
 
     override fun onCreateView(
@@ -97,7 +97,7 @@ class AddStingFragment : Fragment() {
 
         stingListenerRegistration =
             authUser?.let {
-                db.collection("stings")
+                db.collection(Constants.USERS)
                     .document(it)
                     .addSnapshotListener { document, error ->
                         error?.let {
@@ -111,9 +111,10 @@ class AddStingFragment : Fragment() {
                             try {
 
                                 if (document.data?.get("stings") != null) {
+                                    currentNumberOfStings = (document.data?.get("stings") as Long?)!!
                                     totalNumberOfStings.text =
                                         document.data?.get("stings").toString()
-                                    currentNumberOfStings = (document.data?.get("stings") as Int?)!!
+
                                 }
 
                             } catch (e: Exception) {
