@@ -17,7 +17,7 @@
 
             <TextView
                 android:id="@+id/welcomeTxt"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -25,7 +25,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="Welcome to BeeNotes"
+                android:text="@string/welcome_sign_in_text"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/imageView9"
@@ -35,7 +35,7 @@
 
             <TextView
                 android:id="@+id/loginTxt"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -43,7 +43,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
-                android:text="Login"
+                android:text="@string/sign_in"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@+id/googleBtn"
@@ -53,8 +53,8 @@
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="100dp"
-                android:layout_height="250dp"
+                android:layout_width="0dp"
+                android:layout_height="240dp"
                 android:contentDescription="beekeeper"
                 android:src="@drawable/beekeeper"
                 app:layout_constraintBottom_toTopOf="@+id/loginTxt"
@@ -76,7 +76,7 @@
                 android:fontFamily="sans-serif"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:text="Sign in with Google"
+                android:text="@string/sign_in_google"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"

@@ -99,4 +99,12 @@
     <string name="no">Ne</string>
     <string name="update_hive_button">Sačuvaj promjene</string>
     <string name="update_hive_success">Uspješno ste napravili promjenu.</string>
+    <string name="reset_stings_title">Izbrisati ubode?</string>
+    <string name="reset_stings">Da li želite obrisati ubode?</string>
+    <string name="brood_frames">Ramovi legla</string>
+    <string name="number_of_brood_frames">Broj ramova sa leglom?</string>
+    <string name="change_apiary_location">Promijeni lokaciju</string>
+    <string name="reset_number_of_stings_text">Držite na broj uboda da biste resetovali ubode.</string>
+    <string name="no_added_notes_text">Nema napomene.</string>
+    <string name="no_location_added_text">Lokacija nije dodana.</string>
 </resources>

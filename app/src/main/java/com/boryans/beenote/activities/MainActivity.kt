@@ -1,6 +1,5 @@
 package com.boryans.beenote.activities
 
-import com.facebook.*
 import android.Manifest
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +12,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
-import com.facebook.FacebookSdk
-import com.facebook.appevents.AppEventsLogger
+
 import com.jakewharton.threetenabp.AndroidThreeTen
 
 

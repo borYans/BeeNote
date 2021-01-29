@@ -2,17 +2,17 @@ package com.boryans.beenote.fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import com.boryans.beenote.R
 import com.boryans.beenote.application.Application
 import com.boryans.beenote.constants.Constants
 import com.boryans.beenote.model.Repository
 import com.boryans.beenote.model.WeatherDataModel
+import com.facebook.login.LoginManager
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,6 +49,20 @@ class WeatherFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity?)?.setSupportActionBar(weatherToolbar)
+        setHasOptionsMenu(true)
+
+        weatherToolbar.inflateMenu(R.menu.weather_toolbar)
+        weatherToolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.changeLocation -> {
+
+                    Navigation.findNavController(requireView())
+                        .navigate(WeatherFragmentDirections.actionWeatherFragmentToMapLocationFragment())
+                }
+            }
+            true
+        }
 
 
         inspectionRatingInfo.setOnClickListener {
@@ -84,7 +99,9 @@ class WeatherFragment() : Fragment() {
                     )
                     inspectionRatingInfo(conditions)
                     currentTemperature.visibility = View.VISIBLE
-                    currentTemperature.text = "${conditions.temp?.roundToInt().toString()} ${activity?.resources?.getString(R.string.celsius_sign)}"
+                    currentTemperature.text = "${
+                        conditions.temp?.roundToInt().toString()
+                    }${activity?.resources?.getString(R.string.celsius_sign)}"
                     humidity.text = conditions.humid?.toString() + "%"
                     windSpeedTxt.text = conditions.wind?.roundToInt().toString() + "m/s"
                     cloudCoverTxt.text = conditions.clouds?.toString() + "%"
@@ -157,7 +174,7 @@ class WeatherFragment() : Fragment() {
                     activity?.getString(R.string.inspection_rating_index_very_bad)!!
                 )
 
-            } else if (temp in 11..14 && wind <= 7) {
+            } else if (temp in 11..14) {
 
                 updateInspectionRatingIndex(
                     35,
@@ -165,7 +182,7 @@ class WeatherFragment() : Fragment() {
                 )
 
 
-            } else if (temp in 15..17 && wind <= 4) {
+            } else if (temp in 15..17) {
 
                 updateInspectionRatingIndex(
                     65,
@@ -173,7 +190,7 @@ class WeatherFragment() : Fragment() {
                 )
 
 
-            } else if (temp in 18..20 && wind <= 3) {
+            } else if (temp in 18..20) {
 
                 updateInspectionRatingIndex(
                     75,
@@ -181,7 +198,7 @@ class WeatherFragment() : Fragment() {
                 )
 
 
-            } else if (temp in 21..23 && wind <= 2) {
+            } else if (temp in 21..23) {
 
                 updateInspectionRatingIndex(
                     85,
@@ -189,7 +206,7 @@ class WeatherFragment() : Fragment() {
                 )
 
 
-            } else if (temp in 23..25 && wind <= 1) {
+            } else if (temp in 23..25) {
 
                 updateInspectionRatingIndex(
                     90,
@@ -197,7 +214,7 @@ class WeatherFragment() : Fragment() {
                 )
 
 
-            } else if (temp > 25 && wind == 0) {
+            } else if (temp > 25) {
 
                 updateInspectionRatingIndex(
                     100,
@@ -213,7 +230,7 @@ class WeatherFragment() : Fragment() {
 
             }
         } else {
-            Toasty.info(requireContext(), "No location added.", Toast.LENGTH_SHORT).show()
+            Toasty.info(requireContext(), getString(R.string.no_location_added_text), Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -222,6 +239,18 @@ class WeatherFragment() : Fragment() {
         inspectionRatingProgress.progress = progressBar
         inspectionRatingIndex.text = inspectionRatingProgress.progress.toString()
         inspectionDescription.text = description
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.weather_toolbar, menu)
+        super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.changeLocation -> Firebase.auth.signOut()
+        }
+        return true
     }
 
 

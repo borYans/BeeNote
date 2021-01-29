@@ -156,10 +156,14 @@
         android:label="Sign in">
         <action
             android:id="@+id/action_chooseLoginTypeFragment_to_addLocationFragment"
-            app:destination="@id/addLocationFragment" />
+            app:destination="@id/addLocationFragment"
+            app:popUpTo="@id/addLocationFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_chooseLoginTypeFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signInFragment_to_splashScreenFragment"
             app:destination="@id/splashScreenFragment" />

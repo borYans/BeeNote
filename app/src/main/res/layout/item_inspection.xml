@@ -18,7 +18,7 @@
             android:fontFamily="sans-serif-light"
             android:text="@string/hive_inspection_recycler_item"
             android:textColor="@color/greyText"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

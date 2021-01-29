@@ -75,7 +75,7 @@ class InspectionDetailFragment : Fragment() {
 
 
                             if (displayNotesTxt.text.isBlank()) {
-                                displayNotesTxt.text = "No added notes."
+                                displayNotesTxt.text = getString(R.string.no_added_notes_text)
                             }
 
                         }

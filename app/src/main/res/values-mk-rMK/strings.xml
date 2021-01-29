@@ -100,4 +100,12 @@
     <string name="queen_recycler_endpoint">години старост</string>
     <string name="update_hive_button">Сочувај измени</string>
     <string name="update_hive_success">Успешно направена промена.</string>
+    <string name="reset_stings_title">Избришете ги убодите.</string>
+    <string name="reset_stings">Дали сакате да ги избришеш убодите?</string>
+    <string name="brood_frames">Рамки со легло</string>
+    <string name="number_of_brood_frames">Број на рамки со легло?</string>
+    <string name="change_apiary_location">Промени локација</string>
+    <string name="reset_number_of_stings_text">"Долг клик на бројот на убоди за бришење на истите. "</string>
+    <string name="no_added_notes_text">Нема забелешка.</string>
+    <string name="no_location_added_text">Нема поставена локација.</string>
 </resources>

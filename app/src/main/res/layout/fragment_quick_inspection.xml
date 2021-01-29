@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_main_background"
-            android:padding="20dp"
+            android:padding="15dp"
             tools:context=".fragments.QuickInspectionFragment">
 
 
@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Number of brood frames?"
+                android:text="@string/number_of_brood_frames"
                 android:textColor="@color/greyText"
                 android:textSize="17sp"
                 android:textStyle="bold"

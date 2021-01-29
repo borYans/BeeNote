@@ -18,11 +18,35 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/gradient_main_background"
                 tools:context=".fragments.WeatherFragment">
 
 
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:theme="@style/Theme.BeeNote"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/weatherToolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/experimentalColor1"
+                        android:elevation="4dp"
+                        android:theme="@style/Theme.BeeNote"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        app:menu="@menu/weather_toolbar"
+                        app:popupTheme="@style/Theme.BeeNote"
+                        app:titleTextColor="@color/white" />
+
+                </com.google.android.material.appbar.AppBarLayout>
 
 
                 <TextView
@@ -30,7 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif-light"
@@ -44,7 +68,7 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/currentTemperature"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
 
                 <ProgressBar
@@ -70,7 +94,7 @@
                     android:shadowRadius="8"
                     android:text="--"
                     android:textColor="@color/yellowText"
-                    android:textSize="85sp"
+                    android:textSize="75sp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toTopOf="@+id/weatherDescriptionTxt"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +123,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/weatherRelativeLayout"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:background="@drawable/curved_detail_screen_layout"
                     app:layout_constraintBottom_toTopOf="@+id/weatherRelativeLayout1"
@@ -193,7 +217,7 @@
 
                 <RelativeLayout
                     android:id="@+id/weatherRelativeLayout1"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:background="@drawable/curved_detail_screen_layout"
                     android:padding="15dp"

@@ -20,7 +20,7 @@
 
             <TextView
                 android:id="@+id/hiveStatus"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:padding="20dp"
@@ -35,13 +35,13 @@
 
             <EditText
                 android:id="@+id/hiveNameEditText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:drawableEnd="@drawable/ic_add_new_colony_24"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/hive_name_hint_text"
-                android:maxLength="8"
+                android:maxLength="9"
                 android:padding="20dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/greyText"
@@ -50,7 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
             <EditText
                 android:id="@+id/queenAgeEditText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif-light"
@@ -126,23 +126,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/updateHiveBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:alpha=".8"
-                android:visibility="gone"
-                android:background="@drawable/buttons"
-                android:text="@string/update_hive_button"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

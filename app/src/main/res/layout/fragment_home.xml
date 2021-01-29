@@ -51,7 +51,7 @@
 
                 <TextView
                     android:id="@+id/inspectedHiveTxt"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
@@ -68,7 +68,7 @@
 
                 <TextView
                     android:id="@+id/greetingText"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/inspectedHiveTxt"
                     android:layout_marginStart="8dp"
@@ -90,7 +90,7 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/inspectedHiveTxt"
                     android:layout_marginStart="8dp"
@@ -112,7 +112,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -318,7 +318,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/googleSignInBtn"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
                     android:layout_marginStart="8dp"
@@ -330,9 +330,8 @@
                     android:drawablePadding="15dp"
                     android:fontFamily="sans-serif-thin"
                     android:gravity="fill"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="30dp"
-                    android:text="Add new hive"
+                    android:padding="15dp"
+                    android:text="@string/add_new_hive_btn"
                     android:textAllCaps="false"
                     android:textColor="@color/greyText"
                     android:textSize="16sp"
@@ -344,7 +343,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/viewAllHivesLayout"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
                     android:layout_marginStart="8dp"
@@ -356,9 +355,8 @@
                     android:drawablePadding="15dp"
                     android:fontFamily="sans-serif-thin"
                     android:gravity="fill"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="30dp"
-                    android:text="View all hives"
+                    android:padding="15dp"
+                    android:text="@string/view_all_hives"
                     android:textAllCaps="false"
                     android:textColor="@color/greyText"
                     android:textSize="16sp"
@@ -370,7 +368,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/currentWeatherConditionsLayout"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
                     android:layout_marginStart="8dp"
@@ -382,9 +380,8 @@
                     android:drawablePadding="15dp"
                     android:fontFamily="sans-serif-thin"
                     android:gravity="fill"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="30dp"
-                    android:text="Current weather conditions"
+                    android:padding="15dp"
+                    android:text="@string/current_weather_conditions"
                     android:textAllCaps="false"
                     android:textColor="@color/greyText"
                     android:textSize="16sp"
@@ -396,7 +393,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/addNewStingLayout"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/constraintLayout"
                     android:layout_marginStart="8dp"
@@ -408,9 +405,8 @@
                     android:drawablePadding="15dp"
                     android:fontFamily="sans-serif-thin"
                     android:gravity="fill"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="30dp"
-                    android:text="Add sting"
+                    android:padding="15dp"
+                    android:text="@string/add_sting_button"
                     android:textAllCaps="false"
                     android:textColor="@color/greyText"
                     android:textSize="16sp"

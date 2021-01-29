@@ -1,5 +1,6 @@
 package com.boryans.beenote.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -19,6 +20,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.DateFormat
 import java.util.*
@@ -53,11 +55,41 @@ class HomeFragment : Fragment() {
         (activity as AppCompatActivity?)?.setSupportActionBar(my_toolbar)
         setHasOptionsMenu(true)
 
+
+        totalStingsHome.setOnClickListener{
+            Toasty.info(requireContext(), getString(R.string.reset_number_of_stings_text), Toast.LENGTH_SHORT).show()
+        }
+
+        totalStingsHome.setOnLongClickListener(View.OnLongClickListener {
+            val alertDialog = AlertDialog.Builder(requireContext())
+            alertDialog
+                .setTitle(activity?.getString(R.string.reset_stings_title))
+                .setMessage(activity?.getString(R.string.reset_stings))
+                .setCancelable(false)
+                .setPositiveButton(activity?.getString(R.string.positive_message)) { dialogInterface, which ->
+
+                    authUser?.let {
+                        db.collection(Constants.USERS)
+                            .document(it)
+                            .set(mapOf(
+                                "stings" to 0
+                            ))
+                    }
+                }
+                .setNegativeButton(activity?.getString(R.string.negative_message)) { dialogInterface, which ->
+                    dialogInterface.cancel()
+                }
+                .create()
+                .show()
+
+            return@OnLongClickListener true
+        })
+
+
         mAuth = FirebaseAuth.getInstance()
         val currentUser = mAuth.currentUser
 
         my_toolbar.inflateMenu(R.menu.home_toolbar_menu)
-
         my_toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.signOutMenu -> {
@@ -71,8 +103,9 @@ class HomeFragment : Fragment() {
         }
 
         val greeting = activity?.getString(R.string.greeting)
-
         greetingText.text = "$greeting ${currentUser?.displayName}"
+
+
 
 
         swipeHomeRefresh.setOnRefreshListener {
@@ -326,4 +359,7 @@ class HomeFragment : Fragment() {
         }
         return true
     }
+
+
 }
+

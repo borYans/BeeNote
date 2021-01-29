@@ -88,7 +88,6 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
                     .show()
 
             }
-
         }
     }
 

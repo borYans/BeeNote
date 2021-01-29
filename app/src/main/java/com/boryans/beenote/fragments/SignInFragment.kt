@@ -66,7 +66,6 @@ class SignInFragment : Fragment() {
 
 
     }
-
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, Constants.RC_SIGN_IN)

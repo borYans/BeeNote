@@ -19,7 +19,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/broodFramesConstraint"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
@@ -38,7 +38,7 @@
                     android:layout_marginStart="8dp"
                     android:alpha=".8"
                     android:elevation="10dp"
-                    android:text="Brood frames"
+                    android:text="@string/brood_frames"
                     android:textColor="@color/greyText"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
