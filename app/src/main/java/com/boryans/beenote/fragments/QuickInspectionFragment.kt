@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
 import com.boryans.beenote.model.QuickInspection
@@ -104,14 +105,6 @@ class QuickInspectionFragment : Fragment() {
                 .document(hive_Id!!)
                 .collection(Constants.INSPECTIONS)
                 .add(inspection)
-                .addOnSuccessListener {
-                    Toasty.success(
-                        requireContext(),
-                        activity?.getString(R.string.successfuly_added_new_inspection)!!,
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                }
         }
     }
 
@@ -147,8 +140,9 @@ class QuickInspectionFragment : Fragment() {
 
 
     private fun navigateBackToHomeFragment(v: View) {
-        val action = QuickInspectionFragmentDirections.actionQuickInspectionFragmentToHomeFragment()
-        Navigation.findNavController(v).navigate(action)
+        val action = v.findNavController()
+        action.popBackStack()
+        action.navigate(R.id.homeFragment)
     }
 
 

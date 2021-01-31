@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
 import com.boryans.beenote.model.Sting
@@ -88,8 +89,9 @@ class AddStingFragment : Fragment() {
 
 
     private fun navigateBackToHome(v: View) {
-        val action = AddStingFragmentDirections.actionAddStingFragmentToHomeFragment()
-        Navigation.findNavController(v).navigate(action)
+        val action = v.findNavController()
+        action.popBackStack()
+        action.navigate(R.id.homeFragment)
     }
 
     override fun onResume() {

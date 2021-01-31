@@ -9,6 +9,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
 import com.boryans.beenote.model.Hive
@@ -64,13 +65,6 @@ class AddNewHiveFragment : Fragment() {
                 .document(it)
                 .collection(Constants.HIVES)
                 .add(hive)
-                .addOnSuccessListener {
-                    Toasty.success(
-                        requireContext(),
-                        activity?.getString(R.string.successfuly_added_new_hive)!!,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
         }
     }
 
@@ -83,8 +77,9 @@ class AddNewHiveFragment : Fragment() {
 
 
     private fun navigateBackToHome(v: View) {
-        val action = AddNewHiveFragmentDirections.actionAddNewHiveFragmentToHomeFragment()
-        Navigation.findNavController(v).navigate(action)
+        val action = v.findNavController()
+        action.popBackStack()
+        action.navigate(R.id.homeFragment)
     }
 
 

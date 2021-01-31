@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import kotlinx.android.synthetic.main.fragment_add_location.*
 
@@ -31,8 +33,9 @@ class AddLocationFragment : Fragment() {
         }
 
         addNewHiveBtn.setOnClickListener {
-            val action = AddLocationFragmentDirections.actionAddLocationFragmentToHomeFragment()
-            Navigation.findNavController(it).navigate(action)
+            val popBackstack = requireView().findNavController()
+            popBackstack.popBackStack()
+            popBackstack.navigate(R.id.homeFragment)
         }
     }
 

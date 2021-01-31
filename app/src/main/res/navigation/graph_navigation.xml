@@ -34,7 +34,8 @@
         android:label="New hive">
         <action
             android:id="@+id/action_addNewHiveFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/addStingFragment"
@@ -42,7 +43,8 @@
         android:label="Stings">
         <action
             android:id="@+id/action_addStingFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/quickInspectionFragment"
@@ -50,7 +52,8 @@
         android:label="New Inspections">
         <action
             android:id="@+id/action_quickInspectionFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="false" />
         <argument
             android:name="hive_id"
             app:argType="string" />
@@ -119,7 +122,9 @@
         android:label="MapLocationFragment" >
         <action
             android:id="@+id/action_mapLocationFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/addLocationFragment"
@@ -128,8 +133,7 @@
         <action
             android:id="@+id/action_addLocationFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_addLocationFragment_to_mapLocationFragment"
             app:destination="@id/mapLocationFragment" />
@@ -174,7 +178,8 @@
         android:label="UpdateHiveFragment" >
         <action
             android:id="@+id/action_updateHiveFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="false" />
         <argument
             android:name="hive_id"
             app:argType="string" />

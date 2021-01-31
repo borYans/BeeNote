@@ -30,14 +30,14 @@
     <string name="inspected_hives_in_the_past_7_days">Pregledane košnice u 7 dana</string>
     <string name="add_new_colony">Dodaj novu košnicu</string>
     <string name="add_sting">Dodaj ubod</string>
-    <string name="view_all_hives">Lista košnica</string>
-    <string name="current_weather_conditions">Trenutna vremenska prognoza</string>
+    <string name="view_all_hives">Tvoje košnice</string>
+    <string name="current_weather_conditions">Meteo uslovi</string>
     <string name="strong_hives">Jaka društva</string>
     <string name="weak_hives">Slaba društva</string>
     <string name="nucleus_hives">Nukelusi</string>
     <string name="last_inspection">Zadnji pregled</string>
     <string name="stings">Uboda</string>
-    <string name="greeting">Dobrošao/la</string>
+    <string name="greeting">Dobrošli</string>
     <string name="total_hives">Ukupno košnica</string>
     <string name="wind">vjetar</string>
     <string name="humidity">vlažnost</string>
@@ -56,7 +56,7 @@
     <string name="touch_map_info">Dodirom na mapi dodajete marker na željenu lokciju.</string>
     <string name="empty_list_snackbar">Nema košnica. Želite li dodati novu?</string>
     <string name="hive_data_cannot_be_empty">Naziv košnice i starost matice ne mogu biti prazni.</string>
-    <string name="enter_queen_age">Unesi starost matice.</string>
+    <string name="enter_queen_age">Starost matice.</string>
     <string name="successfuly_added_new_hive">Uspješno sačuvana košnica.</string>
     <string name="successfuly_added_new_inspection">Uspješno sačuvan pregled.</string>
     <string name="sting_added">dodanih uboda</string>
