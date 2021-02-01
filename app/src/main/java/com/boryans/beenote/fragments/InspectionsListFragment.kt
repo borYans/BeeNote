@@ -91,12 +91,8 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
                             for (document in inspections) {
                                 inspectionsList.add(document)
                             }
-
-                            if (inspectionsList.isEmpty()) {
-                              //  Toasty.info(requireContext(), activity?.getString(R.string.click_on_the_button)!!, 1000).show()
-                            } else {
                                 inspectionListAdapter.updateInspectionsList(inspectionsList)
-                            }
+
                         }
                     }
             }

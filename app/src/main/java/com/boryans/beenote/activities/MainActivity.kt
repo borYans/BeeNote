@@ -12,6 +12,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 import com.jakewharton.threetenabp.AndroidThreeTen
 
@@ -67,4 +69,5 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, null)
     }
+
 }

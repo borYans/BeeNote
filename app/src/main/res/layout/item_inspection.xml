@@ -6,7 +6,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_margin="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:background="@drawable/inverted_curved_layout_background"
         android:padding="10dp">
 
@@ -17,7 +19,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:text="@string/hive_inspection_recycler_item"
-            android:textColor="@color/greyText"
+            android:textColor="@color/white"
+            android:alpha=".6"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +30,6 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:alpha="0.7"
             android:src="@drawable/ic_detail_inspection_list_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

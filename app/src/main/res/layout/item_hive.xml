@@ -8,7 +8,10 @@
         android:id="@+id/hive"
         android:layout_width="match_parent"
         android:layout_height="95dp"
-        android:layout_margin="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:elevation="10dp"
         android:background="@drawable/curved_detail_screen_layout"
         android:padding="12dp">
 
@@ -23,7 +26,7 @@
             android:text="HIVE 1"
             android:textColor="@color/yellowText"
             android:textSize="20sp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

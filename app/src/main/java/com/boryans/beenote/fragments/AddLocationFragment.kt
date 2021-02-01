@@ -33,9 +33,9 @@ class AddLocationFragment : Fragment() {
         }
 
         addNewHiveBtn.setOnClickListener {
-            val popBackstack = requireView().findNavController()
-            popBackstack.popBackStack()
-            popBackstack.navigate(R.id.homeFragment)
+            val action = it.findNavController()
+            action.popBackStack()
+            action.navigate(R.id.homeFragment)
         }
     }
 

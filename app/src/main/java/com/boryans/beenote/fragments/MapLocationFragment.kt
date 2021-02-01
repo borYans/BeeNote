@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
 import com.google.android.gms.maps.GoogleMap
@@ -77,8 +78,9 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
                         }
 
 
-                        val action = MapLocationFragmentDirections.actionMapLocationFragmentToHomeFragment()
-                        Navigation.findNavController(it).navigate(action)
+                        val action = requireView().findNavController()
+                        action.popBackStack()
+                        action.navigate(R.id.homeFragment)
 
                     }
                     .setNegativeButton(activity?.getString(R.string.negative_message)) { dialogInterface, which ->
