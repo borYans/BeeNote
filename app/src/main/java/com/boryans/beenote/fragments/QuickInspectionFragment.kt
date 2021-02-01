@@ -121,7 +121,7 @@ class QuickInspectionFragment : Fragment() {
                     ), SetOptions.merge()
                 )
                 .addOnSuccessListener {
-                    Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
+                  //log message
                 }
             db.collection("users")
                 .document(it)
@@ -133,7 +133,7 @@ class QuickInspectionFragment : Fragment() {
                     ), SetOptions.merge()
                 )
                 .addOnSuccessListener {
-                    Log.d("LAST INSPECTION", "Last inspection date is ${getCurrentDate()}")
+                    //log message
                 }
         }
     }

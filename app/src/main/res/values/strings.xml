@@ -136,8 +136,19 @@
 
 
     <!--Confirm/Negative-->
-    <string name="yes">yes</string>
+    <string name="yes">Yes</string>
     <string name="no">No</string>
+
+
+    <!--Inspection rating info-->
+    <string name="inspection_rating_info">The inspection index is the level of safety when inspecting the hive.
+In the range from zero to one hundred. The higher the number, the greater the safety when opening the hive.
+The inspection index is based on the current meteorological conditions at the apiary.
+Most beginners are curious and open hives when not needed.
+Please inspect the hive only when necessary.
+</string>
+
+
 
 
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>

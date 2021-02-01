@@ -293,6 +293,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="4dp"
                         android:layout_marginTop="25dp"
+                        android:clickable="true"
                         android:gravity="center"
                         android:text="@string/inspection_rating_index"
                         android:textColor="@color/white"

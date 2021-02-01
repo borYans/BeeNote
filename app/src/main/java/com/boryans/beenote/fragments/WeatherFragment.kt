@@ -65,8 +65,9 @@ class WeatherFragment() : Fragment() {
         }
 
 
-        inspectionRatingInfo.setOnClickListener {
-            //navigate to inspectionRatingFragment
+        inspectonRating.setOnClickListener {
+            val action = WeatherFragmentDirections.actionWeatherFragmentToInspectionRatingInfoFragment()
+            Navigation.findNavController(it).navigate(action)
         }
 
         swipeRefresh.setOnRefreshListener {
@@ -143,7 +144,7 @@ class WeatherFragment() : Fragment() {
                     .document(it)
                     .addSnapshotListener { document, error ->
                         error?.let {
-                            Log.d("ERROR", "Error occured.")
+                            //log message
                         }
                         document?.let {
                             val latitude = it.data?.get("apiary_latitude").toString()
@@ -164,7 +165,6 @@ class WeatherFragment() : Fragment() {
         val temp = conditions.temp?.roundToInt()
         val wind = conditions.wind?.roundToInt()
         val humid = conditions.humid
-        Log.d("TEMP&&HUMID", "Temperature: $temp Humidity: $wind")
         if (temp != null && wind != null && humid != null) {
 
             if (humid > 90 || wind >= 8 || temp <= 10) {

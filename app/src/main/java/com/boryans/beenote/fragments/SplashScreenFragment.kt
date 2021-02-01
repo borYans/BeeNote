@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -51,11 +52,15 @@ class SplashScreenFragment : Fragment() {
                                     "apiary_longitude"
                                 ) != null
                             ) {
-                                Navigation.findNavController(requireView())
-                                    .navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToHomeFragment())
+
+                                val action = requireView().findNavController()
+                                action.popBackStack()
+                                action.navigate(R.id.homeFragment)
+
                             } else {
-                                Navigation.findNavController(requireView())
-                                    .navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToAddLocationFragment())
+                                val action = requireView().findNavController()
+                                action.popBackStack()
+                                action.navigate(R.id.addLocationFragment)
                             }
                         }
                     }

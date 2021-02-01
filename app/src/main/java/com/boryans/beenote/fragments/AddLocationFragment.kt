@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
@@ -27,12 +26,13 @@ class AddLocationFragment : Fragment() {
 
         addLocationBtn.setOnClickListener {
 
-            val action = AddLocationFragmentDirections.actionAddLocationFragmentToMapLocationFragment()
-            Navigation.findNavController(it).navigate(action)
+            val action = it.findNavController()
+            action.popBackStack()
+            action.navigate(R.id.mapLocationFragment)
 
         }
 
-        addNewHiveBtn.setOnClickListener {
+        skipBtn.setOnClickListener {
             val action = it.findNavController()
             action.popBackStack()
             action.navigate(R.id.homeFragment)

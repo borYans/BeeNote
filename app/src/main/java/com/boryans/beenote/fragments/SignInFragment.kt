@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
 import com.facebook.*
@@ -31,7 +32,6 @@ import kotlinx.android.synthetic.main.fragment_sign_in.*
 import java.lang.reflect.Array
 
 class SignInFragment : Fragment() {
-
 
 
     private lateinit var mAuth: FirebaseAuth
@@ -60,12 +60,13 @@ class SignInFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
 
 
-        googleBtn.setOnClickListener{
+        googleBtn.setOnClickListener {
             signIn()
         }
 
 
     }
+
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, Constants.RC_SIGN_IN)
@@ -81,13 +82,12 @@ class SignInFragment : Fragment() {
             if (task.isSuccessful) {
                 try {
                     val account = task.getResult(ApiException::class.java)!!
-                    Log.d("FirebaseGoogle", "firebaseAuthWithGoogle:" + account.id)
                     firebaseAuthWithGoogle(account.idToken!!)
 
                 } catch (e: ApiException) {
 
-                    Log.w("FirebaseGoogle", "Google sign in failed", e)
-                    Snackbar.make(requireView(), "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(requireView(), "Authentication Failed.", Snackbar.LENGTH_SHORT)
+                        .show()
 
 
                 }
@@ -103,14 +103,14 @@ class SignInFragment : Fragment() {
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    Log.d("FirebaseGoogle", "signInWithCredential:success")
 
-                    val action = SignInFragmentDirections.actionSignInFragmentToSplashScreenFragment()
-                    Navigation.findNavController(requireView()).navigate(action)
+                    val action = requireView().findNavController()
+                    action.popBackStack()
+                    action.navigate(R.id.splashScreenFragment)
 
                 } else {
-                    Log.w("FirebaseGoogle", "signInWithCredential:failure", task.exception)
-                    Snackbar.make(requireView(), "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(requireView(), "Authentication Failed.", Snackbar.LENGTH_SHORT)
+                        .show()
 
                 }
 

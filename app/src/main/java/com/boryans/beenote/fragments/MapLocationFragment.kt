@@ -73,7 +73,7 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
                                     ), SetOptions.merge()
                                 )
                                 .addOnSuccessListener {
-                                    Log.d("SUCCES", "Location added successfully")
+                                    //log message
                                 }
                         }
 
@@ -101,7 +101,6 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
             options.compassEnabled(true)
                 .rotateGesturesEnabled(true)
             googleMap.setOnMapClickListener { point ->
-                Log.d("LOCATION", "Location on click: ${point.latitude}, ${point.longitude}")
 
                 googleMap.clear()
                 val marker = googleMap.addMarker(

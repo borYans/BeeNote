@@ -75,12 +75,13 @@ class AddStingFragment : Fragment() {
 
     private fun updateStingsToFirebaseFirestore(sting: Sting) {
 
+
         authUser?.let {
             db.collection(Constants.USERS)
                 .document(it)
                 .set(sting, SetOptions.merge())
                 .addOnSuccessListener {
-                    Log.d("@@@", "Stings added successfully.")
+                    //log message
                 }
         }
 
@@ -120,7 +121,7 @@ class AddStingFragment : Fragment() {
                                 }
 
                             } catch (e: Exception) {
-                                Log.d("ERROR", "Error: $e")
+                                //log message
                             }
                         }
                     }

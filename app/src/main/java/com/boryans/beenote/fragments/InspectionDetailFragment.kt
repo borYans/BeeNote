@@ -57,7 +57,7 @@ class InspectionDetailFragment : Fragment() {
                     .document(inspectionId!!)
                     .addSnapshotListener { document, error ->
                         error?.let {
-                            Log.d("ERROR", "Error occurred!")
+                            //log message
                         }
                         document?.let {
                             temperamentTxt.text = it.data?.get("temperament").toString()

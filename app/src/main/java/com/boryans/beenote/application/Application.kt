@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class Application: android.app.Application() {
 
-    val api = Retrofit.Builder()
+    val api: WeatherApi = Retrofit.Builder()
         .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

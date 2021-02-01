@@ -70,8 +70,7 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
 
         }
 
-        Log.d("HIVE", "onResume Called!")
-        Log.d("HIVE", "Hive id is: $hive_id")
+
         inspectionsListenerRegistration =
             authUser?.let {
                 db.collection(Constants.USERS)

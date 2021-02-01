@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
@@ -95,8 +96,9 @@ class HomeFragment : Fragment() {
                 R.id.signOutMenu -> {
                     mAuth.signOut()
                     LoginManager.getInstance().logOut()
-                    Navigation.findNavController(requireView())
-                        .navigate(HomeFragmentDirections.actionHomeFragmentToSignInFragment())
+                    val action = requireView().findNavController()
+                    action.popBackStack()
+                    action.navigate(R.id.signInFragment)
                 }
             }
             true
@@ -104,7 +106,6 @@ class HomeFragment : Fragment() {
 
         val greeting = activity?.getString(R.string.greeting)
         greetingText.text = "$greeting ${currentUser?.displayName}"
-
 
 
 
@@ -141,7 +142,7 @@ class HomeFragment : Fragment() {
                     .document(it)
                     .addSnapshotListener { snapshot, error ->
                         error?.let {
-                            Log.d("@@@", "Error occured: $error")
+                            //log message
                         }
                         snapshot?.let { lastInspectionDoc ->
 

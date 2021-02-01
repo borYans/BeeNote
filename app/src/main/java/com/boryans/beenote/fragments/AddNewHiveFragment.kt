@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
@@ -38,7 +37,7 @@ class AddNewHiveFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        addNewHiveBtn.setOnClickListener {
+        skipBtn.setOnClickListener {
             val hive = Hive(
                 hiveNameEditText.text.toString(),
                 queenAgeEditText.text.toString(),

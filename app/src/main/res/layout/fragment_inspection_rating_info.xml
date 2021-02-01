@@ -4,29 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp"
-        android:background="@color/darkerBackgroundColor"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@drawable/gradient_main_background"
         tools:context=".fragments.InspectionRatingInfoFragment">
 
 
         <TextView
             android:id="@+id/textView15"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/curved_detail_screen_layout"
             android:fontFamily="sans-serif-light"
-            android:text="@string/dummyText"
-            android:textColor="@color/white"
+            android:gravity="center"
+            android:letterSpacing=".1"
+            android:padding="15dp"
+            android:text="@string/inspection_rating_info"
+            android:textAlignment="center"
+            android:textColor="@color/yellowText"
             android:textSize="15sp"
             android:textStyle="normal"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </layout>
