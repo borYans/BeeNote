@@ -162,6 +162,7 @@ Please inspect the hive only when necessary.
     <string name="reset_number_of_stings_text">Long click on the stings number to reset them all.</string>
     <string name="no_added_notes_text">No added notes.</string>
     <string name="no_location_added_text">No location added.</string>
+    <string name="inspection_details">Inspection details</string>
 
 
 </resources>

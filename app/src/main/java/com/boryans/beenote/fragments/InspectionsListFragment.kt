@@ -14,6 +14,9 @@ import com.boryans.beenote.listeners.InspectionsClickListener
 import com.boryans.beenote.R
 import com.boryans.beenote.adapters.InspectionRecyclerAdapter
 import com.boryans.beenote.constants.Constants
+import com.boryans.beenote.constants.Constants.Companion.HIVES
+import com.boryans.beenote.constants.Constants.Companion.INSPECTIONS
+import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -73,11 +76,11 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
 
         inspectionsListenerRegistration =
             authUser?.let {
-                db.collection(Constants.USERS)
+                db.collection(USERS)
                     .document(it)
-                    .collection(Constants.HIVES)
+                    .collection(HIVES)
                     .document(hive_id!!)
-                    .collection(Constants.INSPECTIONS)
+                    .collection(INSPECTIONS)
                     .addSnapshotListener { inspections, error ->
                         error?.let {
                             Toast.makeText(requireContext(), "Error occurred.", Toast.LENGTH_SHORT)
@@ -119,11 +122,11 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
             .setIcon(R.drawable.ic_info_24)
             .setPositiveButton(activity?.getString(R.string.positive_message)) { dialogInterface, which ->
                 authUser?.let {
-                    db.collection(Constants.USERS)
+                    db.collection(USERS)
                         .document(it)
-                        .collection(Constants.HIVES)
+                        .collection(HIVES)
                         .document(hive_id!!)
-                        .collection(Constants.INSPECTIONS)
+                        .collection(INSPECTIONS)
                         .document(position)
                         .delete()
                 }

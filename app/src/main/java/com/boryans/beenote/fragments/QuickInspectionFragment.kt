@@ -9,10 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
+import com.boryans.beenote.constants.Constants.Companion.HIVES
+import com.boryans.beenote.constants.Constants.Companion.INSPECTIONS
+import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.QuickInspection
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -24,6 +28,7 @@ import kotlinx.android.synthetic.main.fragment_quick_inspection.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+import kotlin.Exception
 
 
 class QuickInspectionFragment : Fragment() {
@@ -97,45 +102,54 @@ class QuickInspectionFragment : Fragment() {
     }
 
     private fun updateInspectionDataToFirebaseFirestore(inspection: QuickInspection) {
-
-        authUser?.let {
-            db.collection(Constants.USERS)
-                .document(it)
-                .collection(Constants.HIVES)
-                .document(hive_Id!!)
-                .collection(Constants.INSPECTIONS)
-                .add(inspection)
+        try {
+            authUser?.let {
+                db.collection(USERS)
+                    .document(it)
+                    .collection(HIVES)
+                    .document(hive_Id!!)
+                    .collection(INSPECTIONS)
+                    .add(inspection)
+            }
+        } catch (e: Exception) {
+            //log message
         }
+
     }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setLastInspectionDate() {
 
-        authUser?.let {
-            db.collection("users")
-                .document(it)
-                .set(
-                    mapOf(
-                        "lastInspection" to FieldValue.serverTimestamp()
-                    ), SetOptions.merge()
-                )
-                .addOnSuccessListener {
-                  //log message
-                }
-            db.collection("users")
-                .document(it)
-                .collection("hives")
-                .document(hive_Id!!)
-                .set(
-                    mapOf(
-                        "lastInspection" to FieldValue.serverTimestamp()
-                    ), SetOptions.merge()
-                )
-                .addOnSuccessListener {
-                    //log message
-                }
+        try {
+            authUser?.let {
+                db.collection("users")
+                    .document(it)
+                    .set(
+                        mapOf(
+                            "lastInspection" to FieldValue.serverTimestamp()
+                        ), SetOptions.merge()
+                    )
+                    .addOnSuccessListener {
+                        //log message
+                    }
+                db.collection("users")
+                    .document(it)
+                    .collection("hives")
+                    .document(hive_Id!!)
+                    .set(
+                        mapOf(
+                            "lastInspection" to FieldValue.serverTimestamp()
+                        ), SetOptions.merge()
+                    )
+                    .addOnSuccessListener {
+                        //log message
+                    }
+            }
+        } catch (e: Exception) {
+            //log message
         }
+
     }
 
 

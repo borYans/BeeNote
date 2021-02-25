@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
+import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.Sting
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -77,7 +78,7 @@ class AddStingFragment : Fragment() {
 
 
         authUser?.let {
-            db.collection(Constants.USERS)
+            db.collection(USERS)
                 .document(it)
                 .set(sting, SetOptions.merge())
                 .addOnSuccessListener {
@@ -103,13 +104,6 @@ class AddStingFragment : Fragment() {
                 db.collection(Constants.USERS)
                     .document(it)
                     .addSnapshotListener { document, error ->
-                        error?.let {
-                            Toasty.error(
-                                requireContext(),
-                                "Error occured: $error",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
                         document?.let {
                             try {
 

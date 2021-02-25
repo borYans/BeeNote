@@ -108,4 +108,5 @@
     <string name="no_added_notes_text">Nema napomene.</string>
     <string name="no_location_added_text">Lokacija nije dodana.</string>
     <string name="inspection_rating_info">" Indeks pregleda je razina sigurnosti prilikom pregleda košnice. U rasponu od nule do sto. Što je broj veći, veća je sigurnost prilikom otvaranja košnice. Indeks pregleda temelji se na trenutnim meteorološkim uvjetima na pčelinjaku. Većina početnika su znatiželjni i otvaraju košnice kad nije potrebno. Molimo pregledajte košnicu samo kad je to potrebno."</string>
+    <string name="inspection_details">Informacije o pregledu</string>
 </resources>

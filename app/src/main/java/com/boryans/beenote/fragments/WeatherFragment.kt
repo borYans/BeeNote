@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import com.boryans.beenote.R
 import com.boryans.beenote.application.Application
 import com.boryans.beenote.constants.Constants
+import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.Repository
 import com.boryans.beenote.model.WeatherDataModel
 import com.facebook.login.LoginManager
@@ -140,16 +141,21 @@ class WeatherFragment() : Fragment() {
 
         locationListener =
             authUser?.let {
-                db.collection(Constants.USERS)
+                db.collection(USERS)
                     .document(it)
                     .addSnapshotListener { document, error ->
                         error?.let {
                             //log message
                         }
                         document?.let {
-                            val latitude = it.data?.get("apiary_latitude").toString()
-                            val longitude = it.data?.get("apiary_longitude").toString()
-                            fetchWeather(latitude, longitude)
+                            try {
+                                val latitude = it.data?.get("apiary_latitude").toString()
+                                val longitude = it.data?.get("apiary_longitude").toString()
+                                fetchWeather(latitude, longitude)
+                            } catch (e: Exception) {
+                                //log message
+                            }
+
 
                         }
                     }

@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
+import com.boryans.beenote.constants.Constants.Companion.HIVES
+import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.Hive
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -59,12 +61,17 @@ class AddNewHiveFragment : Fragment() {
     }
 
     private fun setNewHives(hive: Hive) {
-        authUser?.let {
-            db.collection(Constants.USERS)
-                .document(it)
-                .collection(Constants.HIVES)
-                .add(hive)
+        try {
+            authUser?.let {
+                db.collection(USERS)
+                    .document(it)
+                    .collection(HIVES)
+                    .add(hive)
+            }
+        } catch (e: Exception) {
+            //log it
         }
+
     }
 
 

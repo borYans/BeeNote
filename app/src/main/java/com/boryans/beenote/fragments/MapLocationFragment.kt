@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
+import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMapOptions
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -63,18 +64,22 @@ class MapLocationFragment : Fragment(), OnMapReadyCallback {
                     .setMessage(activity?.getString(R.string.confirm_location_message))
                     .setPositiveButton(activity?.getString(R.string.positive_message)) { dialogInterface, which ->
 
-                        authUser?.let {
-                            db.collection(Constants.USERS)
-                                .document(it)
-                                .set(
-                                    mapOf(
-                                        "apiary_latitude" to apiaryLatitude,
-                                        "apiary_longitude" to apiaryLongitude
-                                    ), SetOptions.merge()
-                                )
-                                .addOnSuccessListener {
-                                    //log message
-                                }
+                        try {
+                            authUser?.let {
+                                db.collection(USERS)
+                                    .document(it)
+                                    .set(
+                                        mapOf(
+                                            "apiary_latitude" to apiaryLatitude,
+                                            "apiary_longitude" to apiaryLongitude
+                                        ), SetOptions.merge()
+                                    )
+                                    .addOnSuccessListener {
+                                        //log message
+                                    }
+                            }
+                        } catch (e: Exception){
+                            //log message
                         }
 
 

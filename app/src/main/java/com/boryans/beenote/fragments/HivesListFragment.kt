@@ -13,6 +13,8 @@ import com.boryans.beenote.listeners.HiveClickListener
 import com.boryans.beenote.R
 import com.boryans.beenote.adapters.HivesRecyclerAdapter
 import com.boryans.beenote.constants.Constants
+import com.boryans.beenote.constants.Constants.Companion.HIVES
+import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
@@ -52,9 +54,9 @@ class HivesListFragment : Fragment(), HiveClickListener {
         super.onResume()
         hivesListenerRegistration =
             authUser?.let {
-                db.collection(Constants.USERS)
+                db.collection(USERS)
                     .document(it)
-                    .collection(Constants.HIVES)
+                    .collection(HIVES)
                     .addSnapshotListener { documents, error ->
                         error?.let {
                             Toast.makeText(
@@ -104,9 +106,9 @@ class HivesListFragment : Fragment(), HiveClickListener {
 
                 isSnackBarShowedOnce = true
                 authUser?.let {
-                    db.collection(Constants.USERS)
+                    db.collection(USERS)
                         .document(it)
-                        .collection(Constants.HIVES)
+                        .collection(HIVES)
                         .document(position)
                         .delete()
                 }

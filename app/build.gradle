@@ -15,10 +15,10 @@ android {
 
     defaultConfig {
         applicationId "com.boryans.beenote"
-        minSdkVersion 27
+        minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 8
+        versionName "1.0.5"
         vectorDrawables.useSupportLibrary = true
 
 
@@ -51,8 +51,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:26.1.0')
-    //Dependency for the Firebase SDK for Google Analytics
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     //Dependencies for Firebase Authentication and Cloud Firestore
     implementation 'com.google.firebase:firebase-auth-ktx'

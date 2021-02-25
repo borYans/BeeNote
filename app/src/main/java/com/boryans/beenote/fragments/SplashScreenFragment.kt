@@ -14,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
+import kotlin.Exception
 
 
 class SplashScreenFragment : Fragment() {
@@ -39,37 +40,40 @@ class SplashScreenFragment : Fragment() {
         val user = auth.currentUser
 
         if (user != null) {
+            try {
+                locationListenerRegistration = authUser.let {
+                    db.collection(Constants.USERS)
+                        .document(it.toString())
+                        .addSnapshotListener { doc, error ->
+                            error?.let {
+                                //log.d()
+                            }
+                            doc?.let { documents ->
+                                if (documents.data?.get("apiary_latitude") != null && documents.data?.get(
+                                        "apiary_longitude"
+                                    ) != null
+                                ) {
 
-            locationListenerRegistration = authUser.let {
-                db.collection(Constants.USERS)
-                    .document(it.toString())
-                    .addSnapshotListener { doc, error ->
-                        error?.let {
-                            //log.d()
-                        }
-                        doc?.let { documents ->
-                            if (documents.data?.get("apiary_latitude") != null && documents.data?.get(
-                                    "apiary_longitude"
-                                ) != null
-                            ) {
+                                    val action = requireView().findNavController()
+                                    action.popBackStack()
+                                    action.navigate(R.id.homeFragment)
 
-                                val action = requireView().findNavController()
-                                action.popBackStack()
-                                action.navigate(R.id.homeFragment)
-
-                            } else {
-                                val action = requireView().findNavController()
-                                action.popBackStack()
-                                action.navigate(R.id.addLocationFragment)
+                                } else {
+                                    val action = requireView().findNavController()
+                                    action.popBackStack()
+                                    action.navigate(R.id.addLocationFragment)
+                                }
                             }
                         }
-                    }
+                }
+            } catch (e: Exception) {
+                //log message
             }
+
         } else {
             Navigation.findNavController(requireView())
                 .navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToChooseLoginTypeFragment())
         }
-
 
     }
 

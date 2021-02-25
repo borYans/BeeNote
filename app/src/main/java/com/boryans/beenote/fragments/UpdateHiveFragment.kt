@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
+import com.boryans.beenote.constants.Constants.Companion.HIVES
+import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -58,27 +60,32 @@ class UpdateHiveFragment : Fragment() {
                 ).show()
             } else {
 
-                authUser?.let {
-                    db.collection(Constants.USERS)
-                        .document(it)
-                        .collection(Constants.HIVES)
-                        .document(hiveId!!)
-                        .update(
-                            mapOf(
-                                "hiveName" to hiveNameEditText_update.text.toString(),
-                                "queenAge" to queenAgeEditText_update.text.toString(),
-                                "hiveStatus" to getTextFromRadioButton(statusRadioGroup_update)
+                try {
+                    authUser?.let {
+                        db.collection(USERS)
+                            .document(it)
+                            .collection(HIVES)
+                            .document(hiveId!!)
+                            .update(
+                                mapOf(
+                                    "hiveName" to hiveNameEditText_update.text.toString(),
+                                    "queenAge" to queenAgeEditText_update.text.toString(),
+                                    "hiveStatus" to getTextFromRadioButton(statusRadioGroup_update)
+                                )
                             )
-                        )
-                        .addOnSuccessListener {
-                            Toasty.success(
-                                requireContext(),
-                                activity?.getString(R.string.update_hive_success)!!,
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                            .addOnSuccessListener {
+                                Toasty.success(
+                                    requireContext(),
+                                    activity?.getString(R.string.update_hive_success)!!,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    }
+                    navigateBackToHome(it)
+                } catch (e: Exception) {
+                    //log it
                 }
-                navigateBackToHome(it)
+
             }
 
         }

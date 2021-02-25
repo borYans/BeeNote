@@ -56,9 +56,11 @@ class HivesRecyclerAdapter(
 
 
         val docs = items[position]
-        holder.itemView.hiveNameTxt.text = docs.get("hiveName").toString()
-        holder.itemView.hiveStatusTxt.text = "${holder.itemView.context.getString(R.string.status_recycler_item)} ${docs.get("hiveStatus").toString()}"
-        holder.itemView.queenBeeAgeTxt.text = "${holder.itemView.context.getString(R.string.queen_recycler_item)} ${docs.get("queenAge").toString()} ${holder.itemView.context.getString(R.string.queen_recycler_endpoint)}"
+        holder.itemView.apply {
+            hiveNameTxt.text = docs.get("hiveName").toString()
+            hiveStatusTxt.text = "${holder.itemView.context.getString(R.string.status_recycler_item)} ${docs.get("hiveStatus").toString()}"
+            queenBeeAgeTxt.text = "${holder.itemView.context.getString(R.string.queen_recycler_item)} ${docs.get("queenAge").toString()} ${holder.itemView.context.getString(R.string.queen_recycler_endpoint)}"
+        }
 
         holder.itemView.setOnClickListener {
             val action =

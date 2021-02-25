@@ -8,11 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
+import com.boryans.beenote.constants.Constants.Companion.HIVES
+import com.boryans.beenote.constants.Constants.Companion.INSPECTIONS
+import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_inspection_detail.*
+import kotlinx.android.synthetic.main.item_hive.*
 
 class InspectionDetailFragment : Fragment() {
 
@@ -49,17 +53,18 @@ class InspectionDetailFragment : Fragment() {
         super.onResume()
         inspectionDetailsListenerRegistration =
             authUser?.let {
-                db.collection(Constants.USERS)
+                db.collection(USERS)
                     .document(it)
-                    .collection(Constants.HIVES)
+                    .collection(HIVES)
                     .document(hive_id!!)
-                    .collection(Constants.INSPECTIONS)
+                    .collection(INSPECTIONS)
                     .document(inspectionId!!)
                     .addSnapshotListener { document, error ->
                         error?.let {
                             //log message
                         }
                         document?.let {
+
                             temperamentTxt.text = it.data?.get("temperament").toString()
                             populationTxt.text = it.data?.get("population").toString()
                             honeyStoresTxt.text = it.data?.get("honeyStores").toString()

@@ -12,13 +12,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_main_background"
-            android:padding="15dp"
+            android:padding="10dp"
             tools:context=".fragments.QuickInspectionFragment">
 
 
             <TextView
                 android:id="@+id/broodFrames"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/number_of_brood_frames"
@@ -45,7 +45,7 @@
 
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/numberOfFrames"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:max="15"
@@ -71,7 +71,7 @@
 
             <TextView
                 android:id="@+id/population4"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="@string/what_you_see"
@@ -84,7 +84,7 @@
 
             <TextView
                 android:id="@+id/population5"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="@string/notes"
@@ -142,7 +142,7 @@
 
             <TextView
                 android:id="@+id/population3"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="@string/laying_pattern"
@@ -155,7 +155,7 @@
 
             <TextView
                 android:id="@+id/population2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="@string/honey_stores"
@@ -168,7 +168,7 @@
 
             <TextView
                 android:id="@+id/population"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="@string/how_is_the_population"
@@ -181,7 +181,7 @@
 
             <TextView
                 android:id="@+id/temper"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/what_is_the_temper"
@@ -194,7 +194,7 @@
 
             <EditText
                 android:id="@+id/noteTxt"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"

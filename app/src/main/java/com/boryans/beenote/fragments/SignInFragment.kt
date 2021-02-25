@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.googleSignInBtn
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import java.lang.reflect.Array
+import kotlin.Exception
 
 class SignInFragment : Fragment() {
 
@@ -99,22 +100,27 @@ class SignInFragment : Fragment() {
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
 
-                    val action = requireView().findNavController()
-                    action.popBackStack()
-                    action.navigate(R.id.splashScreenFragment)
+        try {
+            val credential = GoogleAuthProvider.getCredential(idToken, null)
+            mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(requireActivity()) { task ->
 
-                } else {
-                    Snackbar.make(requireView(), "Authentication Failed.", Snackbar.LENGTH_SHORT)
-                        .show()
+                    if (task.isSuccessful) {
+                        val action = requireView().findNavController()
+                        action.popBackStack()
+                        action.navigate(R.id.splashScreenFragment)
+
+                    } else {
+                        Snackbar.make(requireView(), "Authentication Failed.", Snackbar.LENGTH_SHORT)
+                            .show()
+
+                    }
 
                 }
+        } catch (e: Exception) {
+            //log it
+        }
 
-
-            }
     }
 }

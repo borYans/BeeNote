@@ -6,14 +6,14 @@
     <string name="add_sting">Запиши нов убод</string>
     <string name="view_all_hives">Сите кошнички</string>
     <string name="current_weather_conditions">Метео услови</string>
-    <string name="strong_hives">облачност</string>
+    <string name="strong_hives">јаки друштва</string>
     <string name="weak_hives">Слаби друштва</string>
     <string name="nucleus_hives">Нуклеуси</string>
     <string name="last_inspection">Последен преглед</string>
     <string name="stings">Убоди</string>
     <string name="total_hives">Вкупно кошнички</string>
     <string name="greeting">"Добредојде "</string>
-    <string name="location_info">Временска прогноза на пчелињакот е овозможена доколку е додадена локација.</string>
+    <string name="location_info">Временска прогноза на пчеларникот е овозможена доколку е додадена локација.</string>
     <string name="add_location_buton">Додади локација</string>
     <string name="skip_location_button">"Прескокни "</string>
     <string name="hive_name_hint_text">Име на кошничка(макс. 8 карактери)</string>
@@ -36,8 +36,8 @@
     <string name="laying_pattern_detail">Изглед на леглото</string>
     <string name="queen_seen_detail">Забележана матица</string>
     <string name="capped_brood_seen_detail">Затворено легло</string>
-    <string name="uncapped_brood_seen_detail">Затворено легло</string>
-    <string name="eggs_seen_detail">Збаележани јајца</string>
+    <string name="uncapped_brood_seen_detail">Отворено легло</string>
+    <string name="eggs_seen_detail">Забележани ларви</string>
     <string name="wind">ветер</string>
     <string name="humidity">влажност</string>
     <string name="clouds">облаци</string>
@@ -64,7 +64,7 @@
     <string name="welcome_sign_in_text">Добредојде во BeeNotes</string>
     <string name="sign_in">Логирај се</string>
 
-    <string name="eggs_seen">Јајца</string>
+    <string name="eggs_seen">Ларви</string>
     <string name="what_you_see">Што забележуваш?</string>
     <string name="notes">Забелешки?</string>
     <string name="capped_brood">Затворено легло</string>
@@ -109,4 +109,5 @@
     <string name="no_added_notes_text">Нема забелешка.</string>
     <string name="no_location_added_text">Нема поставена локација.</string>
     <string name="inspection_rating_info">Индексот на преглед е нивото на безбедност при преглед на кошницата. Во опсег од нула до сто. Колку е поголем бројот, толку е поголема безбедноста при отворање на кошницата. Индексот на прегледот се заснова на моменталните метеоролошки услови во пчеларникот. Повеќето почетници се љубопитни и отвараат кошнички кога кога нема потреба. Ве молиме, прегледајте ја кошницата само кога е потребно.</string>
+    <string name="inspection_details">Информации за прегледот</string>
 </resources>

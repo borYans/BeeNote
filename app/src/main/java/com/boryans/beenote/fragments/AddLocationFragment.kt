@@ -25,7 +25,6 @@ class AddLocationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         addLocationBtn.setOnClickListener {
-
             val action = it.findNavController()
             action.popBackStack()
             action.navigate(R.id.mapLocationFragment)
