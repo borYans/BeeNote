@@ -27,7 +27,6 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.googleSignInBtn
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import java.lang.reflect.Array
 import kotlin.Exception

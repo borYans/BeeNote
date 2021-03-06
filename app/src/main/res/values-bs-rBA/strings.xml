@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BeeNote</string>
+    <string name="app_name">BeeNotes</string>
     <string name="location_info">Vremenska prognoza na pčelinjaku je omogućena ukoliko je postavljena lokacija.</string>
     <string name="add_location_buton">Dodaj lokaciju</string>
     <string name="skip_location_button">Preskoči</string>

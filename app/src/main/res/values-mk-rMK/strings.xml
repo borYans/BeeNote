@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BeeNote</string>
+    <string name="app_name">BeeNotes</string>
     <string name="inspected_hives_in_the_past_7_days">Проверени кошнички во 7 дена</string>
     <string name="add_new_colony">Стави нова кошница</string>
     <string name="add_sting">Запиши нов убод</string>

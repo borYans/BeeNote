@@ -57,6 +57,7 @@ class HivesListFragment : Fragment(), HiveClickListener {
                 db.collection(USERS)
                     .document(it)
                     .collection(HIVES)
+                    .orderBy("dateCreated")
                     .addSnapshotListener { documents, error ->
                         error?.let {
                             Toast.makeText(

@@ -20,8 +20,30 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/gradient_main_background"
                 android:gravity="start"
+                app:layout_constraintBottom_toTopOf="@+id/tasksText"
+                app:layout_constraintTop_toTopOf="@+id/tasksText"
                 tools:context=".fragments.HomeFragment">
 
+
+                <TextView
+                    android:id="@+id/addTaskReminder"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/curved_detail_screen_layout"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="No added tasks"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
                 <com.google.android.material.appbar.AppBarLayout
                     android:id="@+id/appBarLayout"
@@ -54,7 +76,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:shadowColor="@color/yellowText"
                     android:shadowRadius="40"
@@ -94,6 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/inspectedHiveTxt"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:alpha=".5"
@@ -104,7 +129,7 @@
                     android:text="@string/inspected_hives_in_the_past_7_days"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    app:layout_constraintBottom_toTopOf="@+id/googleSignInBtn"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/inspectedHiveTxt" />
@@ -117,10 +142,10 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/addTaskReminder"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/currentWeatherConditionsLayout">
+                    app:layout_constraintTop_toBottomOf="@+id/textView">
 
 
                     <TextView
@@ -313,111 +338,6 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/googleSignInBtn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/constraintLayout"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="3dp"
-                    android:alpha=".6"
-                    android:background="@drawable/inverted_curved_layout_background"
-                    android:drawableStart="@drawable/ic_add_new_colony_24"
-                    android:drawablePadding="15dp"
-                    android:fontFamily="sans-serif-thin"
-                    android:gravity="fill"
-                    android:padding="20dp"
-                    android:text="@string/add_new_hive_btn"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/addNewStingLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/viewAllHivesLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/constraintLayout"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="3dp"
-                    android:background="@drawable/inverted_curved_layout_background"
-                    android:drawableStart="@drawable/ic_hives_list_24"
-                    android:drawablePadding="15dp"
-                    android:fontFamily="sans-serif-thin"
-                    android:gravity="fill"
-                    android:alpha=".6"
-                    android:padding="20dp"
-                    android:text="@string/view_all_hives"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/currentWeatherConditionsLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/addNewStingLayout" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/currentWeatherConditionsLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/constraintLayout"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="3dp"
-                    android:background="@drawable/inverted_curved_layout_background"
-                    android:drawableStart="@drawable/ic_weather_24"
-                    android:drawablePadding="15dp"
-                    android:fontFamily="sans-serif-thin"
-                    android:gravity="fill"
-                    android:padding="20dp"
-                    android:alpha=".6"
-                    android:text="@string/current_weather_conditions"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/viewAllHivesLayout" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/addNewStingLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/constraintLayout"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="3dp"
-                    android:alpha=".6"
-                    android:background="@drawable/inverted_curved_layout_background"
-                    android:drawableStart="@drawable/ic_sting_24"
-                    android:drawablePadding="15dp"
-                    android:fontFamily="sans-serif-thin"
-                    android:gravity="fill"
-                    android:padding="20dp"
-                    android:text="@string/add_sting_button"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/viewAllHivesLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/googleSignInBtn" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

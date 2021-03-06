@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
 import com.boryans.beenote.constants.Constants.Companion.HIVES
+import com.boryans.beenote.constants.Constants.Companion.INSPECTIONS
 import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.facebook.login.LoginManager
 import com.google.firebase.Timestamp
@@ -106,6 +107,12 @@ class HomeFragment : Fragment() {
                     action.popBackStack()
                     action.navigate(R.id.signInFragment)
                 }
+                R.id.addNewHive ->  Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionHomeFragmentToAddNewHiveFragment())
+                R.id.yourHives ->   Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionHomeFragmentToHivesListFragment())
+                R.id.addSting ->    Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionHomeFragmentToAddStingFragment())
+                R.id.meteoConditions -> Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionHomeFragmentToWeatherFragment())
+                R.id.addTask -> TODO()
+
             }
             true
         }
@@ -118,24 +125,6 @@ class HomeFragment : Fragment() {
         swipeHomeRefresh.setOnRefreshListener {
             refreshHomeFragmentData()
             swipeHomeRefresh.isRefreshing = false
-        }
-
-        googleSignInBtn.setOnClickListener {
-            navigateToAddNewHiveFragment(it)
-        }
-
-        addNewStingLayout.setOnClickListener {
-            navigateToAddStingFragment(it)
-        }
-
-        currentWeatherConditionsLayout.setOnClickListener {
-            navigateToWeatherFragment(it)
-        }
-
-
-
-        viewAllHivesLayout.setOnClickListener {
-            navigateToListOfHivesFragment(it)
         }
 
     }
@@ -319,28 +308,6 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun navigateToAddNewHiveFragment(v: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToAddNewHiveFragment()
-        Navigation.findNavController(v).navigate(action)
-    }
-
-
-    private fun navigateToWeatherFragment(v: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToWeatherFragment()
-        Navigation.findNavController(v).navigate(action)
-    }
-
-    private fun navigateToAddStingFragment(v: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToAddStingFragment()
-        Navigation.findNavController(v).navigate(action)
-    }
-
-
-    private fun navigateToListOfHivesFragment(v: View) {
-        val action = HomeFragmentDirections.actionHomeFragmentToHivesListFragment()
-        Navigation.findNavController(v).navigate(action)
-    }
-
     private fun cancelListenerRegistrations() {
         stingsListenerRegistration?.remove()
         hivesListenerRegistration?.remove()
@@ -359,6 +326,12 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.signOutMenu -> Firebase.auth.signOut()
+            R.id.addNewHive ->  Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionHomeFragmentToAddNewHiveFragment())
+            R.id.yourHives ->   Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionHomeFragmentToHivesListFragment())
+            R.id.addSting ->    Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionHomeFragmentToAddStingFragment())
+            R.id.meteoConditions -> Navigation.findNavController(requireView()).navigate(HomeFragmentDirections.actionHomeFragmentToWeatherFragment())
+            R.id.addTask -> TODO()
+
         }
         return true
     }

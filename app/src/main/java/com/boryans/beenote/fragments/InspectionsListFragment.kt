@@ -20,6 +20,7 @@ import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import es.dmoral.toasty.Toasty
@@ -81,6 +82,7 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
                     .collection(HIVES)
                     .document(hive_id!!)
                     .collection(INSPECTIONS)
+                    .orderBy("dateCreated", Query.Direction.DESCENDING)
                     .addSnapshotListener { inspections, error ->
                         error?.let {
                             Toast.makeText(requireContext(), "Error occurred.", Toast.LENGTH_SHORT)

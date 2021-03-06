@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BeeNote</string>
+    <string name="app_name">BeeNotes</string>
     <!-- TODO: Remove or change this placeholder text -->
 
     <string name="facebook_app_id" translatable="false">1863877137095783</string>
