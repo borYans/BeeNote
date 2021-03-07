@@ -24,7 +24,8 @@ import com.google.firebase.ktx.Firebase
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_map_location.*
 
-class MapLocationFragment : Fragment(), OnMapReadyCallback {
+class
+MapLocationFragment : Fragment(), OnMapReadyCallback {
 
     //Firebase
     private val authUser = Firebase.auth.currentUser?.uid

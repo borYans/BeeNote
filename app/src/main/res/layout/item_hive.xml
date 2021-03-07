@@ -12,7 +12,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:elevation="10dp"
-        android:background="@drawable/curved_detail_screen_layout"
+        android:background="@drawable/inverted_curved_layout_background"
         android:padding="12dp">
 
 
@@ -35,7 +35,6 @@
             android:id="@+id/hiveStatusTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
             android:text="@string/status_recycler_item"
             android:textColor="@color/greyText"
             android:textSize="15sp"
@@ -46,7 +45,6 @@
             android:id="@+id/queenBeeAgeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
             android:text="@string/queen_recycler_item"
             android:textColor="@color/greyText"
             android:textSize="12sp"
@@ -56,18 +54,21 @@
 
         <ImageView
             android:id="@+id/deleteHive"
-            android:layout_width="30dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_delete_hive"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
 
-        <ImageView
+        <TextView
             android:id="@+id/editHIve"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_outline_edit_24"
+            android:text="Edit this hive"
+            android:textSize="12sp"
+            android:alpha="0.8"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

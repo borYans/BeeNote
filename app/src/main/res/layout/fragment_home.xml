@@ -24,9 +24,22 @@
                 app:layout_constraintTop_toTopOf="@+id/tasksText"
                 tools:context=".fragments.HomeFragment">
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addFab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:contentDescription="addreminder"
+                    android:src="@drawable/ic_add"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
 
                 <TextView
-                    android:id="@+id/addTaskReminder"
+                    android:id="@+id/taskReminder"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
@@ -38,6 +51,7 @@
                     android:padding="5dp"
                     android:fontFamily="sans-serif-light"
                     android:text="No added tasks"
+                    android:shadowRadius="2"
                     android:textColor="@color/white"
                     android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/inspectedHiveTxt"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:alpha=".5"
@@ -139,10 +153,10 @@
                     android:layout_width="0dp"
                     android:layout_height="180dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/addTaskReminder"
+                    app:layout_constraintBottom_toTopOf="@+id/taskReminder"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -338,6 +352,45 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addNewHiveFab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTint="@color/greyText"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/addFab"
+                    app:layout_constraintEnd_toEndOf="@+id/addFab"
+                    app:srcCompat="@drawable/ic_inspection_2_24" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addNewReminderFab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:backgroundTint="@color/greyText"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/addNewHiveFab"
+                    app:layout_constraintEnd_toEndOf="@+id/addNewHiveFab"
+                    app:srcCompat="@drawable/ic_edit_hive" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addNewStingFab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/greyText"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toTopOf="@+id/addNewReminderFab"
+                    app:layout_constraintEnd_toEndOf="@+id/addNewReminderFab"
+                    app:srcCompat="@drawable/ic_sting2_24" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -101,7 +101,7 @@ class AddStingFragment : Fragment() {
 
         stingListenerRegistration =
             authUser?.let {
-                db.collection(Constants.USERS)
+                db.collection(USERS)
                     .document(it)
                     .addSnapshotListener { document, error ->
                         document?.let {

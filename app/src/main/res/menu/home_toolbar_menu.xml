@@ -4,28 +4,10 @@
 
 
     <item
-        android:id="@+id/addTask"
-        android:icon="@drawable/ic_edit_hive"
-        android:title="Add reminder task"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/addNewHive"
-        android:icon="@drawable/ic_inspection_2_24"
-        android:title="@string/add_new_hive_btn"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/yourHives"
         android:icon="@drawable/ic_hives_list_24"
         android:title="@string/view_all_hives"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/addSting"
-        android:icon="@drawable/ic_sting_24"
-        android:title="@string/add_sting_button"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/meteoConditions"
