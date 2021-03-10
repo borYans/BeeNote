@@ -63,15 +63,23 @@ class InspectionDetailFragment : Fragment() {
                         error?.let {
                             //log message
                         }
-                        document?.let {
+                        document?.let { inspection ->
 
-                            temperamentTxt.text = it.data?.get("temperament").toString()
-                            populationTxt.text = it.data?.get("population").toString()
-                            honeyStoresTxt.text = it.data?.get("honeyStores").toString()
-                            layingPatternTxt.text = it.data?.get("layingPattern").toString()
-                            displayNotesTxt.text = it.data?.get("notes").toString()
-                            framesBrood.text = it.data?.get("broodFrames").toString()
-                            val observed = it.data?.get("observed") as List<*>
+                              val temper = inspection.data?.get("temperament").toString()
+                             val population = inspection.data?.get("population").toString()
+                           val honeyStores = inspection.data?.get("honeyStores").toString()
+                           val layingPattern = inspection.data?.get("layingPattern").toString()
+                           displayNotesTxt.text  = inspection.data?.get("notes").toString()
+                           framesBrood.text  = inspection.data?.get("broodFrames").toString()
+
+                            if (temper != "null") temperamentTxt.text = temper else temperamentTxt.text = "X"
+                            if (population != "null") populationTxt.text = population else populationTxt.text= "X"
+                            if (honeyStores != "null")  honeyStoresTxt.text = honeyStores else  honeyStoresTxt.text = "X"
+                            if (layingPattern != "null")  layingPatternTxt.text = layingPattern else  layingPatternTxt.text = "X"
+
+
+
+                            val observed = inspection.data?.get("observed") as List<*>
 
                             queenSeenTxt.text = observed[0].toString()
                             cappedBroodSeenTxt.text = observed[1].toString()

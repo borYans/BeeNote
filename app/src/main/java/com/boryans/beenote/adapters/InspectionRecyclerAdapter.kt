@@ -85,5 +85,7 @@ class InspectionItemDiffCallback(
         return oldInspectionList[oldItemPosition] === (newInspectionList[newItemPosition])
     }
 
+
+
 }
 

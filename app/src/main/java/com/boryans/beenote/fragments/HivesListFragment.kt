@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.*
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.boryans.beenote.listeners.HiveClickListener
@@ -14,6 +14,7 @@ import com.boryans.beenote.R
 import com.boryans.beenote.adapters.HivesRecyclerAdapter
 import com.boryans.beenote.constants.Constants
 import com.boryans.beenote.constants.Constants.Companion.HIVES
+import com.boryans.beenote.constants.Constants.Companion.INTERVENTIONS
 import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -21,14 +22,19 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_hives_list.*
+import kotlinx.android.synthetic.main.item_hive.*
+import kotlinx.android.synthetic.main.symbol_dialog.*
 
 class HivesListFragment : Fragment(), HiveClickListener {
 
     private val authUser = Firebase.auth.currentUser?.uid
     private var hivesListenerRegistration: ListenerRegistration? = null
+    private var interventionsListenerRegistration: ListenerRegistration? = null
     private val db = FirebaseFirestore.getInstance()
+    private val hiveId: String? = null
 
     private val hivesListAdapter = HivesRecyclerAdapter(this)
     private var isSnackBarShowedOnce = false
@@ -52,6 +58,10 @@ class HivesListFragment : Fragment(), HiveClickListener {
 
     override fun onResume() {
         super.onResume()
+
+
+
+
         hivesListenerRegistration =
             authUser?.let {
                 db.collection(USERS)
@@ -66,6 +76,7 @@ class HivesListFragment : Fragment(), HiveClickListener {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+
                         documents?.let {
                             val hivesList = ArrayList<QueryDocumentSnapshot>()
                             for (document in documents) {
@@ -79,7 +90,6 @@ class HivesListFragment : Fragment(), HiveClickListener {
                         }
                     }
             }
-
     }
 
     private fun askForAddingNewHive(shown: Boolean) {
@@ -127,6 +137,56 @@ class HivesListFragment : Fragment(), HiveClickListener {
 
     override fun onHiveClicked(position: String) {
         informUserForActions(position)
+    }
+
+    override fun onAddSignClicked(position: String) {
+        val customDialogLayout = layoutInflater.inflate(R.layout.symbol_dialog, null)
+        val swarming: CheckBox = customDialogLayout.findViewById(R.id.swarmingSoon)
+        val feeding: CheckBox = customDialogLayout.findViewById(R.id.feeding)
+        val treatment: CheckBox = customDialogLayout.findViewById(R.id.treatedHive)
+
+
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("Add intervention")
+            setView(customDialogLayout)
+            setCancelable(false)
+            setPositiveButton("Save") { dialogInterface, which ->
+
+                if (swarming.isChecked) swarmWarning.visibility = View.VISIBLE else swarmWarning.visibility = View.VISIBLE
+                if (treatment.isChecked) treatedHive.visibility = View.VISIBLE else treatedHive.visibility = View.VISIBLE
+                if (feeding.isChecked) feedingHive.visibility = View.VISIBLE else feedingHive.visibility = View.VISIBLE
+
+            /*    authUser?.let {
+                    db.collection(USERS)
+                        .document(it)
+                        .collection(HIVES)
+                        .document(position)
+                        .collection(INTERVENTIONS)
+                        .add(mapOf(
+                            "treatment" to treatment.isChecked,
+                            "feeding" to feeding.isChecked,
+                            "swarmingSoon" to swarming.isChecked
+                        ))
+                }
+             */
+            }
+            setNegativeButton("Cancel") { dialogInterface, which ->
+                dialogInterface.cancel()
+            }
+            create()
+            show()
+        }
+
+    }
+
+
+    fun varoaAndSwarminginfo(message: String) {
+        Snackbar.make(requireView(), message , Snackbar.LENGTH_LONG).apply {
+            setBackgroundTint(resources.getColor(R.color.darkBackgroundColor))
+            setActionTextColor(resources.getColor(R.color.yellowText))
+            animationMode = BaseTransientBottomBar.ANIMATION_MODE_SLIDE
+            show()
+        }
     }
 
 

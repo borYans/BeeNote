@@ -6,6 +6,7 @@ class Constants {
         const val USERS = "users"
         const val HIVES = "hives"
         const val COORDINATES = "coordinates"
+        const val INTERVENTIONS = "interventions"
         const val INSPECTIONS = "inspections"
         //weather
         const val APP_ID = "41422c6253c8d90da3e465b64a9274a7"

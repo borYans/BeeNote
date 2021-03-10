@@ -8,13 +8,24 @@
         android:id="@+id/hive"
         android:layout_width="match_parent"
         android:layout_height="95dp"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
-        android:elevation="10dp"
         android:background="@drawable/inverted_curved_layout_background"
+        android:elevation="10dp"
         android:padding="12dp">
 
+
+        <ImageView
+            android:id="@+id/feedingHive"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:alpha="1"
+            android:visibility="invisible"
+            android:src="@drawable/ic_feeding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/swarmWarning" />
 
         <TextView
             android:id="@+id/hiveNameTxt"
@@ -41,6 +52,7 @@
             app:layout_constraintBottom_toTopOf="@+id/queenBeeAgeTxt"
             app:layout_constraintStart_toStartOf="parent" />
 
+
         <TextView
             android:id="@+id/queenBeeAgeTxt"
             android:layout_width="wrap_content"
@@ -53,22 +65,44 @@
 
 
         <ImageView
-            android:id="@+id/deleteHive"
+            android:id="@+id/varoaMites"
             android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_delete_hive"
+            android:layout_marginEnd="24dp"
+            android:alpha="1"
+            android:visibility="invisible"
+            android:src="@drawable/ic_varoa_mites"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/addSymbol" />
+
+        <ImageView
+            android:id="@+id/swarmWarning"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:alpha="1"
+            android:visibility="invisible"
+            android:src="@drawable/ic_swarm_warning"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/varoaMites" />
+
+        <ImageView
+            android:id="@+id/addSymbol"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:alpha="1"
+            android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
 
         <TextView
             android:id="@+id/editHIve"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Edit this hive"
-            android:textSize="12sp"
             android:alpha="0.8"
+            android:text="Edit this hive"
             android:textColor="@color/white"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

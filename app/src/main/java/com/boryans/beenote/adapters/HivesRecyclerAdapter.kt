@@ -67,13 +67,16 @@ class HivesRecyclerAdapter(
                 HivesListFragmentDirections.actionHivesListFragmentToInspectionsListFragment(docs.id)
             Navigation.findNavController(it).navigate(action)
         }
-        holder.itemView.deleteHive.setOnClickListener {
-            hiveClickListener.onHiveClicked(docs.id)
-        }
+
 
         holder.itemView.editHIve.setOnClickListener {
             Navigation.findNavController(it).navigate(HivesListFragmentDirections.actionHivesListFragmentToUpdateHiveFragment(docs.id))
         }
+
+        holder.itemView.addSymbol.setOnClickListener { feeding ->
+            hiveClickListener.onAddSignClicked(docs.id)
+        }
+
     }
 
     //Return datasize of my dataset.

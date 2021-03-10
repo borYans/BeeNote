@@ -82,7 +82,7 @@ class InspectionsListFragment : Fragment(), InspectionsClickListener {
                     .collection(HIVES)
                     .document(hive_id!!)
                     .collection(INSPECTIONS)
-                    .orderBy("dateCreated", Query.Direction.DESCENDING)
+                    .orderBy("timestamp", Query.Direction.DESCENDING)
                     .addSnapshotListener { inspections, error ->
                         error?.let {
                             Toast.makeText(requireContext(), "Error occurred.", Toast.LENGTH_SHORT)

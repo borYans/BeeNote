@@ -54,7 +54,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/broodFrames" />
 
-
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/eggsCheckBox"
                 android:layout_width="wrap_content"
@@ -130,7 +129,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:checked="true"
                 android:clickable="true"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/queen"
@@ -228,7 +226,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:fontFamily="sans-serif-light"
                     android:text="@string/calm"
                     android:textColor="@color/white" />
@@ -271,7 +268,6 @@
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:fontFamily="sans-serif-light"
                     android:text="@string/low"
                     android:textColor="@color/white" />
@@ -313,7 +309,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:fontFamily="sans-serif-light"
                     android:text="@string/low"
                     android:textColor="@color/white" />
@@ -356,7 +351,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:fontFamily="sans-serif-light"
                     android:text="@string/poor"
                     android:textColor="@color/white" />
