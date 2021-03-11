@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
 import com.boryans.beenote.constants.Constants.Companion.HIVES
 import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.Hive
+import com.boryans.beenote.viewmodels.HiveViewModel
+import com.boryans.beenote.viewmodels.StingsViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,18 +25,10 @@ import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_add_new_hive.*
 
 
-class AddNewHiveFragment : Fragment() {
+class AddNewHiveFragment : Fragment(R.layout.fragment_add_new_hive) {
 
-    private val authUser = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
+    private val hiveViewModel: HiveViewModel by activityViewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_new_hive, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,26 +49,11 @@ class AddNewHiveFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                setNewHives(hive)
+                hiveViewModel.updateHives(hive)
                 navigateBackToHome(it)
             }
         }
     }
-
-    private fun setNewHives(hive: Hive) {
-        try {
-            authUser?.let {
-                db.collection(USERS)
-                    .document(it)
-                    .collection(HIVES)
-                    .add(hive)
-            }
-        } catch (e: Exception) {
-            //log it
-        }
-
-    }
-
 
     private fun getTextFromRadioButton(rdGroup: RadioGroup): String {
         val radioBtnID = rdGroup.checkedRadioButtonId

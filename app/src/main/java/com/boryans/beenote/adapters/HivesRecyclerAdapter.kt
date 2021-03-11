@@ -60,6 +60,9 @@ class HivesRecyclerAdapter(
             hiveNameTxt.text = docs.get("hiveName").toString()
             hiveStatusTxt.text = "${holder.itemView.context.getString(R.string.status_recycler_item)} ${docs.get("hiveStatus").toString()}"
             queenBeeAgeTxt.text = "${holder.itemView.context.getString(R.string.queen_recycler_item)} ${docs.get("queenAge").toString()} ${holder.itemView.context.getString(R.string.queen_recycler_endpoint)}"
+            if (docs.get("feeding") == true) feedingHive.visibility = View.VISIBLE else feedingHive.visibility = View.GONE
+            if (docs.get("swarmingSoon") == true) swarmWarning.visibility = View.VISIBLE else swarmWarning.visibility = View.GONE
+            if (docs.get("treatment") == true) varoaMites.visibility = View.VISIBLE else varoaMites.visibility = View.GONE
         }
 
         holder.itemView.setOnClickListener {
@@ -102,6 +105,7 @@ class HiveItemDiffCallback(
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return oldHivesList[oldItemPosition] === newHivesList[newItemPosition]
     }
+
 
 }
 

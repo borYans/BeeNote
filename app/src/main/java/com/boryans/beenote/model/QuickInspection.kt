@@ -12,9 +12,6 @@ data class QuickInspection(
     var temperament: String?,
     var notes: String?,
     var broodFrames: String?,
-   // var isVaroaTreated: Boolean,
-  //  var isSwarming: Boolean,
-   // var isFed:Boolean,
     var observed: List<String>,
 
     )
