@@ -1,7 +1,6 @@
-package com.boryans.beenote.fragments
+package com.boryans.beenote.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
@@ -13,7 +12,6 @@ import com.boryans.beenote.constants.Constants
 import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.Repository
 import com.boryans.beenote.model.WeatherDataModel
-import com.facebook.login.LoginManager
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
@@ -21,7 +19,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
 import retrofit2.Callback

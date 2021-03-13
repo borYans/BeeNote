@@ -1,4 +1,4 @@
-package com.boryans.beenote.fragments
+package com.boryans.beenote.view
 
 import android.app.AlertDialog
 import android.os.Bundle

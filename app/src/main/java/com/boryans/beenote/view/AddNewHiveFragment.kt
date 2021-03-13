@@ -1,26 +1,17 @@
-package com.boryans.beenote.fragments
+package com.boryans.beenote.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
-import com.boryans.beenote.constants.Constants
-import com.boryans.beenote.constants.Constants.Companion.HIVES
-import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.Hive
 import com.boryans.beenote.viewmodels.HiveViewModel
-import com.boryans.beenote.viewmodels.StingsViewModel
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_add_new_hive.*
 

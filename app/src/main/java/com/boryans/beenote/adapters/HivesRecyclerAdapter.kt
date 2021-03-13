@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.boryans.beenote.listeners.HiveClickListener
 import com.boryans.beenote.R
-import com.boryans.beenote.fragments.HivesListFragmentDirections
+import com.boryans.beenote.view.HivesListFragmentDirections
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import kotlinx.android.synthetic.main.item_hive.view.*
 

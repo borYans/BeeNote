@@ -1,30 +1,18 @@
-package com.boryans.beenote.fragments
+package com.boryans.beenote.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
-import com.boryans.beenote.constants.Constants
-import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.Sting
 import com.boryans.beenote.util.Resource
 import com.boryans.beenote.viewmodels.StingsViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.ktx.Firebase
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_add_sting.*
-import java.lang.Exception
 
 
 class AddStingFragment : Fragment(R.layout.fragment_add_sting) {

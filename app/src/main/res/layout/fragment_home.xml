@@ -22,7 +22,7 @@
                 android:gravity="start"
                 app:layout_constraintBottom_toTopOf="@+id/tasksText"
                 app:layout_constraintTop_toTopOf="@+id/tasksText"
-                tools:context=".fragments.HomeFragment">
+                tools:context=".view.HomeFragment">
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/addFab"

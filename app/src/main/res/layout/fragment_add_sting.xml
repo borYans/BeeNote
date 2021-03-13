@@ -16,7 +16,7 @@
             android:background="@drawable/gradient_main_background"
             android:gravity="center"
             android:padding="20dp"
-            tools:context=".fragments.AddStingFragment">
+            tools:context=".view.AddStingFragment">
 
 
             <TextView

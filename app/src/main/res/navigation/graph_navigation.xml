@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.boryans.beenote.fragments.HomeFragment"
+        android:name="com.boryans.beenote.view.HomeFragment"
         android:label="Home "
         tools:layout="@layout/fragment_home">
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNewHiveFragment"
-        android:name="com.boryans.beenote.fragments.AddNewHiveFragment"
+        android:name="com.boryans.beenote.view.AddNewHiveFragment"
         android:label="New hive">
         <action
             android:id="@+id/action_addNewHiveFragment_to_homeFragment"
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/addStingFragment"
-        android:name="com.boryans.beenote.fragments.AddStingFragment"
+        android:name="com.boryans.beenote.view.AddStingFragment"
         android:label="Stings">
         <action
             android:id="@+id/action_addStingFragment_to_homeFragment"
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/quickInspectionFragment"
-        android:name="com.boryans.beenote.fragments.QuickInspectionFragment"
+        android:name="com.boryans.beenote.view.QuickInspectionFragment"
         android:label="New Inspections">
         <action
             android:id="@+id/action_quickInspectionFragment_to_homeFragment"
@@ -60,11 +60,11 @@
     </fragment>
     <fragment
         android:id="@+id/inspectionRatingInfoFragment"
-        android:name="com.boryans.beenote.fragments.InspectionRatingInfoFragment"
+        android:name="com.boryans.beenote.view.InspectionRatingInfoFragment"
         android:label="InspectionRatingInfoFragment" />
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="com.boryans.beenote.fragments.WeatherFragment"
+        android:name="com.boryans.beenote.view.WeatherFragment"
         android:label="Apiary conditions">
         <action
             android:id="@+id/action_weatherFragment_to_inspectionRatingInfoFragment"
@@ -78,7 +78,7 @@
     </fragment>
     <fragment
         android:id="@+id/hivesListFragment"
-        android:name="com.boryans.beenote.fragments.HivesListFragment"
+        android:name="com.boryans.beenote.view.HivesListFragment"
         android:label="Hives list">
         <action
             android:id="@+id/action_hivesListFragment_to_inspectionsListFragment"
@@ -92,7 +92,7 @@
     </fragment>
     <fragment
         android:id="@+id/inspectionsListFragment"
-        android:name="com.boryans.beenote.fragments.InspectionsListFragment"
+        android:name="com.boryans.beenote.view.InspectionsListFragment"
         android:label="Inspections list">
         <argument
             android:name="hiveId"
@@ -106,7 +106,7 @@
     </fragment>
     <fragment
         android:id="@+id/inspectionDetailFragment"
-        android:name="com.boryans.beenote.fragments.InspectionDetailFragment"
+        android:name="com.boryans.beenote.view.InspectionDetailFragment"
         android:label="Hive stats"
         tools:layout="@layout/fragment_inspection_detail">
         <argument
@@ -118,7 +118,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapLocationFragment"
-        android:name="com.boryans.beenote.fragments.MapLocationFragment"
+        android:name="com.boryans.beenote.view.MapLocationFragment"
         android:label="MapLocationFragment" >
         <action
             android:id="@+id/action_mapLocationFragment_to_homeFragment"
@@ -128,7 +128,7 @@
     </fragment>
     <fragment
         android:id="@+id/addLocationFragment"
-        android:name="com.boryans.beenote.fragments.AddLocationFragment"
+        android:name="com.boryans.beenote.view.AddLocationFragment"
         android:label="Location">
         <action
             android:id="@+id/action_addLocationFragment_to_homeFragment"
@@ -140,7 +140,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.boryans.beenote.fragments.SplashScreenFragment"
+        android:name="com.boryans.beenote.view.SplashScreenFragment"
         android:label="SplashScreenFragment" >
         <action
             android:id="@+id/action_splashScreenFragment_to_homeFragment"
@@ -156,7 +156,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.boryans.beenote.fragments.SignInFragment"
+        android:name="com.boryans.beenote.view.SignInFragment"
         android:label="Sign in">
         <action
             android:id="@+id/action_chooseLoginTypeFragment_to_addLocationFragment"
@@ -172,10 +172,12 @@
             android:id="@+id/action_signInFragment_to_splashScreenFragment"
             app:destination="@id/splashScreenFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/updateHiveFragment"
-        android:name="com.boryans.beenote.fragments.UpdateHiveFragment"
+        android:name="com.boryans.beenote.view.EditHiveFragment"
         android:label="UpdateHiveFragment" >
+
         <action
             android:id="@+id/action_updateHiveFragment_to_homeFragment"
             app:destination="@id/homeFragment"

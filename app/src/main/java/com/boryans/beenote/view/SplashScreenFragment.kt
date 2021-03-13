@@ -1,4 +1,4 @@
-package com.boryans.beenote.fragments
+package com.boryans.beenote.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

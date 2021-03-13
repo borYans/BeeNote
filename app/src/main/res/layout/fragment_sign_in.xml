@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:padding="20dp"
-            tools:context=".fragments.SignInFragment">
+            tools:context=".view.SignInFragment">
 
             <TextView
                 android:id="@+id/welcomeTxt"

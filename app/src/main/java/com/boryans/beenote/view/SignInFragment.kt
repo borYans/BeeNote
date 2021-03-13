@@ -1,34 +1,25 @@
-package com.boryans.beenote.fragments
+package com.boryans.beenote.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import com.facebook.appevents.AppEventsLogger;
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
 import com.facebook.*
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignIn.getClient
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_sign_in.*
-import java.lang.reflect.Array
 import kotlin.Exception
 
 class SignInFragment : Fragment() {

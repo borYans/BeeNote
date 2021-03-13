@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_main_background"
             android:padding="10dp"
-            tools:context=".fragments.QuickInspectionFragment">
+            tools:context=".view.QuickInspectionFragment">
 
 
             <TextView

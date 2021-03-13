@@ -28,6 +28,7 @@ class HomeViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
     private var mAuth = FirebaseAuth.getInstance()
 
+    
     //ccalendar instance
     private val calendar = Calendar.getInstance()
 
@@ -42,6 +43,7 @@ class HomeViewModel : ViewModel() {
     var lastInspectionDateListenerRegistration: ListenerRegistration? = null
     var reminderNoteListenerRegistration: ListenerRegistration? = null
 
+    
     //Live Data objects
     var taskReminder: MutableLiveData<Resource<String?>> = MutableLiveData()
     var allHives: MutableLiveData<Resource<String?>> = MutableLiveData()
@@ -56,7 +58,7 @@ class HomeViewModel : ViewModel() {
     fun updateTaskReminderToFirebase(reminderNote: String) = viewModelScope.launch {
         try {
             authUser?.let {
-                db.collection(Constants.USERS)
+                db.collection(USERS)
                     .document(it)
                     .set(
                         mapOf(

@@ -1,44 +1,32 @@
-package com.boryans.beenote.fragments
+package com.boryans.beenote.view
 
 import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.boryans.beenote.listeners.HiveClickListener
 import com.boryans.beenote.R
 import com.boryans.beenote.adapters.HivesRecyclerAdapter
-import com.boryans.beenote.constants.Constants.Companion.HIVES
-import com.boryans.beenote.constants.Constants.Companion.USERS
+import com.boryans.beenote.model.Interventions
+import com.boryans.beenote.util.Resource
+import com.boryans.beenote.viewmodels.HiveViewModel
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.*
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_hives_list.*
-import kotlinx.android.synthetic.main.item_hive.*
 import kotlinx.android.synthetic.main.symbol_dialog.*
 
-class HivesListFragment : Fragment(), HiveClickListener {
+class HivesListFragment : Fragment(R.layout.fragment_hives_list), HiveClickListener {
 
-    private val authUser = Firebase.auth.currentUser?.uid
-    private var hivesListenerRegistration: ListenerRegistration? = null
-    private val db = FirebaseFirestore.getInstance()
-
+    
     private val hivesListAdapter = HivesRecyclerAdapter(this)
+    private val hiveViewModel: HiveViewModel by activityViewModels()
+    
     private var isSnackBarShowedOnce = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hives_list, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,43 +36,29 @@ class HivesListFragment : Fragment(), HiveClickListener {
             adapter = hivesListAdapter
         }
     }
-
+    
     override fun onResume() {
         super.onResume()
+        
+        hiveViewModel.getAllHives()
+        hiveViewModel.allHives.observe(viewLifecycleOwner, { hivesList ->
+            when(hivesList) {
+                is Resource.Success -> {
+                    hivesList.let { list ->
 
-
-        hivesListenerRegistration =
-            authUser?.let {
-                db.collection(USERS)
-                    .document(it)
-                    .collection(HIVES)
-                    .orderBy("dateCreated", Query.Direction.DESCENDING)
-                    .addSnapshotListener { documents, error ->
-                        error?.let {
-                            Toast.makeText(
-                                requireContext(),
-                                "Error occured: $error",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-
-                        documents?.let {
-                            val hivesList = ArrayList<QueryDocumentSnapshot>()
-                            for (document in documents) {
-                                hivesList.add(document)
-                            }
-                            if (hivesList.isEmpty() && !isSnackBarShowedOnce) {
-                                askForAddingNewHive(isSnackBarShowedOnce)
-                            } else {
-                                hivesListAdapter.updateHivesList(hivesList)
-                            }
+                        if (list.data?.isEmpty() == true && !isSnackBarShowedOnce) {
+                            askForAddingNewHive()
+                        } else {
+                            list.data?.let { hivesListAdapter.updateHivesList(it) }
                         }
                     }
+                }
             }
+        })
     }
 
-    private fun askForAddingNewHive(shown: Boolean) {
-        if (!shown) {
+    private fun askForAddingNewHive() {
+        if (!isSnackBarShowedOnce) {
             Snackbar.make(
                 requireView(),
                 activity?.getText(R.string.empty_list_snackbar)!!,
@@ -111,13 +85,8 @@ class HivesListFragment : Fragment(), HiveClickListener {
             .setPositiveButton(activity?.getString(R.string.positive_message)) { dialogInterface, which ->
 
                 isSnackBarShowedOnce = true
-                authUser?.let {
-                    db.collection(USERS)
-                        .document(it)
-                        .collection(HIVES)
-                        .document(position)
-                        .delete()
-                }
+                hiveViewModel.deleteHive(position)
+         
             }
             .setNegativeButton(activity?.getString(R.string.negative_message)) { dialogInterface, which ->
                 dialogInterface.cancel()
@@ -141,32 +110,7 @@ class HivesListFragment : Fragment(), HiveClickListener {
         val feeding: CheckBox = customDialogLayout.findViewById(R.id.addFeeding)
         val treatment: CheckBox = customDialogLayout.findViewById(R.id.treatedHive)
 
-
-        authUser?.let {
-            db.collection(USERS)
-                .document(it)
-                .collection(HIVES)
-                .document(position)
-                .addSnapshotListener { hive, error ->
-                    hive?.let {
-
-                        if (hive.data?.get("treatment") != null && hive.data?.get("swarmingSoon") != null && hive.data?.get(
-                                "feeding"
-                            ) != null
-                        ) {
-                            val varoaMites = hive.data?.get("treatment") as Boolean
-                            val swarmingHive = hive.data?.get("swarmingSoon") as Boolean
-                            val feedingHive = hive.data?.get("feeding") as Boolean
-
-                            if (varoaMites) treatment.isChecked = true
-                            if (swarmingHive) swarming.isChecked = true
-                            if (feedingHive) feeding.isChecked = true
-                        }
-
-
-                    }
-                }
-        }
+        checkAllCheckboxesInDialog(position, treatment, feeding, swarming)
 
 
         AlertDialog.Builder(requireContext()).apply {
@@ -175,20 +119,8 @@ class HivesListFragment : Fragment(), HiveClickListener {
             setCancelable(false)
             setPositiveButton("Save") { dialogInterface, which ->
 
+                hiveViewModel.updateAllInterventionsToFirebase(position, treatment.isChecked, feeding.isChecked, swarming.isChecked)
 
-                authUser?.let {
-                    db.collection(USERS)
-                        .document(it)
-                        .collection(HIVES)
-                        .document(position)
-                        .update(
-                            mapOf(
-                                "treatment" to treatment.isChecked,
-                                "feeding" to feeding.isChecked,
-                                "swarmingSoon" to swarming.isChecked
-                            )
-                        )
-                }
             }
             setNegativeButton("Cancel") { dialogInterface, which ->
                 dialogInterface.cancel()
@@ -199,6 +131,20 @@ class HivesListFragment : Fragment(), HiveClickListener {
 
     }
 
+    private fun checkAllCheckboxesInDialog(position: String, treatment: CheckBox, feeding: CheckBox, swarming: CheckBox) {
+        hiveViewModel.getAllInterventions(position)
+        hiveViewModel.allInterventions.observe(viewLifecycleOwner, { intervention ->
+            when (intervention) {
+                is Resource.Success -> {
+                    intervention.let {
+                        if (it.data?.treatment!!) treatment.isChecked = true
+                        if (it.data.feeding) feeding.isChecked = true
+                        if (it.data.swarmingSoon) swarming.isChecked = true
+                    }
+                }
+            }
+        })
+    }
 
     fun varoaAndSwarminginfo(message: String) {
         Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG).apply {
@@ -212,7 +158,7 @@ class HivesListFragment : Fragment(), HiveClickListener {
 
     override fun onStop() {
         super.onStop()
-        hivesListenerRegistration?.remove()
+        hiveViewModel.hivesListenerRegistration?.remove()
     }
 
 }
