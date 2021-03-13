@@ -24,35 +24,23 @@ import kotlinx.android.synthetic.main.fragment_update_hive.*
 class EditHiveFragment : Fragment(R.layout.fragment_update_hive) {
     private val hiveViewModel: HiveViewModel by activityViewModels()
 
-
     private var hiveId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            val args = EditHiveFragmentArgs.fromBundle(it)
-            hiveId = args.hiveId
-        }
-
+        getHiveIdFromBundle()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         updateHiveBtn_update.setOnClickListener {
 
-            if (hiveNameEditText_update.text.toString().trim().isBlank()
-                    || queenAgeEditText_update.text.toString().trim().isBlank()
-            ) {
-                Toasty.info(
-                    requireContext(),
-                    activity?.getString(R.string.hive_data_cannot_be_empty)!!,
-                    Toast.LENGTH_SHORT
-                ).show()
+            if (isHiveNameBlank || isQueenAgeBlank) {
+                warnUserToAddHiveNameAndQueenAge()
             } else {
                 hiveId?.let { id ->
-                    hiveViewModel.editHives(id, hiveNameEditText_update.text.toString(), queenAgeEditText_update.text.toString(), getTextFromRadioButton(statusRadioGroup_update))
+                  editHive(id)
                 }
             }
             navigateBackToHome(it)
@@ -69,6 +57,34 @@ class EditHiveFragment : Fragment(R.layout.fragment_update_hive) {
         val action = EditHiveFragmentDirections.actionUpdateHiveFragmentToHomeFragment()
         Navigation.findNavController(v).navigate(action)
     }
+
+    private fun warnUserToAddHiveNameAndQueenAge() {
+        Toasty.info(
+            requireContext(),
+            activity?.getString(R.string.hive_data_cannot_be_empty)!!,
+            Toast.LENGTH_SHORT
+        ).show()
+
+    }
+
+    private fun editHive(hive_id: String) {
+        hiveViewModel.editHives(
+            hive_id,
+            hiveNameEditText_update.text.toString(),
+            queenAgeEditText_update.text.toString(),
+            getTextFromRadioButton(statusRadioGroup_update)
+        )
+    }
+
+    private fun getHiveIdFromBundle() {
+        arguments?.let {
+            val args = EditHiveFragmentArgs.fromBundle(it)
+            hiveId = args.hiveId
+        }
+    }
+
+    private val isHiveNameBlank = hiveNameEditText_update.text.toString().trim().isBlank()
+    private val isQueenAgeBlank = queenAgeEditText_update.text.toString().trim().isBlank()
 }
 
 

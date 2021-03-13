@@ -26,7 +26,7 @@ import retrofit2.Response
 import kotlin.math.roundToInt
 
 
-class WeatherFragment() : Fragment() {
+class  WeatherFragment() : Fragment() {
 
     //firebase
     private val authUser = Firebase.auth.currentUser?.uid

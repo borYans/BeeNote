@@ -8,42 +8,47 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants.Companion.HIVES
 import com.boryans.beenote.constants.Constants.Companion.INSPECTIONS
 import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.QuickInspection
+import com.boryans.beenote.viewmodels.InspectionViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_quick_inspection.*
+import kotlinx.android.synthetic.main.item_hive.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import kotlin.Exception
 
 
-class QuickInspectionFragment : Fragment() {
+class QuickInspectionFragment : Fragment(R.layout.fragment_quick_inspection) {
 
-    private val authUser = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
+
+    private val inspectionViewModel : InspectionViewModel by activityViewModels()
+
     private var hive_Id: String? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quick_inspection, container, false)
 
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        finishInspectionBtn.setOnClickListener {
+            setQuickInspectionModelObject()?.let { inspection ->
+                setQuickInspectionToFirebase(inspection)
+            }
+            setLastInspectionDate()
+            navigateBackToHomeFragment(it)
+        }
 
         numberOfFrames.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -60,91 +65,50 @@ class QuickInspectionFragment : Fragment() {
             }
 
         })
+    }
 
 
-        finishInspectionBtn.setOnClickListener {
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setQuickInspectionModelObject() = hive_Id?.let {
+        QuickInspection(
+            it,
+        FieldValue.serverTimestamp(),
+        getCurrentDate(),
+        getTextFromRadioButton(honeyStoresRadioGroup)!!,
+        getTextFromRadioButton(layingPatternRadioGroup)!!,
+        getTextFromRadioButton(populationRadioGroup)!!,
+        getTextFromRadioButton(temperRadioGroup)!!,
+        noteTxt.text.toString(),
+        numberOfFrames.progress.toString(),
+        listOf(
+            onCheckBoxClicked(queenCheckBox),
+            onCheckBoxClicked(uncappedBroodCheckBox),
+            onCheckBoxClicked(cappedBroodCheckBox),
+            onCheckBoxClicked(eggsCheckBox)
+        )
+    )
+    }
 
-            val quickInspection = QuickInspection(
-                hive_Id,
-                FieldValue.serverTimestamp(),
-                getCurrentDate(),
-                getTextFromRadioButton(honeyStoresRadioGroup),
-                getTextFromRadioButton(layingPatternRadioGroup),
-                getTextFromRadioButton(populationRadioGroup),
-                getTextFromRadioButton(temperRadioGroup),
-                noteTxt.text.toString(),
-                numberOfFrames.progress.toString(),
-                listOf(
-                    onCheckBoxClicked(queenCheckBox),
-                    onCheckBoxClicked(uncappedBroodCheckBox),
-                    onCheckBoxClicked(cappedBroodCheckBox),
-                    onCheckBoxClicked(eggsCheckBox)
-                )
-            )
-            updateInspectionDataToFirebaseFirestore(quickInspection)
-            setLastInspectionDate()
-            navigateBackToHomeFragment(it)
-        }
+    private fun setQuickInspectionToFirebase(quickInspection: QuickInspection) {
+        inspectionViewModel.setDetailedInspectionDocument(hive_Id!!, quickInspection)
     }
 
     override fun onResume() {
         super.onResume()
+        getHiveIdFromBundle()
+    }
 
+    private fun getHiveIdFromBundle() {
         arguments?.let { bundle ->
             val args = QuickInspectionFragmentArgs.fromBundle(bundle)
             hive_Id = args.hiveId
         }
     }
 
-    private fun updateInspectionDataToFirebaseFirestore(inspection: QuickInspection) {
-        try {
-            authUser?.let {
-                db.collection(USERS)
-                    .document(it)
-                    .collection(HIVES)
-                    .document(hive_Id!!)
-                    .collection(INSPECTIONS)
-                    .add(inspection)
-            }
-        } catch (e: Exception) {
-            //log message
-        }
-
-    }
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setLastInspectionDate() {
-
-        try {
-            authUser?.let {
-                db.collection("users")
-                    .document(it)
-                    .set(
-                        mapOf(
-                            "lastInspection" to FieldValue.serverTimestamp()
-                        ), SetOptions.merge()
-                    )
-                    .addOnSuccessListener {
-                        //log message
-                    }
-                db.collection("users")
-                    .document(it)
-                    .collection("hives")
-                    .document(hive_Id!!)
-                    .set(
-                        mapOf(
-                            "lastInspection" to FieldValue.serverTimestamp()
-                        ), SetOptions.merge()
-                    )
-                    .addOnSuccessListener {
-                        //log message
-                    }
-            }
-        } catch (e: Exception) {
-            //log message
-        }
-
+        inspectionViewModel.setLastInspectionDate(hive_Id!!)
     }
 
 
@@ -155,10 +119,13 @@ class QuickInspectionFragment : Fragment() {
     }
 
 
-    private fun getTextFromRadioButton(rdGroup: RadioGroup): String {
+    private fun getTextFromRadioButton(rdGroup: RadioGroup): String? {
         val radioBtnID = rdGroup.checkedRadioButtonId
         val radioBtn = view?.findViewById<RadioButton>(radioBtnID)
-        return radioBtn?.text.toString()
+        return radioBtn?.let { button ->
+            val choice = button.text.toString()
+            choice
+        } ?: "X"
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

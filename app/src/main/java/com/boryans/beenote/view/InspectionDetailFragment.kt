@@ -2,32 +2,72 @@ package com.boryans.beenote.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.boryans.beenote.R
-import com.boryans.beenote.constants.Constants.Companion.HIVES
-import com.boryans.beenote.constants.Constants.Companion.INSPECTIONS
-import com.boryans.beenote.constants.Constants.Companion.USERS
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.ktx.Firebase
+import com.boryans.beenote.model.QuickInspection
+import com.boryans.beenote.util.Resource
+import com.boryans.beenote.viewmodels.InspectionViewModel
 import kotlinx.android.synthetic.main.fragment_inspection_detail.*
 
-class InspectionDetailFragment : Fragment() {
+class InspectionDetailFragment : Fragment(R.layout.fragment_inspection_detail) {
+    private val inspectionViewModel: InspectionViewModel by activityViewModels()
 
-
-    private val authUser = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
     private var inspectionId: String? = null
     private var hive_id: String? = null
 
-    private var inspectionDetailsListenerRegistration: ListenerRegistration? = null
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getHiveAndInspectionIdFromBundle()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        getDetailedInspectionDocument()
+        inspectionViewModel.inspectionDetails.observe(viewLifecycleOwner, { inspectionData->
+            when (inspectionData) {
+                is Resource.Success -> {
+                    populateInspectionDetailScreen(inspectionData)
+                }
+            }
+        })
+    }
+
+    private fun populateInspectionDetailScreen(inspection: Resource<QuickInspection>) {
+
+        temperamentTxt.text = inspection.data?.temperament
+        populationTxt.text = inspection.data?.population
+        honeyStoresTxt.text = inspection.data?.honeyStores
+        layingPatternTxt.text = inspection.data?.layingPattern
+        framesBrood.text = inspection.data?.broodFrames
+
+        inspection.data?.notes.let { notes ->
+
+            displayNotesTxt.text = notes
+            if (displayNotesTxt.text.isBlank()) displayNotesTxt.text = getString(R.string.no_added_notes_text)
+        }
+
+        queenSeenTxt.text = inspection.data?.observed?.get(0).toString()
+        cappedBroodSeenTxt.text = inspection.data?.observed?.get(1).toString()
+        uncappedBroodSeenTxt.text = inspection.data?.observed?.get(2).toString()
+        eggsSeenTxt.text = inspection.data?.observed?.get(3).toString()
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        inspectionViewModel.inspectionDetailsListenerRegistration?.remove()
+    }
+
+
+    private fun getDetailedInspectionDocument() {
+        hive_id?.let {
+            inspectionId?.let { it1 ->
+            inspectionViewModel.getDetailedInspectionDocument(it, it1)
+        } }
+    }
+
+    private fun getHiveAndInspectionIdFromBundle() {
         arguments?.let {
             val args = InspectionDetailFragmentArgs.fromBundle(it)
             val args1 = InspectionsListFragmentArgs.fromBundle(it)
@@ -35,68 +75,4 @@ class InspectionDetailFragment : Fragment() {
             hive_id = args1.hiveId
         }
     }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inspection_detail, container, false)
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-        inspectionDetailsListenerRegistration =
-            authUser?.let {
-                db.collection(USERS)
-                    .document(it)
-                    .collection(HIVES)
-                    .document(hive_id!!)
-                    .collection(INSPECTIONS)
-                    .document(inspectionId!!)
-                    .addSnapshotListener { document, error ->
-                        error?.let {
-                            //log message
-                        }
-                        document?.let { inspection ->
-
-                              val temper = inspection.data?.get("temperament").toString()
-                             val population = inspection.data?.get("population").toString()
-                           val honeyStores = inspection.data?.get("honeyStores").toString()
-                           val layingPattern = inspection.data?.get("layingPattern").toString()
-                           displayNotesTxt.text  = inspection.data?.get("notes").toString()
-                           framesBrood.text  = inspection.data?.get("broodFrames").toString()
-
-                            if (temper != "null") temperamentTxt.text = temper else temperamentTxt.text = "X"
-                            if (population != "null") populationTxt.text = population else populationTxt.text= "X"
-                            if (honeyStores != "null")  honeyStoresTxt.text = honeyStores else  honeyStoresTxt.text = "X"
-                            if (layingPattern != "null")  layingPatternTxt.text = layingPattern else  layingPatternTxt.text = "X"
-
-
-
-                            val observed = inspection.data?.get("observed") as List<*>
-
-                            queenSeenTxt.text = observed[0].toString()
-                            cappedBroodSeenTxt.text = observed[1].toString()
-                            uncappedBroodSeenTxt.text = observed[2].toString()
-                            eggsSeenTxt.text = observed[3].toString()
-
-
-                            if (displayNotesTxt.text.isBlank()) {
-                                displayNotesTxt.text = getString(R.string.no_added_notes_text)
-                            }
-
-                        }
-                    }
-            }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        inspectionDetailsListenerRegistration?.remove()
-    }
-
-
 }
