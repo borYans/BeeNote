@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants.Companion.USERS
+import com.boryans.beenote.viewmodels.MapViewModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMapOptions
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -18,32 +20,22 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_map_location.*
 
-class
-MapLocationFragment : Fragment(), OnMapReadyCallback {
+@AndroidEntryPoint
+class MapLocationFragment : Fragment(R.layout.fragment_map_location), OnMapReadyCallback {
 
-    //Firebase
-    private val authUser = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
+    //viewmodel instance
+    private val mapViewModel: MapViewModel by activityViewModels()
 
     //Google maps
     private lateinit var googleMap: GoogleMap
-
     private val options = GoogleMapOptions()
 
     private var apiaryLatitude: String? = null
     private var apiaryLongitude: String? = null
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_map_location, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,24 +54,11 @@ MapLocationFragment : Fragment(), OnMapReadyCallback {
                     .setMessage(activity?.getString(R.string.confirm_location_message))
                     .setPositiveButton(activity?.getString(R.string.positive_message)) { dialogInterface, which ->
 
-                        try {
-                            authUser?.let {
-                                db.collection(USERS)
-                                    .document(it)
-                                    .set(
-                                        mapOf(
-                                            "apiary_latitude" to apiaryLatitude,
-                                            "apiary_longitude" to apiaryLongitude
-                                        ), SetOptions.merge()
-                                    )
-                                    .addOnSuccessListener {
-                                        //log message
-                                    }
+                        apiaryLatitude?.let { lat ->
+                            apiaryLongitude?.let { lon ->
+                                mapViewModel.updateLocationCoordinatesToFirebase(lat, lon)
                             }
-                        } catch (e: Exception){
-                            //log message
                         }
-
 
                         val action = requireView().findNavController()
                         action.popBackStack()

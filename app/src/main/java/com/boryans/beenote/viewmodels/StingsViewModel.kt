@@ -11,15 +11,20 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class StingsViewModel : ViewModel() {
 
-    private val authUser = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
+@HiltViewModel
+class StingsViewModel @Inject constructor(
+    private val db: FirebaseFirestore,
+    private val authUser: String?
+) : ViewModel() {
+
     var stingListenerRegistration: ListenerRegistration? = null
 
     val stingsData: MutableLiveData<Resource<Sting>> = MutableLiveData()

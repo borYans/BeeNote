@@ -16,13 +16,18 @@ import com.boryans.beenote.util.Resource
 import com.boryans.beenote.viewmodels.HiveViewModel
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.FirebaseFirestore
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_hives_list.*
 import kotlinx.android.synthetic.main.symbol_dialog.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class HivesListFragment : Fragment(R.layout.fragment_hives_list), HiveClickListener {
 
     
     private val hivesListAdapter = HivesRecyclerAdapter(this)
+
     private val hiveViewModel: HiveViewModel by activityViewModels()
     
     private var isSnackBarShowedOnce = false

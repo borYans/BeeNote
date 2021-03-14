@@ -15,22 +15,22 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.text.DateFormat
 import java.util.*
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val db: FirebaseFirestore,
+    private var mAuth: FirebaseAuth,
+    private val calendar: Calendar,
+    private val authUser: String?
+) : ViewModel() {
 
 
-    //Firebase firestore setup
-    private val authUser = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
-    private var mAuth = FirebaseAuth.getInstance()
-
-    
-    //ccalendar instance
-    private val calendar = Calendar.getInstance()
 
 
     //Listeners Registrations

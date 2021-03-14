@@ -1,10 +1,8 @@
 package com.boryans.beenote.viewmodels
 
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.boryans.beenote.R
 import com.boryans.beenote.constants.Constants
 import com.boryans.beenote.constants.Constants.Companion.HIVES
 import com.boryans.beenote.constants.Constants.Companion.INSPECTIONS
@@ -12,27 +10,25 @@ import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.Hive
 import com.boryans.beenote.model.Interventions
 import com.boryans.beenote.util.Resource
-import com.facebook.internal.Mutable
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
-import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.fragment_update_hive.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HiveViewModel: ViewModel() {
-    
-    
+@HiltViewModel
+class HiveViewModel @Inject constructor(
+    private val firebaseDatabase: FirebaseFirestore,
+    private val firebaseAuthUser: String?
+): ViewModel() {
+
     //objects
     private lateinit var interventions: Interventions
-
-
-    //firebase setup
-    private val authUser = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
 
     //listeners registration
      var hivesListenerRegistration: ListenerRegistration? = null
@@ -46,8 +42,8 @@ class HiveViewModel: ViewModel() {
 
     fun updateHives(hive: Hive) = viewModelScope.launch {
         try {
-            authUser?.let {
-                db.collection(USERS)
+            firebaseAuthUser?.let {
+                firebaseDatabase.collection(USERS)
                     .document(it)
                     .collection(HIVES)
                     .add(hive)
@@ -62,8 +58,8 @@ class HiveViewModel: ViewModel() {
 
         try {
             hivesListenerRegistration =
-                authUser?.let {
-                    db.collection(USERS)
+                firebaseAuthUser?.let {
+                    firebaseDatabase.collection(USERS)
                         .document(it)
                         .collection(HIVES)
                         .orderBy("dateCreated", Query.Direction.DESCENDING)
@@ -90,8 +86,8 @@ class HiveViewModel: ViewModel() {
     fun getAllInterventions(hiveId: String)  = viewModelScope.launch {
         
         try {
-            authUser?.let {
-                db.collection(USERS)
+            firebaseAuthUser?.let {
+                firebaseDatabase.collection(USERS)
                     .document(it)
                     .collection(HIVES)
                     .document(hiveId)
@@ -128,8 +124,8 @@ class HiveViewModel: ViewModel() {
         viewModelScope.launch { 
             
         try {
-            authUser?.let {
-                db.collection(USERS)
+            firebaseAuthUser?.let {
+                firebaseDatabase.collection(USERS)
                     .document(it)
                     .collection(HIVES)
                     .document(hiveId)
@@ -149,8 +145,8 @@ class HiveViewModel: ViewModel() {
     fun deleteHive(hiveId: String)  = viewModelScope.launch { 
         
         try {
-            authUser?.let {
-                db.collection(USERS)
+            firebaseAuthUser?.let {
+                firebaseDatabase.collection(USERS)
                     .document(it)
                     .collection(HIVES)
                     .document(hiveId)
@@ -166,8 +162,8 @@ class HiveViewModel: ViewModel() {
         
         try {
             inspectionsListenerRegistration =
-                authUser?.let {
-                    db.collection(USERS)
+                firebaseAuthUser?.let {
+                    firebaseDatabase.collection(USERS)
                         .document(it)
                         .collection(HIVES)
                         .document(hiveId)
@@ -196,8 +192,8 @@ class HiveViewModel: ViewModel() {
     fun deleteInspection(hiveId: String, position: String)  = viewModelScope.launch { 
         
         try {
-            authUser?.let {
-                db.collection(USERS)
+            firebaseAuthUser?.let {
+                firebaseDatabase.collection(USERS)
                     .document(it)
                     .collection(HIVES)
                     .document(hiveId)
@@ -212,8 +208,8 @@ class HiveViewModel: ViewModel() {
 
     fun editHives(hiveId: String, hiveName: String, queenAge: String, hiveStatus: String) = viewModelScope.launch {
         try {
-            authUser?.let {
-                db.collection(USERS)
+            firebaseAuthUser?.let {
+                firebaseDatabase.collection(USERS)
                     .document(it)
                     .collection(HIVES)
                     .document(hiveId)

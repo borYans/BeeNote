@@ -5,19 +5,25 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.boryans.beenote.R
+import com.boryans.beenote.api.RetrofitInstance
 import com.boryans.beenote.application.Application
 import com.boryans.beenote.constants.Constants
+import com.boryans.beenote.constants.Constants.Companion.APP_ID
 import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.Repository
 import com.boryans.beenote.model.WeatherDataModel
+import com.boryans.beenote.util.Resource
+import com.boryans.beenote.viewmodels.WeatherViewModel
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
@@ -26,24 +32,11 @@ import retrofit2.Response
 import kotlin.math.roundToInt
 
 
-class  WeatherFragment() : Fragment() {
+@AndroidEntryPoint
+class  WeatherFragment() : Fragment(R.layout.fragment_weather) {
 
-    //firebase
-    private val authUser = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
+    private val weatherViewModel: WeatherViewModel by activityViewModels()
 
-    //location
-    private var locationListener: ListenerRegistration? = null
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_weather, container, false)
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,7 +55,6 @@ class  WeatherFragment() : Fragment() {
             true
         }
 
-
         inspectonRating.setOnClickListener {
             val action = WeatherFragmentDirections.actionWeatherFragmentToInspectionRatingInfoFragment()
             Navigation.findNavController(it).navigate(action)
@@ -74,97 +66,29 @@ class  WeatherFragment() : Fragment() {
         }
     }
 
-
-    private fun fetchWeather(lat: String, lon: String) {
-
-        val call = (context?.applicationContext as Application).api.getCurrentWeather(
-            lat,
-            lon,
-            Constants.APP_ID
-        )
-        call.enqueue(object : Callback<WeatherDataModel> {
-            override fun onResponse(
-                call: Call<WeatherDataModel>?,
-                response: Response<WeatherDataModel>?
-            ) {
-                val weatherResponse = response?.body()
-                if (weatherResponse != null) {
-                    weatherProgressBar.visibility = View.GONE
-                    val conditions = Repository(
-                        weatherResponse.main.temp.minus(273.1),
-                        weatherResponse.main.humidity,
-                        weatherResponse.wind.speed,
-                        weatherResponse.clouds.all
-                    )
-                    inspectionRatingInfo(conditions)
-                    currentTemperature.visibility = View.VISIBLE
-                    currentTemperature.text = "${
-                        conditions.temp?.roundToInt().toString()
-                    }${activity?.resources?.getString(R.string.celsius_sign)}"
-                    humidity.text = conditions.humid?.toString() + "%"
-                    windSpeedTxt.text = conditions.wind?.roundToInt().toString() + "m/s"
-                    cloudCoverTxt.text = conditions.clouds?.toString() + "%"
-
-                    nameOfTheCity.text = weatherResponse.name
-                    weatherDescriptionTxt.text = weatherResponse.weather[0].description
-
-                } else {
-                    Snackbar.make(requireView(), "No added location", Snackbar.LENGTH_LONG)
-                        .setBackgroundTint(resources.getColor(R.color.darkBackgroundColor))
-                        .setActionTextColor(resources.getColor(R.color.yellowText))
-                        .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
-                        .setAction("Add location") {
-                            val action =
-                                WeatherFragmentDirections.actionWeatherFragmentToAddLocationFragment()
-                            Navigation.findNavController(requireView()).navigate(action)
-                        }
-                        .show()
+    override fun onResume() {
+        super.onResume()
+        weatherViewModel.fetchWeather()
+        weatherViewModel.responseWeather.observe(viewLifecycleOwner, { weather->
+            when(weather) {
+                is Resource.Success -> {
+                    weather.let {
+                        //populate UI here
+                    }
                 }
             }
 
-            override fun onFailure(call: Call<WeatherDataModel>?, t: Throwable?) {
-                Toasty.info(
-                    requireContext(),
-                    activity?.getString(R.string.no_internet_connection)!!,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
         })
 
-    }
 
-    override fun onResume() {
-        super.onResume()
-
-        locationListener =
-            authUser?.let {
-                db.collection(USERS)
-                    .document(it)
-                    .addSnapshotListener { document, error ->
-                        error?.let {
-                            //log message
-                        }
-                        document?.let {
-                            try {
-                                val latitude = it.data?.get("apiary_latitude").toString()
-                                val longitude = it.data?.get("apiary_longitude").toString()
-                                fetchWeather(latitude, longitude)
-                            } catch (e: Exception) {
-                                //log message
-                            }
-
-
-                        }
-                    }
-            }
     }
 
     override fun onStop() {
         super.onStop()
-        locationListener?.remove()
+        weatherViewModel.locationListener?.remove()
     }
 
-    private fun inspectionRatingInfo(conditions: Repository) {
+    private fun inspectionRatingInfo(conditions: Repository) {   // move to WeatherViewModel
         val temp = conditions.temp?.roundToInt()
         val wind = conditions.wind?.roundToInt()
         val humid = conditions.humid

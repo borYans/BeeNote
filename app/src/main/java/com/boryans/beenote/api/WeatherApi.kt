@@ -1,4 +1,4 @@
-package com.boryans.beenote.interfaces
+package com.boryans.beenote.api
 
 import com.boryans.beenote.model.WeatherDataModel
 import retrofit2.Call

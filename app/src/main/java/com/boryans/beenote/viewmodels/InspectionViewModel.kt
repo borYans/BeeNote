@@ -14,14 +14,17 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class InspectionViewModel(): ViewModel() {
 
-    //FirebaseSetup
-    private val authUser = Firebase.auth.currentUser?.uid
-    private val db = FirebaseFirestore.getInstance()
+@HiltViewModel
+class InspectionViewModel @Inject constructor(
+    private val db: FirebaseFirestore,
+    private val authUser: String?
+): ViewModel() {
 
     //Listener registrations
      var inspectionDetailsListenerRegistration: ListenerRegistration? = null
@@ -44,7 +47,6 @@ class InspectionViewModel(): ViewModel() {
                         .addSnapshotListener { document, error ->
 
                             document?.let { inspection ->
-
 
                                 val temper = inspection.data?.get("temperament").toString()
                                 val population = inspection.data?.get("population").toString()
