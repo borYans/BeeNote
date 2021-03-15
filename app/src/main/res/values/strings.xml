@@ -12,7 +12,7 @@
 
 
     <!--Add new hive fragment-->
-    <string name="hive_name_hint_text">Hive name (max 9 characters)</string>
+    <string name="hive_name_hint_text">Hive number</string>
     <string name="queen_age_hint_text">Queen age</string>
     <string name="hive_status">Hive status</string>
     <string name="hive_status_radio_btn_strong">strong</string>

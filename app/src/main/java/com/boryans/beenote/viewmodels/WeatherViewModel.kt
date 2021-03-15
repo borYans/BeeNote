@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.boryans.beenote.api.RetrofitInstance
 import com.boryans.beenote.constants.Constants
 import com.boryans.beenote.constants.Constants.Companion.APP_ID
+import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.model.WeatherDataModel
 import com.boryans.beenote.util.Resource
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,12 +26,17 @@ class WeatherViewModel @Inject constructor(
     private val firebaseAuthUser: String?
 ) : ViewModel() {
 
+    init {
+        getCoordinates()
+    }
+
 
     //Registrations listeners
     var locationListener: ListenerRegistration? = null
 
     //Live data
     var responseWeather: MutableLiveData<Resource<WeatherDataModel>> = MutableLiveData()
+    var coordinate: MutableLiveData<Resource<String>> = MutableLiveData()
 
     //Location coordinates
     private var latitude: String? = null
@@ -58,11 +64,11 @@ class WeatherViewModel @Inject constructor(
     }
 
 
-     fun fetchWeather() = viewModelScope.launch {
+    fun fetchWeather() = viewModelScope.launch {
         try {
             locationListener =
                 firebaseAuthUser?.let {
-                    firebaseDatabase.collection(Constants.USERS)
+                    firebaseDatabase.collection(USERS)
                         .document(it)
                         .addSnapshotListener { document, error ->
                             document?.let {
@@ -76,36 +82,35 @@ class WeatherViewModel @Inject constructor(
                             }
                         }
                 }
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             //log message
         }
     }
 
 
+    private fun getCoordinates() = viewModelScope.launch {
+        try {
+            firebaseAuthUser?.let {
+                firebaseDatabase.collection(USERS)
+                    .document(it)
+                    .addSnapshotListener { document, error ->
+                        document?.let { coordinates ->
+                            if (coordinates.data?.get("apiary_latitude") == null) {
+                                coordinate.postValue(Resource.Error("No location added. Add new location."))
+                            }
+                            latitude = coordinates.data?.get("apiary_latitude").toString()
+                            longitude = coordinates.data?.get("apiary_longitude").toString()
+                        }
+                    }
+            }
+        } catch (e: Exception) {
+            //log message
+        }
+    }
+
 
 }
 
-/*
-          weatherProgressBar.visibility = View.GONE
-          val conditions = Repository(
-              weatherResponse.main.temp.minus(273.1),
-              weatherResponse.main.humidity,
-              weatherResponse.wind.speed,
-              weatherResponse.clouds.all
-          )
-          inspectionRatingInfo(conditions)
-          currentTemperature.visibility = View.VISIBLE
-          currentTemperature.text = "${
-              conditions.temp?.roundToInt().toString()
-          }${activity?.resources?.getString(R.string.celsius_sign)}"
-          humidity.text = conditions.humid?.toString() + "%"
-          windSpeedTxt.text = conditions.wind?.roundToInt().toString() + "m/s"
-          cloudCoverTxt.text = conditions.clouds?.toString() + "%"
-
-          nameOfTheCity.text = weatherResponse.name
-          weatherDescriptionTxt.text = weatherResponse.weather[0].description
-
-           */
 /*
        Snackbar.make(requireView(), "No added location", Snackbar.LENGTH_LONG)
            .setBackgroundTint(resources.getColor(R.color.darkBackgroundColor))

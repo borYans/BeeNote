@@ -31,7 +31,11 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
 
 
+    init {
+        getDateSevenDaysAgo()
+    }
 
+    private lateinit var dateSevenDaysAgo: Date
 
     //Listeners Registrations
     var nucleusHivesListenerRegistration: ListenerRegistration? = null
@@ -78,9 +82,9 @@ class HomeViewModel @Inject constructor(
             try {
                 nucleusHivesListenerRegistration =
                     authUser?.let {
-                        db.collection(Constants.USERS)
+                        db.collection(USERS)
                             .document(it)
-                            .collection(Constants.HIVES)
+                            .collection(HIVES)
                             .whereEqualTo(
                                 "hiveStatus",
                                 query
@@ -106,9 +110,9 @@ class HomeViewModel @Inject constructor(
             try {
                 weakHIvesListenerRegistration =
                     authUser?.let {
-                        db.collection(Constants.USERS)
+                        db.collection(USERS)
                             .document(it)
-                            .collection(Constants.HIVES)
+                            .collection(HIVES)
                             .whereEqualTo(
                                 "hiveStatus",
                                 query
@@ -134,9 +138,9 @@ class HomeViewModel @Inject constructor(
             try {
                 strongHivesListenerRegistration =
                     authUser?.let {
-                        db.collection(Constants.USERS)
+                        db.collection(USERS)
                             .document(it)
-                            .collection(Constants.HIVES)
+                            .collection(HIVES)
                             .whereEqualTo(
                                 "hiveStatus",
                                 query
@@ -162,10 +166,10 @@ class HomeViewModel @Inject constructor(
             try {
                 inspectedHivesListenerRegistration =
                     authUser?.let {
-                        db.collection(Constants.USERS)
+                        db.collection(USERS)
                             .document(it)
-                            .collection(Constants.HIVES)
-                            .whereGreaterThan("lastInspection", getDateSevenDaysAgo())
+                            .collection(HIVES)
+                            .whereGreaterThan("lastInspection", dateSevenDaysAgo)
                             .addSnapshotListener { documents, error ->
                                 documents?.let {
                                     //inspectedHiveTxt.text =
@@ -213,7 +217,7 @@ class HomeViewModel @Inject constructor(
             try {
                 stingsListenerRegistration =
                     authUser?.let {
-                        db.collection(Constants.USERS)
+                        db.collection(USERS)
                             .document(it)
                             .addSnapshotListener { document, error ->
                                 error?.let {
@@ -358,8 +362,8 @@ class HomeViewModel @Inject constructor(
         reminderNoteListenerRegistration?.remove()
     }
 
-    private fun getDateSevenDaysAgo(): Date {
+    private fun getDateSevenDaysAgo() {
         calendar.add(Calendar.DAY_OF_YEAR, -7)
-        return calendar.time
+        dateSevenDaysAgo = calendar.time
     }
 }

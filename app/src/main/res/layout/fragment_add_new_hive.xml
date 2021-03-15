@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,6 +42,7 @@
                 android:hint="@string/hive_name_hint_text"
                 android:maxLength="9"
                 android:padding="20dp"
+                android:inputType="numberSigned"
                 android:textColor="@color/white"
                 android:textColorHint="@color/greyText"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -16,7 +16,7 @@
     <string name="location_info">Временска прогноза на пчеларникот е овозможена доколку е додадена локација.</string>
     <string name="add_location_buton">Додади локација</string>
     <string name="skip_location_button">"Прескокни "</string>
-    <string name="hive_name_hint_text">Име на кошничка(макс. 8 карактери)</string>
+    <string name="hive_name_hint_text">Број на кошничка</string>
     <string name="queen_age_hint_text">Старост на матицата</string>
     <string name="hive_status">Јачина на друштвото</string>
     <string name="hive_status_radio_btn_strong">јако</string>

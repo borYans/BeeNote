@@ -4,7 +4,7 @@
     <string name="location_info">Vremenska prognoza na pčelinjaku je omogućena ukoliko je postavljena lokacija.</string>
     <string name="add_location_buton">Dodaj lokaciju</string>
     <string name="skip_location_button">Preskoči</string>
-    <string name="hive_name_hint_text">Naziv košnice(max. 8 slova)</string>
+    <string name="hive_name_hint_text">Broj košnice</string>
     <string name="queen_age_hint_text">Starost matice</string>
     <string name="hive_status">Jačina društva</string>
     <string name="hive_status_radio_btn_strong">jako</string>

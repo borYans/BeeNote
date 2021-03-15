@@ -35,8 +35,8 @@ import kotlin.math.roundToInt
 @AndroidEntryPoint
 class  WeatherFragment() : Fragment(R.layout.fragment_weather) {
 
-    private val weatherViewModel: WeatherViewModel by activityViewModels()
 
+    private val weatherViewModel: WeatherViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,26 +61,15 @@ class  WeatherFragment() : Fragment(R.layout.fragment_weather) {
         }
 
         swipeRefresh.setOnRefreshListener {
+            getCurrentApiaryWeatherConditions()
             swipeRefresh.isRefreshing = false
-            //refresh UI
         }
     }
 
     override fun onResume() {
         super.onResume()
-        weatherViewModel.fetchWeather()
-        weatherViewModel.responseWeather.observe(viewLifecycleOwner, { weather->
-            when(weather) {
-                is Resource.Success -> {
-                    weather.let {
-                        //populate UI here
-                    }
-                }
-            }
-
-        })
-
-
+        //I will check only one coordinate, if it's null then provide user with snackbar to add new location.
+        getCurrentApiaryWeatherConditions()
     }
 
     override fun onStop() {
@@ -88,10 +77,35 @@ class  WeatherFragment() : Fragment(R.layout.fragment_weather) {
         weatherViewModel.locationListener?.remove()
     }
 
-    private fun inspectionRatingInfo(conditions: Repository) {   // move to WeatherViewModel
-        val temp = conditions.temp?.roundToInt()
-        val wind = conditions.wind?.roundToInt()
-        val humid = conditions.humid
+    private fun getCurrentApiaryWeatherConditions() {
+        weatherViewModel.fetchWeather()
+        weatherViewModel.responseWeather.observe(viewLifecycleOwner, { weather->
+            when(weather) {
+                is Resource.Success -> {
+                    weather.let { conditions ->
+                        weatherProgressBar.visibility = View.GONE
+                        currentTemperature.visibility = View.VISIBLE
+
+                        currentTemperature.text = "${conditions.data?.main?.temp?.minus(273.15)?.roundToInt().toString()}${activity?.resources?.getString(R.string.celsius_sign)}"
+
+                        humidity.text = conditions.data?.main?.humidity.toString() + "%"
+                        windSpeedTxt.text = "${conditions.data?.wind?.speed?.roundToInt().toString()} m/s "
+                        cloudCoverTxt.text = conditions.data?.clouds?.all.toString() + "%"
+                        nameOfTheCity.text = conditions.data?.name
+                        weatherDescriptionTxt.text = conditions.data?.weather?.get(0)?.description
+                        inspectionRatingInfo(conditions)
+
+                    }
+                }
+            }
+
+        })
+    }
+
+    private fun inspectionRatingInfo(conditions: Resource<WeatherDataModel>) {   // move to WeatherViewModel
+        val temp = conditions.data?.main?.temp?.minus(273.15)?.roundToInt()
+        val wind = conditions.data?.wind?.speed?.roundToInt()
+        val humid = conditions.data?.main?.humidity
         if (temp != null && wind != null && humid != null) {
 
             if (humid > 90 || wind >= 8 || temp <= 10) {

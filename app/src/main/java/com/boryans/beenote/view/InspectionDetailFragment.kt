@@ -20,6 +20,7 @@ class InspectionDetailFragment : Fragment(R.layout.fragment_inspection_detail) {
         getHiveAndInspectionIdFromBundle()
     }
 
+
     override fun onResume() {
         super.onResume()
 

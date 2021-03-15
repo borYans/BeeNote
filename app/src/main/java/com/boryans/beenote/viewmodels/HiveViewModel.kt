@@ -62,7 +62,7 @@ class HiveViewModel @Inject constructor(
                     firebaseDatabase.collection(USERS)
                         .document(it)
                         .collection(HIVES)
-                        .orderBy("dateCreated", Query.Direction.DESCENDING)
+                        .orderBy("dateCreated", Query.Direction.ASCENDING)
                         .addSnapshotListener { documents, error ->
                             documents?.let {
                                 
