@@ -56,12 +56,11 @@
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/eggsCheckBox"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:checked="false"
                 android:clickable="true"
-                android:fontFamily="sans-serif-light"
                 android:text="@string/eggs_seen"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/population5"
@@ -98,12 +97,11 @@
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cappedBroodCheckBox"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:checked="false"
                 android:clickable="true"
-                android:fontFamily="sans-serif-light"
                 android:text="@string/capped_brood"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/uncappedBroodCheckBox"
@@ -112,12 +110,11 @@
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/uncappedBroodCheckBox"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:checked="false"
                 android:clickable="true"
-                android:fontFamily="sans-serif-light"
                 android:text="@string/uncapped_brood"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/eggsCheckBox"
@@ -126,11 +123,10 @@
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/queenCheckBox"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:clickable="true"
-                android:fontFamily="sans-serif-light"
                 android:text="@string/queen"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@+id/cappedBroodCheckBox"
@@ -221,32 +217,27 @@
                 app:layout_constraintStart_toStartOf="@+id/temper"
                 app:layout_constraintTop_toBottomOf="@+id/temper">
 
-                <androidx.appcompat.widget.AppCompatRadioButton
+                <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/calmRadioBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/calm"
                     android:textColor="@color/white" />
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/nervousRadioButton"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/nervousRadioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/nervous"
                     android:textColor="@color/white" />
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/angryRadioButton"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/angryRadioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/angry"
                     android:textColor="@color/white" />
 
@@ -263,31 +254,25 @@
                 app:layout_constraintStart_toStartOf="@+id/population"
                 app:layout_constraintTop_toBottomOf="@+id/population">
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/lowPopulationRadioButton"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/lowPopulationRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/low"
                     android:textColor="@color/white" />
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/moderatePopulationRadioButton"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/moderatePopulationRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/moderate"
                     android:textColor="@color/white" />
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/heavyPopulationRadioButton"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/heavyPopulationRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/heavy"
                     android:textColor="@color/white" />
 
@@ -304,33 +289,27 @@
                 app:layout_constraintStart_toStartOf="@+id/population2"
                 app:layout_constraintTop_toBottomOf="@+id/population2">
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/lowHoneyRadioButton"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/lowHoneyRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/low"
                     android:textColor="@color/white" />
 
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/averageHoneyRadioButton"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/averageHoneyRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/average"
                     android:textColor="@color/white" />
 
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/highHoneyRadioButton"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/highHoneyRadioButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/high"
                     android:textColor="@color/white" />
 
@@ -346,31 +325,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/population3"
                 tools:layout_editor_absoluteX="15dp">
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/poorPattern"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/poorPattern"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/poor"
                     android:textColor="@color/white" />
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/fairPattern"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/fairPattern"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/fair"
                     android:textColor="@color/white" />
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/perfectPattern"
+                <com.google.android.material.radiobutton.MaterialRadioButton                    android:id="@+id/perfectPattern"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-light"
                     android:text="@string/perfect"
                     android:textColor="@color/white" />
 
@@ -381,11 +354,10 @@
                 android:id="@+id/finishInspectionBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:alpha=".8"
-                android:background="@drawable/buttons"
+                android:background="@color/yellowText"
                 android:text="@string/finish_inspection"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

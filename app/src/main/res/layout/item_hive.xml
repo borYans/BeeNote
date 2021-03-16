@@ -16,16 +16,6 @@
         android:padding="12dp">
 
 
-        <ImageView
-            android:id="@+id/feedingHive"
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:alpha="1"
-            android:visibility="invisible"
-            android:src="@drawable/ic_feeding"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/swarmWarning" />
 
         <TextView
             android:id="@+id/hiveNameTxt"

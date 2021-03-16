@@ -7,8 +7,8 @@
     <string name="view_all_hives">Сите кошнички</string>
     <string name="current_weather_conditions">Метео услови</string>
     <string name="strong_hives">јаки друштва</string>
-    <string name="weak_hives">Слаби друштва</string>
-    <string name="nucleus_hives">Нуклеуси</string>
+    <string name="swarming_hives">Роев нагон</string>
+    <string name="treated_hives">Третирани друштва</string>
     <string name="last_inspection">Последен преглед</string>
     <string name="stings">Убоди</string>
     <string name="total_hives">Вкупно кошнички</string>
@@ -87,7 +87,7 @@
     <string name="fair">Солидно</string>
     <string name="perfect">Перфектно</string>
     <string name="finish_inspection">Сочувај преглед</string>
-    <string name="hive_data_cannot_be_empty">Име на кошничката и старост на матицата не може да останат празни.</string>
+    <string name="hive_data_cannot_be_empty">Внеси број на кошничка.</string>
     <string name="enter_queen_age">Внеси старост на матицата.</string>
     <string name="successfuly_added_new_hive">Успешно сочувана кошничка.</string>
     <string name="sting_added">запишани убод/и</string>

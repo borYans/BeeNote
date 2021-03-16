@@ -10,11 +10,9 @@ import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.util.Resource
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -38,12 +36,12 @@ class HomeViewModel @Inject constructor(
     private lateinit var dateSevenDaysAgo: Date
 
     //Listeners Registrations
-    var nucleusHivesListenerRegistration: ListenerRegistration? = null
+    var treatedHivesListenerRegistration: ListenerRegistration? = null
     var stingsListenerRegistration: ListenerRegistration? = null
     var hivesListenerRegistration: ListenerRegistration? = null
     var inspectedHivesListenerRegistration: ListenerRegistration? = null
     var strongHivesListenerRegistration: ListenerRegistration? = null
-    var weakHIvesListenerRegistration: ListenerRegistration? = null
+    var swarmHivesListenerRegistration: ListenerRegistration? = null
     var lastInspectionDateListenerRegistration: ListenerRegistration? = null
     var reminderNoteListenerRegistration: ListenerRegistration? = null
 
@@ -53,7 +51,7 @@ class HomeViewModel @Inject constructor(
     var allHives: MutableLiveData<Resource<String?>> = MutableLiveData()
     var currentUser: MutableLiveData<Resource<String>> = MutableLiveData()
     var nucleusHives: MutableLiveData<Resource<String>> = MutableLiveData()
-    var weakHives: MutableLiveData<Resource<String>> = MutableLiveData()
+    var swarmingHives: MutableLiveData<Resource<String>> = MutableLiveData()
     var strongHives: MutableLiveData<Resource<String>> = MutableLiveData()
     var lastInspection: MutableLiveData<Resource<String>> = MutableLiveData()
     var inspectedHivesInPastSevenDays: MutableLiveData<Resource<String>> = MutableLiveData()
@@ -76,18 +74,18 @@ class HomeViewModel @Inject constructor(
     }
 
 
-    fun getNumberOfNucelusHives(query: String) {
+    fun getNumberOfTreatedHives() {
 
         viewModelScope.launch {
             try {
-                nucleusHivesListenerRegistration =
+                treatedHivesListenerRegistration =
                     authUser?.let {
                         db.collection(USERS)
                             .document(it)
                             .collection(HIVES)
                             .whereEqualTo(
-                                "hiveStatus",
-                                query
+                                "treatment",
+                                true
                             )
                             .addSnapshotListener { snapshots, error ->
 
@@ -104,25 +102,22 @@ class HomeViewModel @Inject constructor(
     }
 
 
-     fun getNumberOfWeakHives(query: String) {
+     fun getNumberOfSWarmingHives() {
 
         viewModelScope.launch {
             try {
-                weakHIvesListenerRegistration =
+                swarmHivesListenerRegistration =
                     authUser?.let {
                         db.collection(USERS)
                             .document(it)
                             .collection(HIVES)
                             .whereEqualTo(
-                                "hiveStatus",
-                                query
-                                //activity?.getString(R.string.hive_status_radio_btn_weak)
+                                "swarmingSoon",
+                                true
                             )
                             .addSnapshotListener { snapshots, error ->
                                 snapshots?.let {
-                                    // weakHivesTxt.text = it.size().toString()
-                                    weakHives.postValue(Resource.Success(it.size().toString()))
-
+                                    swarmingHives.postValue(Resource.Success(it.size().toString()))
                                 }
                             }
                     }
@@ -356,8 +351,8 @@ class HomeViewModel @Inject constructor(
         hivesListenerRegistration?.remove()
         inspectedHivesListenerRegistration?.remove()
         strongHivesListenerRegistration?.remove()
-        weakHIvesListenerRegistration?.remove()
-        nucleusHivesListenerRegistration?.remove()
+        swarmHivesListenerRegistration?.remove()
+        treatedHivesListenerRegistration?.remove()
         lastInspectionDateListenerRegistration?.remove()
         reminderNoteListenerRegistration?.remove()
     }

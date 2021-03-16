@@ -54,8 +54,8 @@
     <string name="view_all_hives">Your hives</string>
     <string name="current_weather_conditions">Current weather conditions</string>
     <string name="strong_hives">Strong hives</string>
-    <string name="weak_hives">Weak hives</string>
-    <string name="nucleus_hives">Nucleus hives</string>
+    <string name="swarming_hives">Swarming hives</string>
+    <string name="treated_hives">Treated hives</string>
     <string name="last_inspection">Last inspection</string>
     <string name="stings">Stings</string>
     <string name="greeting">Welcome </string>
@@ -81,7 +81,7 @@
     <!--Toasty/Snackbar messages-->
     <string name="touch_map_info">Touch on the map to add marker for apiary location.</string>
     <string name="empty_list_snackbar">Empty list. Want to add new hive?</string>
-    <string name="hive_data_cannot_be_empty">Hive name and queen age cannot be empty.</string>
+    <string name="hive_data_cannot_be_empty">Hive name cannot be empty.</string>
     <string name="enter_queen_age">Enter queen age.</string>
     <string name="successfuly_added_new_hive">Successfully added new colony.</string>
     <string name="successfuly_added_new_inspection">Successfully added new inspection.</string>

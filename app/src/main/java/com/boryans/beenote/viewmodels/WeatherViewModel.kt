@@ -30,7 +30,6 @@ class WeatherViewModel @Inject constructor(
         getCoordinates()
     }
 
-
     //Registrations listeners
     var locationListener: ListenerRegistration? = null
 

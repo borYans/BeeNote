@@ -62,7 +62,7 @@ class HiveViewModel @Inject constructor(
                     firebaseDatabase.collection(USERS)
                         .document(it)
                         .collection(HIVES)
-                        .orderBy("dateCreated", Query.Direction.ASCENDING)
+                        .orderBy("hiveNumber", Query.Direction.ASCENDING)
                         .addSnapshotListener { documents, error ->
                             documents?.let {
                                 
@@ -84,7 +84,7 @@ class HiveViewModel @Inject constructor(
     }
     
     fun getAllInterventions(hiveId: String)  = viewModelScope.launch {
-        
+
         try {
             firebaseAuthUser?.let {
                 firebaseDatabase.collection(USERS)
@@ -99,10 +99,9 @@ class HiveViewModel @Inject constructor(
                                 ) != null
                             ) {
                                 val varoaMites = hive.data?.get("treatment") as Boolean
-                                val swarmingHive = hive.data?.get("swarmingSoon") as Boolean
                                 val feedingHive = hive.data?.get("feeding") as Boolean
 
-                                interventions = Interventions(varoaMites, feedingHive, swarmingHive)
+                                interventions = Interventions(varoaMites, feedingHive)
 
                                 allInterventions.postValue(Resource.Success(interventions))
 
@@ -119,7 +118,7 @@ class HiveViewModel @Inject constructor(
 
     
     
-    fun updateAllInterventionsToFirebase(hiveId: String, treatmentCheckBox: Boolean, feedingCheckBox: Boolean, swarmingCheckBox: Boolean) = 
+    fun updateAllInterventionsToFirebase(hiveId: String, treatmentCheckBox: Boolean, swarmingCheckBox: Boolean) =
         
         viewModelScope.launch { 
             
@@ -132,7 +131,6 @@ class HiveViewModel @Inject constructor(
                     .update(
                         mapOf(
                             "treatment" to treatmentCheckBox,
-                            "feeding" to feedingCheckBox,
                             "swarmingSoon" to swarmingCheckBox
                         )
                     )
@@ -177,7 +175,6 @@ class HiveViewModel @Inject constructor(
                                     inspectionsList.add(document)
                                 }
                                 allInspections.postValue(Resource.Success(inspectionsList))
-
                             }
                             error?.let {
                               allInspections.postValue(Resource.Error("Error occurred."))
@@ -206,7 +203,8 @@ class HiveViewModel @Inject constructor(
     }
 
 
-    fun editHives(hiveId: String, hiveName: String, queenAge: String, hiveStatus: String) = viewModelScope.launch {
+    fun editHives(hiveId: String, hiveName: Int, queenAge: String, hiveStatus: String) = viewModelScope.launch {
+
         try {
             firebaseAuthUser?.let {
                 firebaseDatabase.collection(USERS)
@@ -215,8 +213,8 @@ class HiveViewModel @Inject constructor(
                     .document(hiveId)
                     .update(
                         mapOf(
-                            "hiveName" to hiveName,
-                            "queenAge" to queenAge,
+                            "hiveNumber" to hiveName,
+                            "queenColor" to queenAge,
                             "hiveStatus" to hiveStatus
                         )
                     )

@@ -14,6 +14,7 @@
     <color name="randomColor">#B42B4582</color>
 
     <color name="experimentalColor3">#2F3749</color>
+    <color name="experimentalColor4">#2D3549</color>
 
 
     <color name="login_background">#f9fcfb</color>
@@ -31,7 +32,7 @@
 
     <color name="fb_button_blue">#3b5998</color>
 
-    <color name="orangeShadowBackground">#f39233</color>
+    <color name="orangeShadowBackground">#FF6D00</color>
     <color name="detailTextDataColor">#01c5c4</color>
     <color name="observedDataTextColor">#01c5c4</color>
 

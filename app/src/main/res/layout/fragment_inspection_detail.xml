@@ -146,7 +146,7 @@
                 android:layout_height="120dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/curved_detail_screen_layout"
+                android:background="@drawable/dashboard_background"
                 android:elevation="10dp"
                 android:padding="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/broodFramesConstraint"

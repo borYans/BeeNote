@@ -33,8 +33,8 @@
     <string name="view_all_hives">Tvoje košnice</string>
     <string name="current_weather_conditions">Meteo uslovi</string>
     <string name="strong_hives">Jaka društva</string>
-    <string name="weak_hives">Slaba društva</string>
-    <string name="nucleus_hives">Nukelusi</string>
+    <string name="swarming_hives">Rojev nagon</string>
+    <string name="treated_hives">Tretirana društva</string>
     <string name="last_inspection">Zadnji pregled</string>
     <string name="stings">Uboda</string>
     <string name="greeting">Dobrošli</string>
@@ -55,7 +55,7 @@
     <string name="inspection_rating_index_inspection">Otvarati</string>
     <string name="touch_map_info">Dodirom na mapi dodajete marker na željenu lokciju.</string>
     <string name="empty_list_snackbar">Nema košnica. Želite li dodati novu?</string>
-    <string name="hive_data_cannot_be_empty">Naziv košnice i starost matice ne mogu biti prazni.</string>
+    <string name="hive_data_cannot_be_empty">Unsesi broj košnice.</string>
     <string name="enter_queen_age">Starost matice.</string>
     <string name="successfuly_added_new_hive">Uspješno sačuvana košnica.</string>
     <string name="successfuly_added_new_inspection">Uspješno sačuvan pregled.</string>

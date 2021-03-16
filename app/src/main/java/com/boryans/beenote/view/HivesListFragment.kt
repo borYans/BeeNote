@@ -112,19 +112,18 @@ class HivesListFragment : Fragment(R.layout.fragment_hives_list), HiveClickListe
 
         val customDialogLayout = layoutInflater.inflate(R.layout.symbol_dialog, null)
         val swarming: CheckBox = customDialogLayout.findViewById(R.id.swarmingSoon)
-        val feeding: CheckBox = customDialogLayout.findViewById(R.id.addFeeding)
         val treatment: CheckBox = customDialogLayout.findViewById(R.id.treatedHive)
 
-        checkAllCheckboxesInDialog(position, treatment, feeding, swarming)
+        checkAllCheckboxesInDialog(position, treatment,  swarming)
 
 
         AlertDialog.Builder(requireContext()).apply {
-            setTitle("Mark intervention")
+            setTitle("Add Information")
             setView(customDialogLayout)
             setCancelable(false)
             setPositiveButton("Save") { dialogInterface, which ->
 
-                hiveViewModel.updateAllInterventionsToFirebase(position, treatment.isChecked, feeding.isChecked, swarming.isChecked)
+                hiveViewModel.updateAllInterventionsToFirebase(position, treatment.isChecked, swarming.isChecked)
 
             }
             setNegativeButton("Cancel") { dialogInterface, which ->
@@ -136,14 +135,13 @@ class HivesListFragment : Fragment(R.layout.fragment_hives_list), HiveClickListe
 
     }
 
-    private fun checkAllCheckboxesInDialog(position: String, treatment: CheckBox, feeding: CheckBox, swarming: CheckBox) {
+    private fun checkAllCheckboxesInDialog(position: String, treatment: CheckBox, swarming: CheckBox) {
         hiveViewModel.getAllInterventions(position)
         hiveViewModel.allInterventions.observe(viewLifecycleOwner, { intervention ->
             when (intervention) {
                 is Resource.Success -> {
                     intervention.let {
                         if (it.data?.treatment!!) treatment.isChecked = true
-                        if (it.data.feeding) feeding.isChecked = true
                         if (it.data.swarmingSoon) swarming.isChecked = true
                     }
                 }

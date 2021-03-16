@@ -2,26 +2,23 @@ package com.boryans.beenote.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.boryans.beenote.R
-import com.boryans.beenote.constants.Constants.Companion.HIVES
-import com.boryans.beenote.constants.Constants.Companion.USERS
 import com.boryans.beenote.viewmodels.HiveViewModel
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.fragment_update_hive.*
+import kotlinx.android.synthetic.main.fragment_edit_hive.*
+import kotlinx.android.synthetic.main.fragment_edit_hive.hiveNumberEditText
+import kotlinx.android.synthetic.main.fragment_edit_hive.queenColorRadioGroup
+import kotlinx.android.synthetic.main.fragment_edit_hive.statusRadioGroup
 
 
-class EditHiveFragment : Fragment(R.layout.fragment_update_hive) {
+class EditHiveFragment : Fragment(R.layout.fragment_edit_hive) {
+
     private val hiveViewModel: HiveViewModel by activityViewModels()
 
     private var hiveId: String? = null
@@ -34,17 +31,22 @@ class EditHiveFragment : Fragment(R.layout.fragment_update_hive) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        updateHiveBtn_update.setOnClickListener {
 
-            if (isHiveNameBlank || isQueenAgeBlank) {
+
+        editHive.setOnClickListener {
+
+            if (hiveNumberEditText.text.toString().trim().isBlank()) {
                 warnUserToAddHiveNameAndQueenAge()
             } else {
                 hiveId?.let { id ->
-                  editHive(id)
+                    editHive(id)
                 }
             }
             navigateBackToHome(it)
         }
+
+
+
     }
 
     private fun getTextFromRadioButton(rdGroup: RadioGroup): String {
@@ -54,7 +56,7 @@ class EditHiveFragment : Fragment(R.layout.fragment_update_hive) {
     }
 
     private fun navigateBackToHome(v: View) {
-        val action = EditHiveFragmentDirections.actionUpdateHiveFragmentToHomeFragment()
+        val action = EditHiveFragmentDirections.actionEditHiveFragmentToHomeFragment()
         Navigation.findNavController(v).navigate(action)
     }
 
@@ -70,9 +72,9 @@ class EditHiveFragment : Fragment(R.layout.fragment_update_hive) {
     private fun editHive(hive_id: String) {
         hiveViewModel.editHives(
             hive_id,
-            hiveNameEditText_update.text.toString(),
-            queenAgeEditText_update.text.toString(),
-            getTextFromRadioButton(statusRadioGroup_update)
+            hiveNumberEditText.text.toString().toInt(),
+            getTextFromRadioButton(queenColorRadioGroup),
+            getTextFromRadioButton(statusRadioGroup),
         )
     }
 
@@ -83,8 +85,7 @@ class EditHiveFragment : Fragment(R.layout.fragment_update_hive) {
         }
     }
 
-    private val isHiveNameBlank = hiveNameEditText_update.text.toString().trim().isBlank()
-    private val isQueenAgeBlank = queenAgeEditText_update.text.toString().trim().isBlank()
+
 }
 
 

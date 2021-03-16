@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.boryans.beenote.R
 import com.boryans.beenote.util.Resource
+import com.boryans.beenote.viewmodels.HiveViewModel
 import com.boryans.beenote.viewmodels.HomeViewModel
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -23,7 +24,10 @@ import java.util.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
+
     private val homeViewModel: HomeViewModel by activityViewModels()
+
+
 
     private val rotateOpen: Animation by lazy {
         AnimationUtils.loadAnimation(
@@ -51,6 +55,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private var clicked: Boolean = false
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -92,8 +97,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 create()
                 show()
             }
-
-
 
             return@OnLongClickListener true
         })
@@ -149,13 +152,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             true
         }
 
-
-
         swipeHomeRefresh.setOnRefreshListener {
             refreshHomeFragmentData()
             swipeHomeRefresh.isRefreshing = false
         }
-
     }
 
     private fun onAddButtonClicked() {
@@ -275,8 +275,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         })
 
-        homeViewModel.getNumberOfWeakHives(activity?.getString(R.string.hive_status_radio_btn_weak)!!)
-        homeViewModel.weakHives.observe(viewLifecycleOwner, { hives ->
+        homeViewModel.getNumberOfSWarmingHives()
+        homeViewModel.swarmingHives.observe(viewLifecycleOwner, { hives ->
             when(hives) {
                 is Resource.Success -> {
                     hives.let { weak ->
@@ -298,12 +298,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         })
 
 
-        homeViewModel.getNumberOfNucelusHives(activity?.getString(R.string.hive_status_radio_btn_nucelus)!!)
+        homeViewModel.getNumberOfTreatedHives()
         homeViewModel.nucleusHives.observe(viewLifecycleOwner, { nucleuses ->
             when(nucleuses) {
                 is Resource.Success -> {
                     nucleuses.let { hives ->
-                        nucleusHivesTxt.text = hives.data  ?: "--"
+                        treatedHivesTxt.text = hives.data  ?: "--"
                     }
                 }
             }

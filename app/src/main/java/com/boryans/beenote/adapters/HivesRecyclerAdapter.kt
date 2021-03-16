@@ -18,7 +18,6 @@ class HivesRecyclerAdapter(
 ) :
     RecyclerView.Adapter<HivesRecyclerAdapter.HivesViewHolder>() {
 
-
     private var items = mutableListOf<QueryDocumentSnapshot>() //items can be added or removed.
 
     fun updateHivesList(hivesList: ArrayList<QueryDocumentSnapshot>) {
@@ -54,13 +53,26 @@ class HivesRecyclerAdapter(
 
     override fun onBindViewHolder(holder: HivesViewHolder, position: Int) {
 
-
         val docs = items[position]
         holder.itemView.apply {
-            hiveNameTxt.text = docs.get("hiveName").toString()
+            hiveNameTxt.text = docs.get("hiveNumber").toString()
             hiveStatusTxt.text = "${holder.itemView.context.getString(R.string.status_recycler_item)} ${docs.get("hiveStatus").toString()}"
-            queenBeeAgeTxt.text = "${holder.itemView.context.getString(R.string.queen_recycler_item)} ${docs.get("queenAge").toString()} ${holder.itemView.context.getString(R.string.queen_recycler_endpoint)}"
-            if (docs.get("feeding") == true) feedingHive.visibility = View.VISIBLE else feedingHive.visibility = View.GONE
+
+
+            queenBeeAgeTxt.apply {
+
+                when(docs.get("queenColor").toString()) {
+                    "green" -> setTextColor(resources.getColor(android.R.color.holo_green_light))
+                    "blue" -> setTextColor(resources.getColor(android.R.color.holo_blue_light))
+                    "yellow" -> setTextColor(resources.getColor(R.color.yellowText))
+                    "red" -> setTextColor(resources.getColor(android.R.color.holo_red_light))
+                    "white" -> setTextColor(resources.getColor(android.R.color.white))
+                    else -> setTextColor(resources.getColor(android.R.color.white))
+                }
+
+                text = ("${holder.itemView.context.getString(R.string.queen_recycler_item)} ${docs.get("queenColor").toString()} ") //queenColor
+            }
+
             if (docs.get("swarmingSoon") == true) swarmWarning.visibility = View.VISIBLE else swarmWarning.visibility = View.GONE
             if (docs.get("treatment") == true) varoaMites.visibility = View.VISIBLE else varoaMites.visibility = View.GONE
         }
@@ -73,7 +85,7 @@ class HivesRecyclerAdapter(
 
 
         holder.itemView.editHIve.setOnClickListener {
-            Navigation.findNavController(it).navigate(HivesListFragmentDirections.actionHivesListFragmentToUpdateHiveFragment(docs.id))
+         Navigation.findNavController(it).navigate(HivesListFragmentDirections.actionHivesListFragmentToEditHiveFragment(docs.id))
         }
 
         holder.itemView.addSymbol.setOnClickListener { feeding ->
@@ -85,7 +97,6 @@ class HivesRecyclerAdapter(
     //Return datasize of my dataset.
     override fun getItemCount() = items.size
 
-
 }
 
 class HiveItemDiffCallback(
@@ -94,7 +105,6 @@ class HiveItemDiffCallback(
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize() = oldHivesList.size
-
 
     override fun getNewListSize() = newHivesList.size
 
@@ -105,8 +115,6 @@ class HiveItemDiffCallback(
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return oldHivesList[oldItemPosition] === newHivesList[newItemPosition]
     }
-
-
 }
 
 

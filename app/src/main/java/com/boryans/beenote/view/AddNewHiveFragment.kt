@@ -20,20 +20,18 @@ class AddNewHiveFragment : Fragment(R.layout.fragment_add_new_hive) {
 
     private val hiveViewModel: HiveViewModel by activityViewModels()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         skipBtn.setOnClickListener {
             val hive = Hive(
-                hiveNameEditText.text.toString(),
-                queenAgeEditText.text.toString(),
+                hiveNumberEditText.text.toString().toInt(),
+                getTextFromRadioButton(queenColorRadioGroup),
                 getTextFromRadioButton(statusRadioGroup),
                 FieldValue.serverTimestamp()
             )
 
-            if (hiveNameEditText.text.toString().trim().isBlank() || queenAgeEditText.text.toString().trim().isBlank() ) {
+            if (hiveNumberEditText.text.toString().trim().isBlank()) {
                 Toasty.info(
                     requireContext(),
                     activity?.getString(R.string.hive_data_cannot_be_empty)!!,
@@ -52,13 +50,9 @@ class AddNewHiveFragment : Fragment(R.layout.fragment_add_new_hive) {
         return radioBtn?.text.toString()
     }
 
-
     private fun navigateBackToHome(v: View) {
         val action = v.findNavController()
         action.popBackStack()
         action.navigate(R.id.homeFragment)
     }
-
-
-
 }

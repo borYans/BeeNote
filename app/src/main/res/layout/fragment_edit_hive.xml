@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,22 +15,19 @@
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_main_background"
             android:padding="10dp"
-            tools:context=".view.AddCoordFragment">
+            tools:context="..view.EditHiveFragment">
 
 
             <RadioGroup
                 android:id="@+id/queenColorRadioGroup"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:orientation="vertical"
                 android:padding="5dp"
-                app:layout_constraintBottom_toTopOf="@+id/skipBtn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/queenColor">
 
@@ -84,14 +82,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-light"
                 android:padding="5dp"
                 android:text="@string/hive_status"
                 android:textColor="@color/yellowText"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/statusRadioGroup"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/hiveNumberEditText" />
@@ -101,7 +101,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:drawableEnd="@drawable/ic_edit_hive"
                 android:hint="@string/hive_name_hint_text"
@@ -110,6 +110,7 @@
                 android:padding="20dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/greyText"
+                app:layout_constraintBottom_toTopOf="@+id/hiveStatus"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -119,8 +120,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginEnd="8dp"
                 android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/queenColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/hiveStatus">
@@ -166,26 +169,24 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/skipBtn"
-                android:layout_width="0dp"
+                android:id="@+id/editHive"
+                android:layout_width="392dp"
                 android:layout_height="wrap_content"
                 android:background="@color/yellowText"
-                android:text="@string/add_new_hive_btn"
+                android:text="@string/update_hive_button"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
-
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/queenColor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="sans-serif-light"
                 android:padding="10dp"
@@ -195,7 +196,6 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/queenColorRadioGroup"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/statusRadioGroup" />
 
